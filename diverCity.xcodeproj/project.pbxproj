@@ -17,6 +17,14 @@
 		8008EB77216EE7A4004B7799 /* diverCityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB76216EE7A4004B7799 /* diverCityUITests.swift */; };
 		8008EB852170492D004B7799 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB842170492D004B7799 /* SignInViewController.swift */; };
 		8008EB8721704F84004B7799 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB8621704F84004B7799 /* WelcomeViewController.swift */; };
+		8008EB892170F5EF004B7799 /* MyHomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB882170F5EF004B7799 /* MyHomePageViewController.swift */; };
+		8008EB8B2170FA02004B7799 /* FindCommunitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB8A2170FA02004B7799 /* FindCommunitiesViewController.swift */; };
+		8008EB8D2170FF1B004B7799 /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB8C2170FF1B004B7799 /* Community.swift */; };
+		8008EB8F2170FF97004B7799 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB8E2170FF97004B7799 /* User.swift */; };
+		8008EB912170FFA6004B7799 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB902170FFA6004B7799 /* Event.swift */; };
+		8008EB94217107AD004B7799 /* PrivacyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB93217107AD004B7799 /* PrivacyType.swift */; };
+		8008EB9621711A66004B7799 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB9521711A66004B7799 /* API.swift */; };
+		8008EB9821711AA0004B7799 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB9721711AA0004B7799 /* CreateAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +61,14 @@
 		8008EB78216EE7A4004B7799 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8008EB842170492D004B7799 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		8008EB8621704F84004B7799 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		8008EB882170F5EF004B7799 /* MyHomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomePageViewController.swift; sourceTree = "<group>"; };
+		8008EB8A2170FA02004B7799 /* FindCommunitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCommunitiesViewController.swift; sourceTree = "<group>"; };
+		8008EB8C2170FF1B004B7799 /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
+		8008EB8E2170FF97004B7799 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8008EB902170FFA6004B7799 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		8008EB93217107AD004B7799 /* PrivacyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyType.swift; sourceTree = "<group>"; };
+		8008EB9521711A66004B7799 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		8008EB9721711AA0004B7799 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +123,14 @@
 				8008EB56216EE79F004B7799 /* FirstViewController.swift */,
 				8008EB58216EE79F004B7799 /* SecondViewController.swift */,
 				8008EB5A216EE79F004B7799 /* Main.storyboard */,
+				8008EB9521711A66004B7799 /* API.swift */,
+				8008EB9721711AA0004B7799 /* CreateAccountViewController.swift */,
+				8008EB8C2170FF1B004B7799 /* Community.swift */,
+				8008EB93217107AD004B7799 /* PrivacyType.swift */,
+				8008EB8E2170FF97004B7799 /* User.swift */,
+				8008EB902170FFA6004B7799 /* Event.swift */,
+				8008EB8A2170FA02004B7799 /* FindCommunitiesViewController.swift */,
+				8008EB882170F5EF004B7799 /* MyHomePageViewController.swift */,
 				8008EB8621704F84004B7799 /* WelcomeViewController.swift */,
 				8008EB842170492D004B7799 /* SignInViewController.swift */,
 				8008EB5D216EE7A3004B7799 /* Assets.xcassets */,
@@ -267,9 +291,17 @@
 			files = (
 				8008EB852170492D004B7799 /* SignInViewController.swift in Sources */,
 				8008EB8721704F84004B7799 /* WelcomeViewController.swift in Sources */,
+				8008EB892170F5EF004B7799 /* MyHomePageViewController.swift in Sources */,
 				8008EB59216EE79F004B7799 /* SecondViewController.swift in Sources */,
+				8008EB912170FFA6004B7799 /* Event.swift in Sources */,
+				8008EB9821711AA0004B7799 /* CreateAccountViewController.swift in Sources */,
+				8008EB94217107AD004B7799 /* PrivacyType.swift in Sources */,
 				8008EB55216EE79F004B7799 /* AppDelegate.swift in Sources */,
+				8008EB8F2170FF97004B7799 /* User.swift in Sources */,
 				8008EB57216EE79F004B7799 /* FirstViewController.swift in Sources */,
+				8008EB8B2170FA02004B7799 /* FindCommunitiesViewController.swift in Sources */,
+				8008EB9621711A66004B7799 /* API.swift in Sources */,
+				8008EB8D2170FF1B004B7799 /* Community.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

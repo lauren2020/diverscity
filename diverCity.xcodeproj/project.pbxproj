@@ -15,6 +15,8 @@
 		8008EB61216EE7A3004B7799 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8008EB5F216EE7A3004B7799 /* LaunchScreen.storyboard */; };
 		8008EB6C216EE7A4004B7799 /* diverCityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB6B216EE7A4004B7799 /* diverCityTests.swift */; };
 		8008EB77216EE7A4004B7799 /* diverCityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB76216EE7A4004B7799 /* diverCityUITests.swift */; };
+		8008EB852170492D004B7799 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB842170492D004B7799 /* SignInViewController.swift */; };
+		8008EB8721704F84004B7799 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB8621704F84004B7799 /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		8008EB72216EE7A4004B7799 /* diverCityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = diverCityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8008EB76216EE7A4004B7799 /* diverCityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = diverCityUITests.swift; sourceTree = "<group>"; };
 		8008EB78216EE7A4004B7799 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8008EB842170492D004B7799 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		8008EB8621704F84004B7799 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				8008EB56216EE79F004B7799 /* FirstViewController.swift */,
 				8008EB58216EE79F004B7799 /* SecondViewController.swift */,
 				8008EB5A216EE79F004B7799 /* Main.storyboard */,
+				8008EB8621704F84004B7799 /* WelcomeViewController.swift */,
+				8008EB842170492D004B7799 /* SignInViewController.swift */,
 				8008EB5D216EE7A3004B7799 /* Assets.xcassets */,
 				8008EB5F216EE7A3004B7799 /* LaunchScreen.storyboard */,
 				8008EB62216EE7A3004B7799 /* Info.plist */,
@@ -259,6 +265,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8008EB852170492D004B7799 /* SignInViewController.swift in Sources */,
+				8008EB8721704F84004B7799 /* WelcomeViewController.swift in Sources */,
 				8008EB59216EE79F004B7799 /* SecondViewController.swift in Sources */,
 				8008EB55216EE79F004B7799 /* AppDelegate.swift in Sources */,
 				8008EB57216EE79F004B7799 /* FirstViewController.swift in Sources */,

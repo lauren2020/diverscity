@@ -203,8 +203,6 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImage" destination="pN6-t8-ryb" id="XCD-0z-j1b"/>
-                        <segue destination="aoV-zX-DUn" kind="show" identifier="welcomeToCreateAccount" id="wcw-3s-Cuy"/>
-                        <segue destination="dse-27-8vx" kind="show" identifier="welcomeToSignIn" id="6La-qw-QYX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bTh-sJ-wl1" userLabel="First Responder" sceneMemberID="firstResponder"/>

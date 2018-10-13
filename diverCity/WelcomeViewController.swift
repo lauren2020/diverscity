@@ -36,7 +36,7 @@ class WelcomeViewController: UIViewController {
         //Step 3: Try it out! See if your button works now by using the emulator.
         
         //Write commands below this line:
-        self.performSegue(withIdentifier: "welcomeToSignIn", sender: (Any).self)
+        
     }
     
     @IBAction func goToCreateAccountPage(_ sender: Any) {
@@ -44,7 +44,7 @@ class WelcomeViewController: UIViewController {
         /*Challenge: Send User to Create Account page when "Create Account" Button is clicked */
         /************************************************************************/
         // See if you can do this one on your own! If you get stuck feel free to ask questions :)
-        self.performSegue(withIdentifier: "welcomeToCreateAccount", sender: (Any).self)
+        
     }
     
     @IBAction func showPrivacyPolicy(_ sender: Any) {

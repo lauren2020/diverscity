@@ -209,10 +209,10 @@
             </objects>
             <point key="canvasLocation" x="-1150" y="-654"/>
         </scene>
-        <!--View Controller-->
+        <!--Blank View Controller-->
         <scene sceneID="ywx-xT-bSI">
             <objects>
-                <viewController id="PEW-XZ-Yx6" sceneMemberID="viewController">
+                <viewController id="PEW-XZ-Yx6" customClass="BlankViewController" customModule="diverCity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lRM-ox-qeo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -543,6 +543,7 @@
                     </view>
                     <connections>
                         <segue destination="kfS-gc-eBR" kind="show" identifier="myHomePageToWelcome" id="Stn-ya-ZmH"/>
+                        <segue destination="49e-Tb-3d3" kind="show" id="SUm-OB-ivl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZdZ-IP-wM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -625,6 +626,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="saI-Zb-EvS"/>
-        <segue reference="kFg-7v-mgd"/>
+        <segue reference="Stn-ya-ZmH"/>
     </inferredMetricsTieBreakers>
 </document>

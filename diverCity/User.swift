@@ -11,8 +11,8 @@ import Foundation
 class User {
     var firstName: String!
     var lastName: String!
-    var userName = ""
-    var password = ""
+    var userName: String?
+    var password: String?
     var email = ""
     var communities = [Community?]()
     

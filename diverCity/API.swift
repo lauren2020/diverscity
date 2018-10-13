@@ -23,4 +23,12 @@ class API {
         }
         return User(firstName: "Test", lastName: "User")
     }
+    
+    func createNewUser(username: String, password: String, firstName: String, lastName: String, email: String) {
+        var newUser = User(firstName: firstName, lastName: lastName)
+        newUser.userName = username
+        newUser.password = password
+        newUser.email = email
+        users.append(newUser)
+    }
 }

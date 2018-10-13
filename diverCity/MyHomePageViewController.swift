@@ -9,13 +9,19 @@
 import UIKit
 
 class MyHomePageViewController: UIViewController {
+    
+    var api = API()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
+    @IBAction func logoutOfAccount(_ sender: Any) {
+        performSegue(withIdentifier: "myHomePageToWelcome", sender: (Any).self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

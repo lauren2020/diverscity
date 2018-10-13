@@ -9,6 +9,7 @@
 import UIKit
 
 class WelcomeViewController: UIViewController {
+    var api = API()
 
     @IBOutlet weak var backgroundImage: UIImageView!
     
@@ -59,14 +60,22 @@ class WelcomeViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "welcomeToSignIn"
+        {
+            if let vc = segue.destination as? SignInViewController
+            {
+                vc.api = self.api
+            }
+        }
+        if segue.identifier == "welcomeToCreateAccount"
+        {
+            if let vc = segue.destination as? CreateAccountViewController
+            {
+                vc.api = self.api
+            }
+        }
     }
-    */
 
 }

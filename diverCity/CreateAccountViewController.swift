@@ -13,7 +13,7 @@ class CreateAccountViewController: UIViewController {
     var api = API()
 
     //Place first name outlet below here:
-    @IBOutlet weak var firstNameTextField: UITextField!
+    
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -35,7 +35,7 @@ class CreateAccountViewController: UIViewController {
     /*Challenge 2: Connect the create button to this code and make it create a new user with the information in the fields*/
     /******************************************************************/
     //Step 1: Connect the button to this code
-        //A) Hold the control button and then click and hold on the "Create" button on the Create New Account screen. While still holding the control button and left mouse button, drag cursor over to this text. You will notice a blue line show up accross the text under your cursor. Whereever the blue line is when you release the mouse button is where the connection to the button will be placed in the code.
+        //A) Hold the control button and then click and hold on the "Create" button on the Create New Account screen. While still holding the control button and left mouse button, drag cursor over to this text. You will notice a blue line show up accross the text under your cursor. Whereever the blue line is when you release the mouse button is where the connection to the button will be placed in the code. Place the blue line below the line below that says "//Connect "Create" button below here:"
         //B) When you first let go of the mouse button, a box will pop up where you can specify details about the connection. Click on the drop down that says "Outlet" on it. When the drop down menu appears, select the "Action" option.
         //C) Next, in the text field labled "Name" give the action a name that describes what the action will do with NO spaces in the name, for example, you could name it "createNewUser".
         //D) Click "Connect"
@@ -80,32 +80,14 @@ class CreateAccountViewController: UIViewController {
                 performSegue(withIdentifier: "createAccountToMyHomePage", sender: (Any).self)
             */
     
+    
+    
+    
+    
+    
+    
     //Connect "Create" button below here:
-    @IBAction func createNewUser(_ sender: Any) {
-        var allFieldsComplete = true
-        if(passwordTextField.text! != confirmPasswordTextField.text!) {
-            allFieldsComplete = false
-            passwordTextField.backgroundColor = UIColor.red
-            confirmPasswordTextField.backgroundColor = UIColor.red
-        } else {
-            passwordTextField.backgroundColor = UIColor.white
-            confirmPasswordTextField.backgroundColor = UIColor.white
-        }
-        
-        if(emailTextField.text! != confirmEmailTextField.text!) {
-            allFieldsComplete = false
-            emailTextField.backgroundColor = UIColor.red
-            confirmEmailTextField.backgroundColor = UIColor.red
-        } else {
-            emailTextField.backgroundColor = UIColor.white
-            confirmEmailTextField.backgroundColor = UIColor.white
-        }
-        
-        if(allFieldsComplete) {
-            api.createNewUser(username: usernameTextField.text!, password: passwordTextField.text!, firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, email: emailTextField.text!)
-            self.performSegue(withIdentifier: "createAccountToMyHomePage", sender: (Any).self)
-        }
-    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

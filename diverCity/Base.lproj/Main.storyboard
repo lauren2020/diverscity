@@ -203,13 +203,26 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImage" destination="pN6-t8-ryb" id="XCD-0z-j1b"/>
-                        <segue destination="aoV-zX-DUn" kind="show" identifier="welcomeToCreateAccount" id="wcw-3s-Cuy"/>
-                        <segue destination="dse-27-8vx" kind="show" identifier="welcomeToSignIn" id="6La-qw-QYX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bTh-sJ-wl1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1150" y="-654"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ywx-xT-bSI">
+            <objects>
+                <viewController id="PEW-XZ-Yx6" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lRM-ox-qeo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="NxI-Ay-xqJ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oyO-oW-6uv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1208" y="-1413"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="sXs-GC-PzQ">
@@ -230,9 +243,6 @@
                                 <state key="normal" title="Create" backgroundImage="redbutton">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="createNewUser:" destination="aoV-zX-DUn" eventType="touchUpInside" id="b72-9j-gAr"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byY-sG-WbQ">
                                 <rect key="frame" x="16" y="368" width="89" height="21"/>
@@ -355,7 +365,6 @@
                         <outlet property="confirmEmailTextField" destination="8df-8J-XFh" id="NGh-GL-4K1"/>
                         <outlet property="confirmPasswordTextField" destination="dPw-sP-tlM" id="qty-iY-LXS"/>
                         <outlet property="emailTextField" destination="kzV-k3-Npy" id="bah-XG-Ezx"/>
-                        <outlet property="firstNameTextField" destination="3CR-b6-LpP" id="A8X-7j-zl7"/>
                         <outlet property="lastNameTextField" destination="xrc-op-bUB" id="lCd-gs-kGP"/>
                         <outlet property="passwordTextField" destination="MU3-Ui-aCd" id="XI7-ib-d7a"/>
                         <outlet property="usernameTextField" destination="aQp-ro-QdN" id="7mv-47-UdK"/>

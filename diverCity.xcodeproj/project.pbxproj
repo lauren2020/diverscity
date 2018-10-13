@@ -25,6 +25,7 @@
 		8008EB94217107AD004B7799 /* PrivacyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB93217107AD004B7799 /* PrivacyType.swift */; };
 		8008EB9621711A66004B7799 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB9521711A66004B7799 /* API.swift */; };
 		8008EB9821711AA0004B7799 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB9721711AA0004B7799 /* CreateAccountViewController.swift */; };
+		8008EB9A2171B833004B7799 /* BlankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB992171B833004B7799 /* BlankViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		8008EB93217107AD004B7799 /* PrivacyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyType.swift; sourceTree = "<group>"; };
 		8008EB9521711A66004B7799 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		8008EB9721711AA0004B7799 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		8008EB992171B833004B7799 /* BlankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				8008EB56216EE79F004B7799 /* FirstViewController.swift */,
 				8008EB58216EE79F004B7799 /* SecondViewController.swift */,
 				8008EB5A216EE79F004B7799 /* Main.storyboard */,
+				8008EB992171B833004B7799 /* BlankViewController.swift */,
 				8008EB9521711A66004B7799 /* API.swift */,
 				8008EB9721711AA0004B7799 /* CreateAccountViewController.swift */,
 				8008EB8C2170FF1B004B7799 /* Community.swift */,
@@ -292,6 +295,7 @@
 				8008EB852170492D004B7799 /* SignInViewController.swift in Sources */,
 				8008EB8721704F84004B7799 /* WelcomeViewController.swift in Sources */,
 				8008EB892170F5EF004B7799 /* MyHomePageViewController.swift in Sources */,
+				8008EB9A2171B833004B7799 /* BlankViewController.swift in Sources */,
 				8008EB59216EE79F004B7799 /* SecondViewController.swift in Sources */,
 				8008EB912170FFA6004B7799 /* Event.swift in Sources */,
 				8008EB9821711AA0004B7799 /* CreateAccountViewController.swift in Sources */,

@@ -35,8 +35,8 @@ class WelcomeViewController: UIViewController {
             //C) Right now, inside our () are two words with grey boxes around them. These are place holders that tell us what type of information we need to replace it with. In this case, the placeholders say "String" and "Any". When we want to tell swift we are giving it letters (and not say, writing command or giving it a number) we write the letters inside of "". Where it says "String", write some "" to tell it were giving it letters and then inside the quotes, we will write the name of the segue we want swift to use to take us to the next screen. Inside the "", write the same name identifier you gave the segue we created above (It needs to be exactly the same to work). Where the "Any" placeholder is, replace it with the word "Any" but do NOT write quotes around this one. By writing Any, we are telling swift that any kind of action that triggers this segue is acceptable.
         //Step 3: Try it out! See if your button works now by using the emulator.
         
+        
         //Write commands below this line:
-        self.performSegue(withIdentifier: "welcomeToSignIn", sender: (Any).self)
     }
     
     @IBAction func goToCreateAccountPage(_ sender: Any) {
@@ -44,7 +44,7 @@ class WelcomeViewController: UIViewController {
         /*Challenge: Send User to Create Account page when "Create Account" Button is clicked */
         /************************************************************************/
         // See if you can do this one on your own! If you get stuck feel free to ask questions :)
-        self.performSegue(withIdentifier: "welcomeToCreateAccount", sender: (Any).self)
+  
     }
     
     @IBAction func showPrivacyPolicy(_ sender: Any) {

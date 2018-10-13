@@ -543,6 +543,7 @@
                     </view>
                     <connections>
                         <segue destination="kfS-gc-eBR" kind="show" identifier="myHomePageToWelcome" id="Stn-ya-ZmH"/>
+                        <segue destination="49e-Tb-3d3" kind="show" id="Amb-KB-YsL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZdZ-IP-wM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -613,7 +614,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1172" y="-246"/>
+            <point key="canvasLocation" x="1222" y="-246"/>
         </scene>
     </scenes>
     <resources>
@@ -625,6 +626,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="saI-Zb-EvS"/>
-        <segue reference="kFg-7v-mgd"/>
+        <segue reference="Stn-ya-ZmH"/>
     </inferredMetricsTieBreakers>
 </document>

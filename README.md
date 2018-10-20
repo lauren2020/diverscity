@@ -1,4 +1,6 @@
-# diverscity
+# divirscity
+
+The basic structure of this app allows users to create "communities" such as for a city, a school, an organization, sports team etc. and configure those "communities" with customizable extensions including features for publishing events from large corporate sponsored to a simple pick up basketball game, and an "ambassador" feature that allows user to register as an ambassador for their community to help those new to a community integrate smoothly.
 
 HOW TO OPEN APP ON YOUR IPHONE:
 

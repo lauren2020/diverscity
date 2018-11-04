@@ -1,0 +1,6 @@
+framework module Pods_diverCity {
+  umbrella header "Pods-diverCity-umbrella.h"
+
+  export *
+  module * { export * }
+}

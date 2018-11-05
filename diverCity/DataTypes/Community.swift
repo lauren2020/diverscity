@@ -48,8 +48,8 @@ extension Community {
     }
     
     static func communityInfo (withId id:String, completion: @escaping (Community?) -> ()) {
-        let request = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: id, methodType: "GET")
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
+        let request = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: id, methodType: "GET", postContent: nil)
+        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
             var targetCommunity:Community? = nil
             if let data = data {
                 do {

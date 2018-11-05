@@ -94,15 +94,6 @@ extension User {
         self.email = email
         for communityId in communitiesString.split(separator: ",") {
             self.communityIds.append(String(communityId))
-            //Community.communityInfo(withId: String(communityId), completion: addCommunities)
-//            var communities: [Community] = []
-//            Community.communityInfo(withId: String(communityId)) {
-//                (results:[Community]) in
-//                for result in results {
-//                    communities.append(result)
-//                }
-//            }
-//            self.communities = communities
         }
         self.events = events != nil ? events! : ""
         self.state = state != nil ? state! : -1
@@ -125,35 +116,38 @@ extension User {
 //        }
 //    }
     
-    static func info(withId id:String, function: @escaping (User?)->()) {
-        Alamofire.request(APIDelegate.path + APIDelegate.usersPath + id).responseJSON { response in
-            //print("Request: \(String(describing: response.request))")   // original url request
-            //print("Response: \(String(describing: response.response))") // http url response
-            //print("Result: \(response.result)")                         // response serialization result
-            switch response.result {
-            case .success:
-                print("Validation Successful")
-                if let json = response.result.value {
-                    print("JSON: \(json)") // serialized json response
-                    if let userObject = try? User(json: json as! [String : Any]) {
-                        //targetUser.append(userObject!)
-                        function(userObject!)
-                    }
-                }
-                
-                if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                    print("Data: \(utf8Text)") // original server data as UTF8 string
-                }
-            case .failure(let error):
-                function(nil)
-                print(error)
-            }
-        }
-    }
+//    static func info(withId id:String, function: @escaping (User?)->()) {
+//        Alamofire.request(APIDelegate.path + APIDelegate.usersPath + id).responseJSON { response in
+//            //print("Request: \(String(describing: response.request))")   // original url request
+//            //print("Response: \(String(describing: response.response))") // http url response
+//            //print("Result: \(response.result)")                         // response serialization result
+//            switch response.result {
+//            case .success:
+//                print("Validation Successful")
+//                if let json = response.result.value {
+//                    print("JSON: \(json)") // serialized json response
+//                    if let userObject = try? User(json: json as! [String : Any]) {
+//                        //targetUser.append(userObject!)
+//                        function(userObject!)
+//                    }
+//                }
+//                
+//                if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+//                    print("Data: \(utf8Text)") // original server data as UTF8 string
+//                }
+//            case .failure(let error):
+//                function(nil)
+//                print(error)
+//            }
+//        }
+//    }
     
     static func accountInfo (withId id:String, completion: @escaping (User?) -> ()) {
-        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: id, methodType: "GET")
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
+        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: id, methodType: "GET", postContent: nil)
+        if(request == nil) {
+            completion(nil)
+        }
+        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
             var targetUser: User? = nil
             if let data = data {
                 do {
@@ -174,9 +168,38 @@ extension User {
         task.resume()
     }
     
+    static func createNew(body: [String], completion: @escaping (User?) -> ()) {
+        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: "1", methodType: "POST", postContent: APIDelegate.buildPostString(body: body))
+        if(request == nil) {
+            completion(nil)
+        }
+        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
+            var targetUser:User? = nil
+             print("In Task.")
+            if let data = data {
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
+                         print("JSON: ", json)
+                        if let userObject = try? User(json: json) {
+                            print("UserObject: ", userObject)
+                            targetUser = userObject!
+                        }
+                    }
+                } catch {
+                    print("error in creation")
+                    print(error)
+                }
+                print("Target User: ", targetUser)
+                completion(targetUser)
+            }
+        })
+        
+        task.resume()
+    }
+    
     static func all (withId id:String, completion: @escaping ([User]) -> ()) {
-        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: "1", methodType: "GET")
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
+        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: "1", methodType: "GET", postContent: nil)
+        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
             var targetUser:[User] = []
             if let data = data {
                 do {

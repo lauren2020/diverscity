@@ -35,16 +35,37 @@ struct APIDelegate {
 }
 
 extension APIDelegate {
-    static func requestBuilder(withPath localPath: String, withId id: String, methodType:String) -> URLRequest {
-        let url = URL(string: path + localPath + "/" + id)
+    static func requestBuilder(withPath localPath: String, withId id: String, methodType:String, postContent:String?) -> URLRequest? {
+        print("Building Request...")
+        var urlString = path + localPath
+        if (methodType == "GET") {
+            urlString += "/" + id
+        }
+        let url = URL(string: urlString)
         var request = URLRequest(url: url!)
+        
         if(methodType == "POST") {
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             request.httpMethod = methodType
-            let postString = "id=13&name=Jack"
-            request.httpBody = postString.data(using: .utf8)
+            if (postContent != nil) {
+                let postString = postContent!// "id=13&name=Jack"
+                request.httpBody = postString.data(using: .utf8)
+                print("REQUEST: ", request)
+            } else {
+                print("THERE WAS AN ERROR")
+                return nil
+            }
+            //request.httpBody = postString.data(using: .utf8)
         }
         return request
+    }
+    
+    static func buildPostString(body: [String]) -> String {
+        var postString = body != [] ? body[0] : ""
+        for index in 1...body.count - 1 {
+            postString += "&" + body[index]
+        }
+        return postString
     }
     
     static func performTask(withRequest request: URLRequest) {

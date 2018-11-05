@@ -34,19 +34,9 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func signInToUserAccount(_ sender: Any) {
-        
-        //UserSession.api.getUserAccountInformation(username: usernameTextField.text!, password: passwordTextField.text!)
         startActivity()
-        User.accountInfo(withId: "2", completion: onUserRecieved)
-        //User.info(withId: "1", function: onUserRecieved)
-//        var timer = Date().timeIntervalSinceReferenceDate
-//        while (UserSession.user == nil && Date().timeIntervalSinceReferenceDate < timer + 15) {
-//        }
-//        if(UserSession.user != nil) {
-//            self.performSegue(withIdentifier: "signInToMyHomePage", sender: (Any).self)
-//        } else {
-//            print("Failed to retrieve user!")
-//        }
+        //usernameTextField.text!
+        User.accountInfo(withId: "3", completion: onUserRecieved)
     }
     func onUserRecieved(user: User?) {
         stopActivity()
@@ -70,7 +60,7 @@ class SignInViewController: UIViewController {
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        view.addSubview(activityIndicator)
+        self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
     }

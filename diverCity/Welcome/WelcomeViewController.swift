@@ -22,7 +22,7 @@ class WelcomeViewController: UIViewController {
     }
     
     @IBAction func goToCreateAccountPage(_ sender: Any) {
-        self.performSegue(withIdentifier: "welcomeToCreateAccount", sender: (Any).self)
+        //self.performSegue(withIdentifier: "welcomeToCreateAccount", sender: (Any).self)
     }
     
     @IBAction func showPrivacyPolicy(_ sender: Any) {

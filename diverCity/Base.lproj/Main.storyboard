@@ -199,6 +199,7 @@
                                 </state>
                                 <connections>
                                     <action selector="goToCreateAccountPage:" destination="kfS-gc-eBR" eventType="touchUpInside" id="bpc-pn-rUS"/>
+                                    <segue destination="aoV-zX-DUn" kind="show" id="wj0-PQ-dNh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCF-Yd-PGz">
@@ -237,7 +238,6 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImage" destination="pN6-t8-ryb" id="XCD-0z-j1b"/>
-                        <segue destination="aoV-zX-DUn" kind="show" identifier="welcomeToCreateAccount" id="wcw-3s-Cuy"/>
                         <segue destination="dse-27-8vx" kind="show" identifier="welcomeToSignIn" id="6La-qw-QYX"/>
                     </connections>
                 </viewController>
@@ -245,10 +245,10 @@
             </objects>
             <point key="canvasLocation" x="-1150" y="-654"/>
         </scene>
-        <!--Create Account View Controller-->
+        <!--Create New Account View Controller-->
         <scene sceneID="sXs-GC-PzQ">
             <objects>
-                <viewController storyboardIdentifier="createAccountPage" id="aoV-zX-DUn" customClass="CreateAccountViewController" customModule="diverCity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createAccountPage" id="aoV-zX-DUn" customClass="CreateNewAccountViewController" customModule="diverCity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e6w-YZ-QR9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -277,6 +277,13 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confirm:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27b-xC-IRw">
                                 <rect key="frame" x="16" y="406" width="89" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Zipcode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FW7-FI-N43">
+                                <rect key="frame" x="16" y="475" width="89" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -381,6 +388,13 @@
                                     <action selector="goBackToHomePage:" destination="aoV-zX-DUn" eventType="touchUpInside" id="piY-Yp-aGO"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bx4-sC-dcr">
+                                <rect key="frame" x="113" y="470" width="246" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="DIW-9m-hxe"/>
@@ -687,7 +701,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qaA-D5-20R"/>
-        <segue reference="Stn-ya-ZmH"/>
+        <segue reference="saI-Zb-EvS"/>
+        <segue reference="kFg-7v-mgd"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,6 +10,7 @@ import UIKit
 
 class CommunityHomeViewController: UIViewController {
 
+    @IBOutlet weak var communityDescriptionLabel: UILabel!
     @IBOutlet weak var backToHomeButton: UIButton!
     @IBOutlet weak var communityTitle: UILabel!
     @IBOutlet weak var addUserToCommunityButton: UIButton!
@@ -29,6 +30,7 @@ class CommunityHomeViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         communityTitle.text = UserSession.selectedCommunity?.name
+        communityDescriptionLabel.text = UserSession.selectedCommunity?.description
         updateLayoutForPermissions()
         closeMenu()
     }
@@ -125,10 +127,12 @@ class CommunityHomeViewController: UIViewController {
     }
     
     func openMenu() {
+        menuIsOpen = true
         backToHomeButton.isHidden = false
     }
     
     func closeMenu() {
+        menuIsOpen = false
         backToHomeButton.isHidden = true
     }
     

@@ -36,7 +36,11 @@
 		80278F202193E7680023D8D7 /* CreateNewCommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F1F2193E7680023D8D7 /* CreateNewCommunityViewController.swift */; };
 		80278F222193EAFD0023D8D7 /* CommunityFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F212193EAFD0023D8D7 /* CommunityFeature.swift */; };
 		80278F252194BDB20023D8D7 /* AlertMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F242194BDB20023D8D7 /* AlertMessageViewController.swift */; };
-		80278F282194EB600023D8D7 /* EventsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F272194EB600023D8D7 /* EventsMapViewController.swift */; };
+		80278F2A219513150023D8D7 /* CommunityHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F29219513150023D8D7 /* CommunityHeaderViewController.swift */; };
+		80278F2C219522750023D8D7 /* AmbassadorProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F2B219522750023D8D7 /* AmbassadorProgramViewController.swift */; };
+		80278F2E219522C20023D8D7 /* GetToKnowYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F2D219522C20023D8D7 /* GetToKnowYouViewController.swift */; };
+		80278F30219522FD0023D8D7 /* DiscoverCommunitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F2F219522FD0023D8D7 /* DiscoverCommunitiesViewController.swift */; };
+		80278F322195231A0023D8D7 /* CarpoolCoordinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F312195231A0023D8D7 /* CarpoolCoordinationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,7 +113,11 @@
 		80278F1F2193E7680023D8D7 /* CreateNewCommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewCommunityViewController.swift; sourceTree = "<group>"; };
 		80278F212193EAFD0023D8D7 /* CommunityFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityFeature.swift; sourceTree = "<group>"; };
 		80278F242194BDB20023D8D7 /* AlertMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessageViewController.swift; sourceTree = "<group>"; };
-		80278F272194EB600023D8D7 /* EventsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsMapViewController.swift; sourceTree = "<group>"; };
+		80278F29219513150023D8D7 /* CommunityHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityHeaderViewController.swift; sourceTree = "<group>"; };
+		80278F2B219522750023D8D7 /* AmbassadorProgramViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbassadorProgramViewController.swift; sourceTree = "<group>"; };
+		80278F2D219522C20023D8D7 /* GetToKnowYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetToKnowYouViewController.swift; sourceTree = "<group>"; };
+		80278F2F219522FD0023D8D7 /* DiscoverCommunitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCommunitiesViewController.swift; sourceTree = "<group>"; };
+		80278F312195231A0023D8D7 /* CarpoolCoordinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarpoolCoordinationViewController.swift; sourceTree = "<group>"; };
 		A9816917CD50D67D99302640 /* Pods-diverCityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityTests/Pods-diverCityTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC8ED338B8C05F0C3F75259D /* Pods-diverCityUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EEB383ABE8B5AB460B3CEB0F /* Pods-diverCityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -253,6 +261,7 @@
 				80278EBF218D5FC40023D8D7 /* GetToKnowYouNetworking */,
 				80278EBE218D5FB30023D8D7 /* CarpoolCoordination */,
 				80278EBD218D5F2F0023D8D7 /* CommunityEvents */,
+				80278F29219513150023D8D7 /* CommunityHeaderViewController.swift */,
 			);
 			path = CommunityFeatures;
 			sourceTree = "<group>";
@@ -261,7 +270,6 @@
 			isa = PBXGroup;
 			children = (
 				8008EBA421754C35004B7799 /* CommunityEventsViewController.swift */,
-				80278F272194EB600023D8D7 /* EventsMapViewController.swift */,
 			);
 			path = CommunityEvents;
 			sourceTree = "<group>";
@@ -269,6 +277,7 @@
 		80278EBE218D5FB30023D8D7 /* CarpoolCoordination */ = {
 			isa = PBXGroup;
 			children = (
+				80278F312195231A0023D8D7 /* CarpoolCoordinationViewController.swift */,
 			);
 			path = CarpoolCoordination;
 			sourceTree = "<group>";
@@ -276,6 +285,7 @@
 		80278EBF218D5FC40023D8D7 /* GetToKnowYouNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				80278F2D219522C20023D8D7 /* GetToKnowYouViewController.swift */,
 			);
 			path = GetToKnowYouNetworking;
 			sourceTree = "<group>";
@@ -283,6 +293,7 @@
 		80278EC0218D5FDA0023D8D7 /* AmbassadorProgram */ = {
 			isa = PBXGroup;
 			children = (
+				80278F2B219522750023D8D7 /* AmbassadorProgramViewController.swift */,
 			);
 			path = AmbassadorProgram;
 			sourceTree = "<group>";
@@ -319,6 +330,7 @@
 			children = (
 				80278F1F2193E7680023D8D7 /* CreateNewCommunityViewController.swift */,
 				8008EB8A2170FA02004B7799 /* FindCommunitiesViewController.swift */,
+				80278F2F219522FD0023D8D7 /* DiscoverCommunitiesViewController.swift */,
 			);
 			path = DiscoverCommunities;
 			sourceTree = "<group>";
@@ -532,12 +544,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80278F322195231A0023D8D7 /* CarpoolCoordinationViewController.swift in Sources */,
 				80278EB7218D5C910023D8D7 /* EventDispatcher.swift in Sources */,
 				80278EB9218D5D8F0023D8D7 /* EventHandler.swift in Sources */,
-				80278F282194EB600023D8D7 /* EventsMapViewController.swift in Sources */,
 				8008EB8721704F84004B7799 /* WelcomeViewController.swift in Sources */,
+				80278F2C219522750023D8D7 /* AmbassadorProgramViewController.swift in Sources */,
 				8008EB892170F5EF004B7799 /* MyHomePageViewController.swift in Sources */,
 				80278F252194BDB20023D8D7 /* AlertMessageViewController.swift in Sources */,
+				80278F2E219522C20023D8D7 /* GetToKnowYouViewController.swift in Sources */,
 				8008EBA12174E8E5004B7799 /* UserSession.swift in Sources */,
 				8008EB912170FFA6004B7799 /* Event.swift in Sources */,
 				8008EB94217107AD004B7799 /* PrivacyType.swift in Sources */,
@@ -545,6 +559,7 @@
 				8008EB55216EE79F004B7799 /* AppDelegate.swift in Sources */,
 				8008EB8F2170FF97004B7799 /* User.swift in Sources */,
 				80278EB5218A143B0023D8D7 /* APIDelegate.swift in Sources */,
+				80278F30219522FD0023D8D7 /* DiscoverCommunitiesViewController.swift in Sources */,
 				80278F202193E7680023D8D7 /* CreateNewCommunityViewController.swift in Sources */,
 				8008EB8B2170FA02004B7799 /* FindCommunitiesViewController.swift in Sources */,
 				8008EB9621711A66004B7799 /* API.swift in Sources */,
@@ -553,6 +568,7 @@
 				8008EB8D2170FF1B004B7799 /* Community.swift in Sources */,
 				8008EBA321754B79004B7799 /* CommunityHomeViewController.swift in Sources */,
 				80278F222193EAFD0023D8D7 /* CommunityFeature.swift in Sources */,
+				80278F2A219513150023D8D7 /* CommunityHeaderViewController.swift in Sources */,
 				8008EBA521754C35004B7799 /* CommunityEventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

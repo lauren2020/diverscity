@@ -67,7 +67,7 @@ class MyHomePageViewController: UIViewController, UITableViewDataSource, UITable
         UserSession.selectedCommunity = UserSession.user!.communities[indexPath.row]
         //myHomePageToCommunity
         //myHomePageToCommunityHomePage
-        self.performSegue(withIdentifier: "myHomePageToCommunity", sender: (Any).self)
+        self.performSegue(withIdentifier: "myHomePageToCommunityHomePage", sender: (Any).self)
     }
     
     @IBAction func toggleMenu(_ sender: Any) {
@@ -79,9 +79,11 @@ class MyHomePageViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func openMenu() {
+        menuIsOpen = true
         logoutButton.isHidden = false
     }
     func closeMenu() {
+        menuIsOpen = false
         logoutButton.isHidden = true
     }
     
@@ -95,7 +97,9 @@ class MyHomePageViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     @IBAction func goToFindCommunities(_ sender: Any) {
-        performSegue(withIdentifier: "myHomePageToFindCommunities", sender: (Any).self)
+        //myHomePageToCommunityDiscovery
+        //myHomePageToFindCommunities
+        performSegue(withIdentifier: "myHomePageToCommunityDiscovery", sender: (Any).self)
     }
     
     @IBAction func logoutOfAccount(_ sender: Any) {

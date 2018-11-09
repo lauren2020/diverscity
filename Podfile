@@ -6,7 +6,7 @@ target 'diverCity' do
   use_frameworks!
 
   # Pods for diverCity
- pod 'Alamofire', '~> 4.7'
+ #pod 'Alamofire', '~> 4.7'
 
   target 'diverCityTests' do
     inherit! :search_paths

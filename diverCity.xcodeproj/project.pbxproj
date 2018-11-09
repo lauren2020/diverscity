@@ -32,9 +32,11 @@
 		80278EC7218D61B50023D8D7 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278EC6218D61B50023D8D7 /* SignInViewController.swift */; };
 		80278ECA218D61F30023D8D7 /* AccountAccess in Resources */ = {isa = PBXBuildFile; fileRef = 80278EC9218D61F30023D8D7 /* AccountAccess */; };
 		80278ECC218D66BF0023D8D7 /* CommunityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278ECB218D66BF0023D8D7 /* CommunityEvent.swift */; };
-		80278EDD218E90D20023D8D7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80278EDC218E90D20023D8D7 /* Alamofire.framework */; };
-		80278EE0218F92DA0023D8D7 /* CreateNewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278EDF218F92DA0023D8D7 /* CreateNewAccountViewController.swift */; };
-		F545C3E564D34C8ADA1BCBF9 /* Pods_diverCity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125F82234ABE38F0DAD97FF7 /* Pods_diverCity.framework */; };
+		80278F1E21939D6C0023D8D7 /* CreateNewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F1D21939D6C0023D8D7 /* CreateNewAccountViewController.swift */; };
+		80278F202193E7680023D8D7 /* CreateNewCommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F1F2193E7680023D8D7 /* CreateNewCommunityViewController.swift */; };
+		80278F222193EAFD0023D8D7 /* CommunityFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F212193EAFD0023D8D7 /* CommunityFeature.swift */; };
+		80278F252194BDB20023D8D7 /* AlertMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F242194BDB20023D8D7 /* AlertMessageViewController.swift */; };
+		80278F282194EB600023D8D7 /* EventsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F272194EB600023D8D7 /* EventsMapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,7 +105,11 @@
 		80278ECB218D66BF0023D8D7 /* CommunityEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityEvent.swift; sourceTree = "<group>"; };
 		80278ECF218E8ED30023D8D7 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80278EDC218E90D20023D8D7 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		80278EDF218F92DA0023D8D7 /* CreateNewAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateNewAccountViewController.swift; path = /Users/laurenshultz/Documents/GitHub/diverscity/diverCity/CreateNewAccountViewController.swift; sourceTree = "<absolute>"; };
+		80278F1D21939D6C0023D8D7 /* CreateNewAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateNewAccountViewController.swift; path = diverCity/AccountAccess/CreateNewAccountViewController.swift; sourceTree = "<group>"; };
+		80278F1F2193E7680023D8D7 /* CreateNewCommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewCommunityViewController.swift; sourceTree = "<group>"; };
+		80278F212193EAFD0023D8D7 /* CommunityFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityFeature.swift; sourceTree = "<group>"; };
+		80278F242194BDB20023D8D7 /* AlertMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessageViewController.swift; sourceTree = "<group>"; };
+		80278F272194EB600023D8D7 /* EventsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsMapViewController.swift; sourceTree = "<group>"; };
 		A9816917CD50D67D99302640 /* Pods-diverCityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityTests/Pods-diverCityTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC8ED338B8C05F0C3F75259D /* Pods-diverCityUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EEB383ABE8B5AB460B3CEB0F /* Pods-diverCityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -116,8 +122,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80278EDD218E90D20023D8D7 /* Alamofire.framework in Frameworks */,
-				F545C3E564D34C8ADA1BCBF9 /* Pods_diverCity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +172,7 @@
 		8008EB48216EE79F004B7799 = {
 			isa = PBXGroup;
 			children = (
+				80278F1D21939D6C0023D8D7 /* CreateNewAccountViewController.swift */,
 				8008EB53216EE79F004B7799 /* diverCity */,
 				8008EB6A216EE7A4004B7799 /* diverCityTests */,
 				8008EB75216EE7A4004B7799 /* diverCityUITests */,
@@ -190,6 +195,7 @@
 		8008EB53216EE79F004B7799 /* diverCity */ = {
 			isa = PBXGroup;
 			children = (
+				80278F232194BD830023D8D7 /* PopUps */,
 				80278EC5218D61410023D8D7 /* Welcome */,
 				80278EC4218D61140023D8D7 /* DiscoverCommunities */,
 				80278EC2218D60BE0023D8D7 /* DataTypes */,
@@ -198,7 +204,6 @@
 				80278EC9218D61F30023D8D7 /* AccountAccess */,
 				8008EB54216EE79F004B7799 /* AppDelegate.swift */,
 				80278EC6218D61B50023D8D7 /* SignInViewController.swift */,
-				80278EDF218F92DA0023D8D7 /* CreateNewAccountViewController.swift */,
 				8008EB5A216EE79F004B7799 /* Main.storyboard */,
 				8008EBA02174E8E5004B7799 /* UserSession.swift */,
 				80278EB4218A143B0023D8D7 /* APIDelegate.swift */,
@@ -256,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				8008EBA421754C35004B7799 /* CommunityEventsViewController.swift */,
+				80278F272194EB600023D8D7 /* EventsMapViewController.swift */,
 			);
 			path = CommunityEvents;
 			sourceTree = "<group>";
@@ -295,6 +301,7 @@
 				8008EB8C2170FF1B004B7799 /* Community.swift */,
 				80278ECB218D66BF0023D8D7 /* CommunityEvent.swift */,
 				8008EB93217107AD004B7799 /* PrivacyType.swift */,
+				80278F212193EAFD0023D8D7 /* CommunityFeature.swift */,
 			);
 			path = DataTypes;
 			sourceTree = "<group>";
@@ -310,6 +317,7 @@
 		80278EC4218D61140023D8D7 /* DiscoverCommunities */ = {
 			isa = PBXGroup;
 			children = (
+				80278F1F2193E7680023D8D7 /* CreateNewCommunityViewController.swift */,
 				8008EB8A2170FA02004B7799 /* FindCommunitiesViewController.swift */,
 			);
 			path = DiscoverCommunities;
@@ -323,6 +331,14 @@
 			path = Welcome;
 			sourceTree = "<group>";
 		};
+		80278F232194BD830023D8D7 /* PopUps */ = {
+			isa = PBXGroup;
+			children = (
+				80278F242194BDB20023D8D7 /* AlertMessageViewController.swift */,
+			);
+			path = PopUps;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -334,7 +350,6 @@
 				8008EB4D216EE79F004B7799 /* Sources */,
 				8008EB4E216EE79F004B7799 /* Frameworks */,
 				8008EB4F216EE79F004B7799 /* Resources */,
-				6DF20D2969C3B9714327C325 /* [CP] Embed Pods Frameworks */,
 				80278EDB218E90630023D8D7 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -492,24 +507,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6DF20D2969C3B9714327C325 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-diverCity/Pods-diverCity-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-diverCity/Pods-diverCity-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		DE160F1F6FFC3BBDB2763535 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -537,8 +534,10 @@
 			files = (
 				80278EB7218D5C910023D8D7 /* EventDispatcher.swift in Sources */,
 				80278EB9218D5D8F0023D8D7 /* EventHandler.swift in Sources */,
+				80278F282194EB600023D8D7 /* EventsMapViewController.swift in Sources */,
 				8008EB8721704F84004B7799 /* WelcomeViewController.swift in Sources */,
 				8008EB892170F5EF004B7799 /* MyHomePageViewController.swift in Sources */,
+				80278F252194BDB20023D8D7 /* AlertMessageViewController.swift in Sources */,
 				8008EBA12174E8E5004B7799 /* UserSession.swift in Sources */,
 				8008EB912170FFA6004B7799 /* Event.swift in Sources */,
 				8008EB94217107AD004B7799 /* PrivacyType.swift in Sources */,
@@ -546,12 +545,14 @@
 				8008EB55216EE79F004B7799 /* AppDelegate.swift in Sources */,
 				8008EB8F2170FF97004B7799 /* User.swift in Sources */,
 				80278EB5218A143B0023D8D7 /* APIDelegate.swift in Sources */,
+				80278F202193E7680023D8D7 /* CreateNewCommunityViewController.swift in Sources */,
 				8008EB8B2170FA02004B7799 /* FindCommunitiesViewController.swift in Sources */,
 				8008EB9621711A66004B7799 /* API.swift in Sources */,
-				80278EE0218F92DA0023D8D7 /* CreateNewAccountViewController.swift in Sources */,
+				80278F1E21939D6C0023D8D7 /* CreateNewAccountViewController.swift in Sources */,
 				80278EC7218D61B50023D8D7 /* SignInViewController.swift in Sources */,
 				8008EB8D2170FF1B004B7799 /* Community.swift in Sources */,
 				8008EBA321754B79004B7799 /* CommunityHomeViewController.swift in Sources */,
+				80278F222193EAFD0023D8D7 /* CommunityFeature.swift in Sources */,
 				8008EBA521754C35004B7799 /* CommunityEventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

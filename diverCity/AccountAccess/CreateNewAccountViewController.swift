@@ -1,6 +1,6 @@
 //
 //  CreateNewAccountViewController.swift
-//  
+//
 //
 //  Created by Lauren Shultz on 11/4/18.
 //
@@ -8,7 +8,7 @@
 import UIKit
 
 class CreateNewAccountViewController: UIViewController {
-
+    
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -48,7 +48,7 @@ class CreateNewAccountViewController: UIViewController {
             passwordTextField.backgroundColor = UIColor.white
             confirmPasswordTextField.backgroundColor = UIColor.white
         }
-
+        
         if(emailTextField.text! != confirmEmailTextField.text!) {
             allFieldsComplete = false
             emailTextField.backgroundColor = UIColor.red
@@ -57,7 +57,7 @@ class CreateNewAccountViewController: UIViewController {
             emailTextField.backgroundColor = UIColor.white
             confirmEmailTextField.backgroundColor = UIColor.white
         }
-
+        
         if(allFieldsComplete) {
             var body = ["username=" + usernameTextField.text!]
             body.append("password=" + passwordTextField.text!)
@@ -132,5 +132,5 @@ class CreateNewAccountViewController: UIViewController {
         //            }
         //        }
     }
-
+    
 }

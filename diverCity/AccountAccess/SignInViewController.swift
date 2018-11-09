@@ -36,7 +36,7 @@ class SignInViewController: UIViewController {
     @IBAction func signInToUserAccount(_ sender: Any) {
         startActivity()
         //usernameTextField.text!
-        User.accountInfo(withId: "3", completion: onUserRecieved)
+        User.accountInfo(withId: usernameTextField.text!, completion: onUserRecieved)
     }
     func onUserRecieved(user: User?) {
         stopActivity()

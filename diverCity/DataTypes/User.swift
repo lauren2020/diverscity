@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 
 //class User {
 //    var firstName: String?
@@ -37,7 +36,7 @@ import Alamofire
 //}
 
 struct User {
-
+    var id: String
     var firstName: String
     var lastName: String
     var userName: String
@@ -67,6 +66,7 @@ extension User {
         print("structing")
         guard let firstname = json["firstname"] as? String,
         let lastname = json["lastname"] as? String,
+        let id = json["id"] as? Int,
         let username = json["username"] as? String,
         let password = json["password"] as? String,
         let email = json["email"] as? String,
@@ -87,6 +87,7 @@ extension User {
         let privacy_type = json["privacy_type"] as? Int
         let tags = json["tags"] as? String
 
+        self.id = String(id)
         self.firstName = firstname
         self.lastName = lastname
         self.userName = username
@@ -108,40 +109,6 @@ extension User {
         self.tags = tags != nil ? tags! : ""
     }
     
-//    mutating func addCommunities(communityIn: Community?) {
-//        if (communityIn != nil) {
-//            self.communities.append(communityIn!)
-//        } else {
-//            print("Failed to retrieve community!")
-//        }
-//    }
-    
-//    static func info(withId id:String, function: @escaping (User?)->()) {
-//        Alamofire.request(APIDelegate.path + APIDelegate.usersPath + id).responseJSON { response in
-//            //print("Request: \(String(describing: response.request))")   // original url request
-//            //print("Response: \(String(describing: response.response))") // http url response
-//            //print("Result: \(response.result)")                         // response serialization result
-//            switch response.result {
-//            case .success:
-//                print("Validation Successful")
-//                if let json = response.result.value {
-//                    print("JSON: \(json)") // serialized json response
-//                    if let userObject = try? User(json: json as! [String : Any]) {
-//                        //targetUser.append(userObject!)
-//                        function(userObject!)
-//                    }
-//                }
-//                
-//                if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-//                    print("Data: \(utf8Text)") // original server data as UTF8 string
-//                }
-//            case .failure(let error):
-//                function(nil)
-//                print(error)
-//            }
-//        }
-//    }
-    
     static func accountInfo (withId id:String, completion: @escaping (User?) -> ()) {
         let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: id, methodType: "GET", postContent: nil)
         if(request == nil) {
@@ -160,8 +127,40 @@ extension User {
                     print("error")
                     print(error)
                 }
-                
-                completion(targetUser)
+                DispatchQueue.main.async {
+                    completion(targetUser)
+                }
+            }
+        })
+        
+        task.resume()
+    }
+    
+    static func patch(id: String, body: [String], completion: @escaping (User?) -> ()) {
+        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: id, methodType: "PATCH", postContent: APIDelegate.buildPostString(body: body))
+        if(request == nil) {
+            completion(nil)
+        }
+        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
+            var targetUser:User? = nil
+            print("In Task.")
+            if let data = data {
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
+                        print("JSON: ", json)
+                        if let userObject = try? User(json: json) {
+                            print("UserObject: ", userObject)
+                            targetUser = userObject!
+                        }
+                    }
+                } catch {
+                    print("error in creation")
+                    print(error)
+                }
+                //print("Target User: ", targetUser)
+                DispatchQueue.main.async {
+                    completion(targetUser)
+                }
             }
         })
         
@@ -189,8 +188,10 @@ extension User {
                     print("error in creation")
                     print(error)
                 }
-                print("Target User: ", targetUser)
-                completion(targetUser)
+                //print("Target User: ", targetUser)
+                DispatchQueue.main.async {
+                    completion(targetUser)
+                }
             }
         })
         

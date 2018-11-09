@@ -11,8 +11,11 @@ import UIKit
 class MyHomePageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
+    @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var headerName: UILabel!
     @IBOutlet weak var myCommunitiesTableList: UITableView!
+    
+    var menuIsOpen = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +35,7 @@ class MyHomePageViewController: UIViewController, UITableViewDataSource, UITable
         for communityId in (UserSession.user?.communityIds)! {
             Community.communityInfo(withId: String(communityId), completion: setCommunities)
         }
+        closeMenu()
         headerName.text = "| " + (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!
         myCommunitiesTableList.delegate = self
         myCommunitiesTableList.dataSource = self
@@ -61,12 +65,33 @@ class MyHomePageViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         UserSession.selectedCommunity = UserSession.user!.communities[indexPath.row]
-        self.performSegue(withIdentifier: "myHomePageToCommunityHomePage", sender: (Any).self)
+        //myHomePageToCommunity
+        //myHomePageToCommunityHomePage
+        self.performSegue(withIdentifier: "myHomePageToCommunity", sender: (Any).self)
+    }
+    
+    @IBAction func toggleMenu(_ sender: Any) {
+        if(menuIsOpen) {
+            closeMenu()
+        } else {
+            openMenu()
+        }
+    }
+    
+    func openMenu() {
+        logoutButton.isHidden = false
+    }
+    func closeMenu() {
+        logoutButton.isHidden = true
     }
     
     @IBAction func reloadCommunities(_ sender: Any) {
         print(UserSession.user?.communities)
         myCommunitiesTableList.reloadData()
+    }
+    //myHomePageToCreateCommunity
+    @IBAction func createNewCommunity(_ sender: Any) {
+        performSegue(withIdentifier: "myHomePageToCreateCommunity", sender: (Any).self)
     }
     
     @IBAction func goToFindCommunities(_ sender: Any) {

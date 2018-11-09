@@ -38,7 +38,7 @@ extension APIDelegate {
     static func requestBuilder(withPath localPath: String, withId id: String, methodType:String, postContent:String?) -> URLRequest? {
         print("Building Request...")
         var urlString = path + localPath
-        if (methodType == "GET") {
+        if ((methodType == "GET" || methodType == "PATCH") && id != "all") {
             urlString += "/" + id
         }
         let url = URL(string: urlString)
@@ -56,14 +56,27 @@ extension APIDelegate {
                 return nil
             }
             //request.httpBody = postString.data(using: .utf8)
+        } else if (methodType == "PATCH") {
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = methodType
+            if (postContent != nil) {
+                let postString = postContent!// "id=13&name=Jack"
+                request.httpBody = postString.data(using: .utf8)
+                print("REQUEST: ", request)
+            } else {
+                print("THERE WAS AN ERROR")
+                return nil
+            }
         }
         return request
     }
     
     static func buildPostString(body: [String]) -> String {
-        var postString = body != [] ? body[0] : ""
-        for index in 1...body.count - 1 {
-            postString += "&" + body[index]
+        var postString = body.count != 0 ? body[0] : ""
+        if (body.count > 1) {
+            for index in 1...body.count - 1 {
+                postString += "&" + body[index]
+            }
         }
         return postString
     }

@@ -8,33 +8,6 @@
 
 import Foundation
 
-//class User {
-//    var firstName: String?
-//    var lastName: String?
-//    var userName: String?
-//    var password: String?
-//    var email: String?
-//    var communities = [Community?]()
-//    var events: String?
-//    var address: String?
-//    var state: Int?
-//    var zipcode: Int?
-//    var about_me: String?
-//    var ambassadors: String?
-//    var ambassador_to: String?
-//    var ambassador_communities: String?
-//    var ambassador_requests: String?
-//    var communities_invited: String?
-//    var privacy_type: Int?
-//    var tags: String?
-//
-//    init(firstName: String, lastName: String) {
-//        self.firstName = firstName
-//        self.lastName = lastName
-//
-//    }
-//}
-
 struct User {
     var id: String
     var firstName: String
@@ -68,13 +41,13 @@ extension User {
         let lastname = json["lastname"] as? String,
         let id = json["id"] as? Int,
         let username = json["username"] as? String,
-        let password = json["password"] as? String,
         let email = json["email"] as? String,
         let communitiesString = json["communities"] as? String
             else {
                 print("error")
                 throw SerializationError.missing("Value id missing for x")
         }
+        let password = json["password"] as? String
         let events = json["events"] as? String
         let state = json["state"] as? Int
         let zipcode = json["zipcode"] as? Int
@@ -91,7 +64,7 @@ extension User {
         self.firstName = firstname
         self.lastName = lastname
         self.userName = username
-        self.password = password
+        self.password = password != nil ? password! : ""
         self.email = email
         for communityId in communitiesString.split(separator: ",") {
             self.communityIds.append(String(communityId))
@@ -199,28 +172,26 @@ extension User {
     }
     
     static func all (withId id:String, completion: @escaping ([User]) -> ()) {
-        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: "1", methodType: "GET", postContent: nil)
+        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: "all", methodType: "GET", postContent: nil)
         let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
-            var targetUser:[User] = []
+            var targetUsers:[User] = []
             if let data = data {
                 do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
-                        //if let users = json[""] as? [[String:Any]] {
-                        //print(users)
-                        //for user in users {
-                        if let userObject = try? User(json: json) {
-                            print("Object: ", userObject)
-                            targetUser.append(userObject!)
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String:Any]] {
+                        for user in json {
+                            if let userObject = try? User(json: user) {
+                                targetUsers.append(userObject!)
+                            }
                         }
-                        //}
-                        //}
                     }
                 } catch {
                     print("error")
                     print(error)
                 }
                 
-                completion(targetUser)
+                DispatchQueue.main.async {
+                    completion(targetUsers)
+                }
             }
         })
         

@@ -13,6 +13,8 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    var un = ""
+    
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
@@ -35,9 +37,27 @@ class SignInViewController: UIViewController {
     
     @IBAction func signInToUserAccount(_ sender: Any) {
         startActivity()
-        //usernameTextField.text!
-        User.accountInfo(withId: usernameTextField.text!, completion: onUserRecieved)
+        un = usernameTextField.text!
+        User.all(withId: "all", completion: onAllUsersRecieved)
+        //User.accountInfo(withId: usernameTextField.text!, completion: onUserRecieved)
     }
+    
+    func onAllUsersRecieved(users: [User]?) {
+        stopActivity()
+        if (users != nil) {
+            for user in users! {
+                if (user.userName == un) {
+                    print("User found!")
+                    UserSession.user = user
+                    self.performSegue(withIdentifier: "signInToMyHomePage", sender: (Any).self)
+                }
+            }
+        } else {
+            print("There was an error retrieving users.")
+        }
+        
+    }
+    
     func onUserRecieved(user: User?) {
         stopActivity()
         if(user != nil) {
@@ -64,6 +84,7 @@ class SignInViewController: UIViewController {
         activityIndicator.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
     }
+    
     /*
      * FUNCTION: stopActivity
      * PURPOSE: Hides the activity indicator and resumes responding to user touches
@@ -82,12 +103,6 @@ class SignInViewController: UIViewController {
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "signInToWelcome"
-//        {
-//            if let vc = segue.destination as? WelcomeViewController
-//            {
-//            }
-//        }
     }
 
 }

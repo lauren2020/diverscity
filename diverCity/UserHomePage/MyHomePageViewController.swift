@@ -20,23 +20,12 @@ class MyHomePageViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let comm1 = Community(name: "Omaha", privacyType: PrivacyType(visibility: 0), creator: UserSession.user!)
-//        comm1.description = "Nebraska's largest city"
-//        let comm2 = Community(name: "DoSpace", privacyType: PrivacyType(visibility: 0), creator: UserSession.user!)
-//        comm2.description = "Omaha's technology library"
-//        let comm3 = Community(name: "Nathan Hale", privacyType: PrivacyType(visibility: 0), creator: UserSession.user!)
-//        comm3.description = "The home of the Patriots"
-//        let comm4 = Community(name: "Lewis & Clark", privacyType: PrivacyType(visibility: 0), creator: UserSession.user!)
-//        comm4.description = "Middle Scholl at 72nd & Cass"
-//        UserSession.user?.communities = [comm1, comm2, comm3, comm4]
-
-        // Do any additional setup after loading the view.
         UserSession.user?.communities = []
         for communityId in (UserSession.user?.communityIds)! {
             Community.communityInfo(withId: String(communityId), completion: setCommunities)
         }
         closeMenu()
-        headerName.text = "| " + (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!
+        headerName.text = (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!
         myCommunitiesTableList.delegate = self
         myCommunitiesTableList.dataSource = self
     }
@@ -55,11 +44,8 @@ class MyHomePageViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = myCommunitiesTableList.dequeueReusableCell(withIdentifier: "cell")
-        //print("Cell1: ", cell)
-        //print("Comms: ", user.communities)
         cell?.textLabel?.text = UserSession.user!.communities[indexPath.row].name
         cell?.detailTextLabel?.text = UserSession.user!.communities[indexPath.row].description
-        //print("Cell2: ", cell)
         return cell!
     }
     
@@ -82,13 +68,14 @@ class MyHomePageViewController: UIViewController, UITableViewDataSource, UITable
         menuIsOpen = true
         logoutButton.isHidden = false
     }
+    
     func closeMenu() {
         menuIsOpen = false
         logoutButton.isHidden = true
     }
     
     @IBAction func reloadCommunities(_ sender: Any) {
-        print(UserSession.user?.communities)
+        //print(UserSession.user?.communities)
         myCommunitiesTableList.reloadData()
     }
     //myHomePageToCreateCommunity

@@ -72,25 +72,39 @@ class CreateNewCommunityViewController: UIViewController, UITableViewDataSource,
         body.append("members=" + (UserSession.user?.id)!)
         body.append("events=")
         body.append("features=" + selectedFeatures.joined(separator: ","))
-        Community.createNew(body: body, completion: completion)
-    }
-    
-    func patchUserCompletion(user: User?) {
-        if(user != nil) {
-            UserSession.user = user
-            performSegue(withIdentifier: "createCommunityToMyHomePage", sender: (Any).self)
-        } else {
-            print("Unable to add community to member!")
+
+        let postCommunityRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: "", methodType: "POST", postContent: APIDelegate.buildPostString(body: body))
+        if (postCommunityRequest != nil) {
+            APIDelegate.performTask(withRequest: postCommunityRequest!, completion: {json in
+                ActivityHelper.stopActivity(view: self.view)
+                if (json != nil && json?.count != 0) {
+                    do {
+                        //UserSession.user?.communities.append(try Community(json: json![0])!)
+                        UserSession.selectedCommunity = try Community(json: json![0])
+                        let newCommunities = (UserSession.user?.communityIds.joined(separator: ","))! == "" ? (UserSession.selectedCommunity?.id)! : (UserSession.user?.communityIds.joined(separator: ","))! + "," + (UserSession.selectedCommunity?.id)!
+                        self.patchUser(newCommunities: newCommunities)
+                    } catch {
+                        print(error)
+                    }
+                }
+            })
         }
     }
     
-    func completion(community: Community?) {
-        if(community != nil) {
-            UserSession.selectedCommunity = community
-            let newCommunities = (UserSession.user?.communityIds.joined(separator: ","))! == "" ? (community?.id)! : (UserSession.user?.communityIds.joined(separator: ","))! + "," + (community?.id)!
-            User.patch(id: (UserSession.user?.id)!, body: ["communities=" + newCommunities], completion: patchUserCompletion)
-        } else {
-            print("COMMUNITY WAS NIL!!!")
+    func patchUser(newCommunities: String) {
+        let patchUserRequest = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: (UserSession.user?.id)!, methodType: "PATCH", postContent: APIDelegate.buildPostString(body: ["communities=" + newCommunities]))
+        if (patchUserRequest != nil) {
+            APIDelegate.performTask(withRequest: patchUserRequest!, completion: {json in
+                ActivityHelper.stopActivity(view: self.view)
+                if (json != nil && json?.count != 0) {
+                    do {
+                        UserSession.user = try User(json: json![0])
+                        self.performSegue(withIdentifier: "createCommunityToMyHomePage", sender: (Any).self)
+                    } catch {
+                        print(error)
+                    }
+                }
+            })
         }
     }
     

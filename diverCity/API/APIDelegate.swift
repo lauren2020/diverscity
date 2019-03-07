@@ -38,7 +38,7 @@ extension APIDelegate {
     static func requestBuilder(withPath localPath: String, withId id: String, methodType:String, postContent:String?) -> URLRequest? {
         print("Building Request...")
         var urlString = path + localPath
-        if ((methodType == "GET" || methodType == "PATCH") && id != "all") {
+        if ((methodType == "GET" || methodType == "PATCH" || methodType == "DELETE") && id != "all") {
             urlString += "/" + id
         }
         let url = URL(string: urlString)
@@ -50,7 +50,7 @@ extension APIDelegate {
             if (postContent != nil) {
                 let postString = postContent!// "id=13&name=Jack"
                 request.httpBody = postString.data(using: .utf8)
-                print("REQUEST: ", request)
+                //print("REQUEST: ", request)
             } else {
                 print("THERE WAS AN ERROR")
                 return nil
@@ -62,12 +62,15 @@ extension APIDelegate {
             if (postContent != nil) {
                 let postString = postContent!// "id=13&name=Jack"
                 request.httpBody = postString.data(using: .utf8)
-                print("REQUEST: ", request)
+                //print("REQUEST: ", request)
             } else {
                 print("THERE WAS AN ERROR")
                 return nil
             }
+        } else if (methodType == "DELETE") {
+            request.httpMethod = methodType
         }
+        print("REQUEST: ", request)
         return request
     }
     
@@ -81,7 +84,28 @@ extension APIDelegate {
         return postString
     }
     
-    static func performTask(withRequest request: URLRequest) {
+    static func performTask(withRequest request: URLRequest, completion: @escaping ([[String:Any]]?) -> ()) {
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
+            var returnedJson: [[String:Any]]? = nil
+            if let data = data {
+                do {
+                    print("data: ", data)
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
+                        print("JSON: ", json)
+                        returnedJson = [json]
+                    } else if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String:Any]] {
+                        returnedJson = json
+                    }
+                } catch {
+                    print("error getting info")
+                    print(error)
+                }
+                DispatchQueue.main.async {
+                    completion(returnedJson)
+                }
+            }
+        })
         
+        task.resume()
     }
 }

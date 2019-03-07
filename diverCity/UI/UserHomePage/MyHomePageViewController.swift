@@ -31,9 +31,26 @@ class MyHomePageViewController: UIViewController, UITableViewDataSource, UITable
 //        UserSession.user?.communities = [comm1, comm2, comm3, comm4]
 
         // Do any additional setup after loading the view.
+        ActivityHelper.startActivity(view: self.view)
         UserSession.user?.communities = []
         for communityId in (UserSession.user?.communityIds)! {
-            Community.communityInfo(withId: String(communityId), completion: setCommunities)
+            //Community.communityInfo(withId: String(communityId), completion: setCommunities)
+            //ActivityHelper.startActivity(view: self.view)
+            let getCommunityRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: String(communityId), methodType: "GET", postContent: nil)
+            if (getCommunityRequest != nil) {
+                APIDelegate.performTask(withRequest: getCommunityRequest!, completion: {json in
+                    ActivityHelper.stopActivity(view: self.view)
+                    if (json != nil && json?.count != 0) {
+                        do {
+                            UserSession.user?.communities.append(try Community(json: json![0])!)
+                        } catch {
+                            print(error)
+                        }
+                    }
+                })
+            } else {
+                ActivityHelper.stopActivity(view: self.view)
+            }
         }
         closeMenu()
         headerName.text = "| " + (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!
@@ -41,13 +58,13 @@ class MyHomePageViewController: UIViewController, UITableViewDataSource, UITable
         myCommunitiesTableList.dataSource = self
     }
     
-    func setCommunities(newCommunity: Community?) {
-        if (newCommunity != nil) {
-            UserSession.user?.communities.append(newCommunity!)
-        } else {
-            print("Failed to retrieve community!")
-        }
-    }
+//    func setCommunities(newCommunity: Community?) {
+//        if (newCommunity != nil) {
+//            UserSession.user?.communities.append(newCommunity!)
+//        } else {
+//            print("Failed to retrieve community!")
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return UserSession.user!.communities.count

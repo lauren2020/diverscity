@@ -68,49 +68,53 @@ class CreateNewAccountViewController: UIViewController {
             body.append("friends=")
             body.append("zipcode=68007")
             body.append("privacy_type=0")
-            startActivity()
-            User.createNew(body: body, completion: userCreated)
+            //startActivity()
+            //User.createNew(body: body, completion: userCreated)
+            ActivityHelper.startActivity(view: self.view)
+            let getUserRequest = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: usernameTextField.text!, methodType: "POST", postContent: APIDelegate.buildPostString(body: body))
+            if (getUserRequest != nil) {
+                APIDelegate.performTask(withRequest: getUserRequest!, completion: {json in
+                    ActivityHelper.stopActivity(view: self.view)
+                    if (json != nil && json?.count != 0) {
+                        do {
+                            print("User created successfully!")
+                            UserSession.user = try User(json: json![0])
+                            self.performSegue(withIdentifier: "createAccountToMyHomePage", sender: (Any).self)
+                        } catch {
+                            print(error)
+                        }
+                    }
+                })
+            }
         }
     }
     
-    func userCreated(user: User?) {
-        print("USER RETURNED: ", user)
-        stopActivity()
-        if (user != nil) {
-            print("User created successfully!")
-            UserSession.user = user
-            self.performSegue(withIdentifier: "createAccountToMyHomePage", sender: (Any).self)
-        } else {
-            print("User could not be created!")
-        }
-    }
-    
-    /*
-     * FUNCTION: startActivity
-     * PURPOSE: Shows the activity indicator and stops recording user touches.
-     */
-    func startActivity()
-    {
-        print("Activity Started")
-        self.view.alpha = 0.5
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        self.view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
-    }
-    /*
-     * FUNCTION: stopActivity
-     * PURPOSE: Hides the activity indicator and resumes responding to user touches
-     */
-    func stopActivity()
-    {
-        print("Activity Stopped")
-        self.view.alpha = 1
-        activityIndicator.stopAnimating()
-        UIApplication.shared.endIgnoringInteractionEvents()
-    }
+//    /*
+//     * FUNCTION: startActivity
+//     * PURPOSE: Shows the activity indicator and stops recording user touches.
+//     */
+//    func startActivity()
+//    {
+//        print("Activity Started")
+//        self.view.alpha = 0.5
+//        activityIndicator.center = self.view.center
+//        activityIndicator.hidesWhenStopped = true
+//        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+//        self.view.addSubview(activityIndicator)
+//        activityIndicator.startAnimating()
+//        UIApplication.shared.beginIgnoringInteractionEvents()
+//    }
+//    /*
+//     * FUNCTION: stopActivity
+//     * PURPOSE: Hides the activity indicator and resumes responding to user touches
+//     */
+//    func stopActivity()
+//    {
+//        print("Activity Stopped")
+//        self.view.alpha = 1
+//        activityIndicator.stopAnimating()
+//        UIApplication.shared.endIgnoringInteractionEvents()
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

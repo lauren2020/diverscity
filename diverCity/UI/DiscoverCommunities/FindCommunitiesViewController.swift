@@ -19,7 +19,25 @@ class FindCommunitiesViewController: UIViewController, UITableViewDataSource, UI
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        Community.all(completion: completion)
+        //Community.all(completion: completion)
+        let getAllCommunitiesRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: "", methodType: "GET", postContent: nil)
+        if (getAllCommunitiesRequest != nil) {
+            APIDelegate.performTask(withRequest: getAllCommunitiesRequest!, completion: {json in
+                ActivityHelper.stopActivity(view: self.view)
+                if (json != nil && json?.count != 0) {
+                    do {
+                        self.communities = []
+                        for community in json! {
+                            self.communities.append(try Community(json: community)!)
+                        }
+                        self.searchResults.reloadData()
+                    } catch {
+                        print(error)
+                    }
+                }
+            })
+        }
+        
         searchResults.delegate = self
         searchResults.dataSource = self
     }
@@ -55,11 +73,11 @@ class FindCommunitiesViewController: UIViewController, UITableViewDataSource, UI
 //        }
 //    }
     
-    func completion(communities: [Community]) {
-        //print("FOUND COMMUNITIES: ", communitiesIn)
-        self.communities = communities
-        searchResults.reloadData()
-    }
+//    func completion(communities: [Community]) {
+//        //print("FOUND COMMUNITIES: ", communitiesIn)
+//        self.communities = communities
+//        searchResults.reloadData()
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

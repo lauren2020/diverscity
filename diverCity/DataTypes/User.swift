@@ -8,33 +8,6 @@
 
 import Foundation
 
-//class User {
-//    var firstName: String?
-//    var lastName: String?
-//    var userName: String?
-//    var password: String?
-//    var email: String?
-//    var communities = [Community?]()
-//    var events: String?
-//    var address: String?
-//    var state: Int?
-//    var zipcode: Int?
-//    var about_me: String?
-//    var ambassadors: String?
-//    var ambassador_to: String?
-//    var ambassador_communities: String?
-//    var ambassador_requests: String?
-//    var communities_invited: String?
-//    var privacy_type: Int?
-//    var tags: String?
-//
-//    init(firstName: String, lastName: String) {
-//        self.firstName = firstName
-//        self.lastName = lastName
-//
-//    }
-//}
-
 struct User {
     var id: String
     var firstName: String
@@ -109,121 +82,121 @@ extension User {
         self.tags = tags != nil ? tags! : ""
     }
     
-    static func accountInfo (withId id:String, completion: @escaping (User?) -> ()) {
-        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: id, methodType: "GET", postContent: nil)
-        if(request == nil) {
-            completion(nil)
-        }
-        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
-            var targetUser: User? = nil
-            if let data = data {
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
-                        if let userObject = try? User(json: json) {
-                            targetUser = userObject!
-                        }
-                    }
-                } catch {
-                    print("error")
-                    print(error)
-                }
-                DispatchQueue.main.async {
-                    completion(targetUser)
-                }
-            }
-        })
-        
-        task.resume()
-    }
-    
-    static func patch(id: String, body: [String], completion: @escaping (User?) -> ()) {
-        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: id, methodType: "PATCH", postContent: APIDelegate.buildPostString(body: body))
-        if(request == nil) {
-            completion(nil)
-        }
-        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
-            var targetUser:User? = nil
-            print("In Task.")
-            if let data = data {
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
-                        print("JSON: ", json)
-                        if let userObject = try? User(json: json) {
-                            print("UserObject: ", userObject)
-                            targetUser = userObject!
-                        }
-                    }
-                } catch {
-                    print("error in creation")
-                    print(error)
-                }
-                //print("Target User: ", targetUser)
-                DispatchQueue.main.async {
-                    completion(targetUser)
-                }
-            }
-        })
-        
-        task.resume()
-    }
-    
-    static func createNew(body: [String], completion: @escaping (User?) -> ()) {
-        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: "1", methodType: "POST", postContent: APIDelegate.buildPostString(body: body))
-        if(request == nil) {
-            completion(nil)
-        }
-        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
-            var targetUser:User? = nil
-             print("In Task.")
-            if let data = data {
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
-                         print("JSON: ", json)
-                        if let userObject = try? User(json: json) {
-                            print("UserObject: ", userObject)
-                            targetUser = userObject!
-                        }
-                    }
-                } catch {
-                    print("error in creation")
-                    print(error)
-                }
-                //print("Target User: ", targetUser)
-                DispatchQueue.main.async {
-                    completion(targetUser)
-                }
-            }
-        })
-        
-        task.resume()
-    }
-    
-    static func all (withId id:String, completion: @escaping ([User]) -> ()) {
-        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: "1", methodType: "GET", postContent: nil)
-        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
-            var targetUser:[User] = []
-            if let data = data {
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
-                        //if let users = json[""] as? [[String:Any]] {
-                        //print(users)
-                        //for user in users {
-                        if let userObject = try? User(json: json) {
-                            print("Object: ", userObject)
-                            targetUser.append(userObject!)
-                        }
-                        //}
-                        //}
-                    }
-                } catch {
-                    print("error")
-                    print(error)
-                }
-                
-                completion(targetUser)
-            }
-        })
-        
-        task.resume()
-    }
+//    static func accountInfo (withId id:String, completion: @escaping (User?) -> ()) {
+//        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: id, methodType: "GET", postContent: nil)
+//        if(request == nil) {
+//            completion(nil)
+//        }
+//        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
+//            var targetUser: User? = nil
+//            if let data = data {
+//                do {
+//                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
+//                        if let userObject = try? User(json: json) {
+//                            targetUser = userObject!
+//                        }
+//                    }
+//                } catch {
+//                    print("error")
+//                    print(error)
+//                }
+//                DispatchQueue.main.async {
+//                    completion(targetUser)
+//                }
+//            }
+//        })
+//        
+//        task.resume()
+//    }
+//    
+//    static func patch(id: String, body: [String], completion: @escaping (User?) -> ()) {
+//        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: id, methodType: "PATCH", postContent: APIDelegate.buildPostString(body: body))
+//        if(request == nil) {
+//            completion(nil)
+//        }
+//        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
+//            var targetUser:User? = nil
+//            print("In Task.")
+//            if let data = data {
+//                do {
+//                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
+//                        print("JSON: ", json)
+//                        if let userObject = try? User(json: json) {
+//                            print("UserObject: ", userObject)
+//                            targetUser = userObject!
+//                        }
+//                    }
+//                } catch {
+//                    print("error in creation")
+//                    print(error)
+//                }
+//                //print("Target User: ", targetUser)
+//                DispatchQueue.main.async {
+//                    completion(targetUser)
+//                }
+//            }
+//        })
+//        
+//        task.resume()
+//    }
+//    
+//    static func createNew(body: [String], completion: @escaping (User?) -> ()) {
+//        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: "1", methodType: "POST", postContent: APIDelegate.buildPostString(body: body))
+//        if(request == nil) {
+//            completion(nil)
+//        }
+//        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
+//            var targetUser:User? = nil
+//             print("In Task.")
+//            if let data = data {
+//                do {
+//                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
+//                         print("JSON: ", json)
+//                        if let userObject = try? User(json: json) {
+//                            print("UserObject: ", userObject)
+//                            targetUser = userObject!
+//                        }
+//                    }
+//                } catch {
+//                    print("error in creation")
+//                    print(error)
+//                }
+//                //print("Target User: ", targetUser)
+//                DispatchQueue.main.async {
+//                    completion(targetUser)
+//                }
+//            }
+//        })
+//        
+//        task.resume()
+//    }
+//    
+//    static func all (withId id:String, completion: @escaping ([User]) -> ()) {
+//        let request = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: "1", methodType: "GET", postContent: nil)
+//        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
+//            var targetUser:[User] = []
+//            if let data = data {
+//                do {
+//                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
+//                        //if let users = json[""] as? [[String:Any]] {
+//                        //print(users)
+//                        //for user in users {
+//                        if let userObject = try? User(json: json) {
+//                            print("Object: ", userObject)
+//                            targetUser.append(userObject!)
+//                        }
+//                        //}
+//                        //}
+//                    }
+//                } catch {
+//                    print("error")
+//                    print(error)
+//                }
+//                
+//                completion(targetUser)
+//            }
+//        })
+//        
+//        task.resume()
+//    }
 }

@@ -79,7 +79,22 @@ class CommunityHomeViewController: UIViewController {
     
     @IBAction func addUserToCommunity(_ sender: Any) {
         let newMembers = (UserSession.selectedCommunity?.members.joined(separator: ","))! == "" ? (UserSession.user?.id)! : (UserSession.selectedCommunity?.members.joined(separator: ","))! + "," + (UserSession.user?.id)!
-        Community.patch(id: (UserSession.selectedCommunity?.id)!, body: ["members=" + newMembers], completion: patchCommunityCompletion)
+        //Community.patch(id: (UserSession.selectedCommunity?.id)!, body: ["members=" + newMembers], completion: patchCommunityCompletion)
+        ActivityHelper.startActivity(view: self.view)
+        let content = APIDelegate.buildPostString(body: ["members=" + newMembers])
+        let patchCommunityRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: (UserSession.selectedCommunity?.id)!, methodType: "PATCH", postContent: content)
+        if (patchCommunityRequest != nil) {
+            APIDelegate.performTask(withRequest: patchCommunityRequest!, completion: {json in
+                if (json != nil && json?.count != 0) {
+                    do {
+                        self.patchCommunityCompletion(community: try Community(json: json![0]))
+                    } catch {
+                        ActivityHelper.stopActivity(view: self.view)
+                        print(error)
+                    }
+                }
+            })
+        }
     }
     
     func patchCommunityCompletion(community: Community?) {
@@ -87,24 +102,47 @@ class CommunityHomeViewController: UIViewController {
             UserSession.selectedCommunity = community
             let community = UserSession.selectedCommunity
             let newCommunities = (UserSession.user?.communityIds.joined(separator: ","))! == "" ? (community?.id) : (UserSession.user?.communityIds.joined(separator: ","))! + "," + (community?.id)!
-            User.patch(id: (UserSession.user?.id)!, body: ["communities=" + newCommunities!], completion: patchUserCompletion)
+            //User.patch(id: (UserSession.user?.id)!, body: ["communities=" + newCommunities!], completion: patchUserCompletion)
+            //startActivity()
+            let content = APIDelegate.buildPostString(body: ["communities=" + newCommunities!])
+            let patchUserRequest = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: (UserSession.user?.id)!, methodType: "PATCH", postContent: content)
+            if (patchUserRequest != nil) {
+                APIDelegate.performTask(withRequest: patchUserRequest!, completion: {json in
+                    ActivityHelper.stopActivity(view: self.view)
+                    if (json != nil && json?.count != 0) {
+                        do {
+                            UserSession.user = try User(json: json![0])
+                            print("Community added to user!")
+                            self.openPopUp(type: 0, displayText: "Congratulations! You have joined " + (UserSession.selectedCommunity?.name)!)
+                            self.updateLayoutForPermissions()
+                        } catch {
+                            print(error)
+                        }
+                    } else {
+                        ActivityHelper.stopActivity(view: self.view)
+                    }
+                })
+            } else {
+                ActivityHelper.stopActivity(view: self.view)
+            }
             print("User Added to Community!")
         } else {
+            ActivityHelper.stopActivity(view: self.view)
             print("Unable to add member to community!")
         }
     }
     
-    func patchUserCompletion(user: User?) {
-        if(user != nil) {
-            UserSession.user = user
-            print("Community added to user!")
-            openPopUp(type: 0, displayText: "Congratulations! You have joined " + (UserSession.selectedCommunity?.name)!)
-            updateLayoutForPermissions()
-            //performSegue(withIdentifier: "createCommunityToMyHomePage", sender: (Any).self)
-        } else {
-            print("Unable to add community to member!")
-        }
-    }
+//    func patchUserCompletion(user: User?) {
+//        if(user != nil) {
+//            UserSession.user = user
+//            print("Community added to user!")
+//            openPopUp(type: 0, displayText: "Congratulations! You have joined " + (UserSession.selectedCommunity?.name)!)
+//            updateLayoutForPermissions()
+//            //performSegue(withIdentifier: "createCommunityToMyHomePage", sender: (Any).self)
+//        } else {
+//            print("Unable to add community to member!")
+//        }
+//    }
     
     func openPopUp(type: Int, displayText: String) {
         if (type == 0) {

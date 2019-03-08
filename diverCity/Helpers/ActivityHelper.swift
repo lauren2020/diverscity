@@ -29,6 +29,7 @@ class ActivityHelper {
         let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
         view.alpha = 1
         activityIndicator.stopAnimating()
+        activityIndicator.removeFromSuperview()
         UIApplication.shared.endIgnoringInteractionEvents()
     }
 }

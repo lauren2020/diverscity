@@ -10,16 +10,25 @@ import Foundation
 import UIKit
 
 public class FormEntryField: UITextField {
-    public override init(frame: CGRect) {
+    init(frame: CGRect, withHint hint: String) {
         super.init(frame: frame)
+        setupTextField(withHint: hint)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupTextField(withHint hint: String, atX x: CGFloat, atY y: CGFloat) {
-        self.bounds = CGRect(x: x, y: y, width: 300, height: 40)
-        self.text = hint
+    func setupTextField(withHint hint: String) {
+        //self.bounds = CGRect(x: frame.minX, y: frame.minY, width: 300, height: 40)
+        self.placeholder = "Enter text here"
+        self.font = UIFont.systemFont(ofSize: 15)
+        self.borderStyle = UITextField.BorderStyle.roundedRect
+        self.autocorrectionType = UITextAutocorrectionType.no
+        self.keyboardType = UIKeyboardType.default
+        self.returnKeyType = UIReturnKeyType.done
+        self.clearButtonMode = UITextField.ViewMode.whileEditing
+        self.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        self.placeholder = hint
     }
 }

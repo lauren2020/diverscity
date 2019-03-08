@@ -10,9 +10,20 @@ import UIKit
 
 class CommunityHomeViewController: UIViewController {
 
-    @IBOutlet weak var backToHomeButton: UIButton!
-    @IBOutlet weak var communityTitle: UILabel!
-    @IBOutlet weak var addUserToCommunityButton: UIButton!
+    var scrollView: UIScrollView!
+    var divider: UIView!
+    var background: Background!
+    var menuIconButton: MenuIconButton!
+    var backToHomeButton: MenuItemButton!
+    var communityTitle: UITextView!
+    var addUserToCommunityButton: UIButton!
+    
+    var trendingEventsTag: ObjectLabelTag!
+    var trendingEventsTable: UITableView!
+    
+    //var addPostButton: RectangleButton!
+    var postsTableTag: ObjectLabelTag!
+    var postsTable: UITableView!
     
     var menuIsOpen = false
     //Owner, Admin, Member, Visitor
@@ -28,9 +39,104 @@ class CommunityHomeViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.title = "Home"
+        self.view.frame = CGRect(x: self.view.frame.minX, y: self.view.frame.minY + ((self.navigationController != nil) ? ((self.navigationController?.navigationBar.frame.height)!) : 50) , width: self.view.frame.width, height: self.view.frame.height - (self.tabBarController!.tabBar.frame.height) - ((self.navigationController != nil) ? ((self.navigationController?.navigationBar.frame.height)!) : 50))
+        setupViews()
+        
         communityTitle.text = UserSession.selectedCommunity?.name
         updateLayoutForPermissions()
         closeMenu()
+    }
+    
+    func setupViews() {
+        if (PERMISSION == Permission.VISITOR) {
+            setupBaseViewForVisitor()
+        } else {
+            setupBaseViewForNonVisitor()
+        }
+        scrollView.isScrollEnabled = true
+        
+        trendingEventsTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: 0, width: 200, height: 40), withLabel: "Trending Events")
+        trendingEventsTable = UITableView(frame: CGRect(x: scrollView.frame.minX, y: trendingEventsTag.frame.maxY, width: scrollView.frame.width, height: 200))
+        trendingEventsTable.register(EventTableCell.self, forCellReuseIdentifier: "eventCell")
+        
+        postsTableTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: trendingEventsTable.frame.maxY, width: 200, height: 40), withLabel: "Community Feed")
+        postsTable = UITableView(frame: CGRect(x: scrollView.frame.minX, y: postsTableTag.frame.maxY, width: scrollView.frame.width, height: 500))
+        postsTable.register(PostTableCell.self, forCellReuseIdentifier: "postCell")
+        
+        scrollView.addSubview(trendingEventsTag)
+        scrollView.addSubview(trendingEventsTable)
+        scrollView.addSubview(postsTableTag)
+        scrollView.addSubview(postsTable)
+    }
+    
+    func setupBaseViewForVisitor() {
+        addUserToCommunityButton = RectangleButton(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: 50), withText: "+ Add To My Communities")
+        addUserToCommunityButton.addTarget(self, action: #selector(addUserToCommunity), for: .touchUpInside)
+        background = Background(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: self.view.frame.height))
+        background.setupBackground(forView: self.view, withImage: UIImage(named: "omaha1") ?? UIImage())
+        
+        menuIconButton = MenuIconButton(frame: CGRect(x: self.view.frame.maxX - 45, y: addUserToCommunityButton.frame.maxY + 5, width: 40, height: 40))
+        menuIconButton.addTarget(self, action: #selector(toggleMenu), for: .touchUpInside)
+        backToHomeButton = MenuItemButton(frame: CGRect(x: self.view.frame.maxX - 150, y: menuIconButton.frame.maxY, width: 150, height: 30), withTaskName: "Back To Home")
+        backToHomeButton.addTarget(self, action: #selector(backToHomePage), for: .touchUpInside)
+        
+        communityTitle = UITextView(frame: CGRect(x: self.view.frame.minX, y: addUserToCommunityButton.frame.maxY, width: 300, height: 100))
+        communityTitle.text = "My Commuinty"
+        communityTitle.backgroundColor = UIColor.init(white: 1, alpha: 0)
+        communityTitle.textAlignment = NSTextAlignment.left
+        communityTitle.font = UIFont(name: "HelveticaNeue-Bold", size: 36)
+        communityTitle.isEditable = false
+        
+        scrollView = UIScrollView(frame: CGRect(x: self.view.frame.minX, y: communityTitle.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - communityTitle.frame.maxY))
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: 1000)
+        //scrollView.backgroundColor = UIColor.init(red: 169, green: 169, blue: 169, alpha: 0.6)
+        
+        divider = UIView(frame: CGRect(x: self.view.frame.minX, y: communityTitle.frame.maxY - 5, width: self.view.frame.width, height: 5))
+        divider.backgroundColor = UIColor.darkGray
+        
+        self.view.addSubview(background)
+        self.view.addSubview(addUserToCommunityButton)
+        self.view.addSubview(menuIconButton)
+        self.view.bringSubview(toFront: menuIconButton)
+        self.view.addSubview(backToHomeButton)
+        self.view.addSubview(communityTitle)
+        self.view.addSubview(scrollView)
+        self.view.bringSubview(toFront: scrollView)
+        self.view.addSubview(divider)
+    }
+    
+    func setupBaseViewForNonVisitor() {
+        background = Background(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: self.view.frame.height))
+        background.setupBackground(forView: self.view, withImage: UIImage(named: "omaha1") ?? UIImage())
+        
+        menuIconButton = MenuIconButton(frame: CGRect(x: self.view.frame.maxX - 45, y: self.view.frame.minY + 5, width: 40, height: 40))
+        menuIconButton.addTarget(self, action: #selector(toggleMenu), for: .touchUpInside)
+        backToHomeButton = MenuItemButton(frame: CGRect(x: self.view.frame.maxX - 40, y: menuIconButton.frame.maxY, width: 400, height: 20), withTaskName: "Back To Home")
+        backToHomeButton.addTarget(self, action: #selector(backToHomePage), for: .touchUpInside)
+        
+        communityTitle = UITextView(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY + 5, width: 200, height: 100))
+        communityTitle.text = "My Community"
+        communityTitle.backgroundColor = UIColor.init(white: 1, alpha: 0)
+        communityTitle.textAlignment = NSTextAlignment.left
+        communityTitle.font = UIFont(name: "HelveticaNeue-Bold", size: 36)
+        communityTitle.isEditable = false
+        
+        scrollView = UIScrollView(frame: CGRect(x: self.view.frame.minX, y: communityTitle.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - communityTitle.frame.maxY))
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: 1000)
+        
+        divider = UIView(frame: CGRect(x: self.view.frame.minX, y: communityTitle.frame.maxY - 5, width: self.view.frame.width, height: 5))
+        divider.backgroundColor = UIColor.darkGray
+        
+        self.view.addSubview(background)
+        self.view.addSubview(communityTitle)
+        self.view.addSubview(menuIconButton)
+        self.view.bringSubview(toFront: menuIconButton)
+        self.view.addSubview(backToHomeButton)
+        self.view.bringSubview(toFront: backToHomeButton)
+        self.view.addSubview(scrollView)
+        self.view.bringSubview(toFront: scrollView)
+        self.view.addSubview(divider)
     }
     
     func updateLayoutForPermissions() {
@@ -77,7 +183,7 @@ class CommunityHomeViewController: UIViewController {
         return false
     }
     
-    @IBAction func addUserToCommunity(_ sender: Any) {
+    @objc func addUserToCommunity(_ sender: Any) {
         let newMembers = (UserSession.selectedCommunity?.members.joined(separator: ","))! == "" ? (UserSession.user?.id)! : (UserSession.selectedCommunity?.members.joined(separator: ","))! + "," + (UserSession.user?.id)!
         //Community.patch(id: (UserSession.selectedCommunity?.id)!, body: ["members=" + newMembers], completion: patchCommunityCompletion)
         ActivityHelper.startActivity(view: self.view)
@@ -154,7 +260,8 @@ class CommunityHomeViewController: UIViewController {
         }
     }
     
-    @IBAction func toggleMenu(_ sender: Any) {
+    @objc func toggleMenu(_ sender: Any) {
+        print("Toggle Menu")
         if(menuIsOpen) {
             closeMenu()
         } else {
@@ -162,11 +269,19 @@ class CommunityHomeViewController: UIViewController {
         }
     }
     
+    @objc func backToHomePage(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+        //let myHomePageViewController = MyHomePageViewController()
+        //present(myHomePageViewController, animated: true, completion: nil)
+    }
+    
     func openMenu() {
+        menuIsOpen = true
         backToHomeButton.isHidden = false
     }
     
     func closeMenu() {
+        menuIsOpen = false
         backToHomeButton.isHidden = true
     }
     

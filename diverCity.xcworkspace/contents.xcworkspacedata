@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/laurenshultz/Documents/GitHub/diverscity/diverCity/CreateNewAccountViewController.swift">
-   </FileRef>
-   <FileRef
       location = "group:diverCity.xcodeproj">
    </FileRef>
    <FileRef

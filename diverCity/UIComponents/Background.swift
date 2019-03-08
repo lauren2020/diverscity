@@ -20,7 +20,7 @@ public class Background: UIView {
     }
     
     func setupBackground(forView view: UIView, withImage image: UIImage) {
-        self.bounds = view.bounds
+        self.bounds = CGRect(x: view.bounds.minX - (view.bounds.width / 2), y: view.bounds.minY - (view.bounds.height / 2), width: view.bounds.width, height: view.bounds.height)
         let imageView = UIImageView()
         imageView.image = image
         imageView.bounds = self.bounds

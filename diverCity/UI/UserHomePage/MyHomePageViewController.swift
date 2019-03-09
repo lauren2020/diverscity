@@ -8,8 +8,7 @@
 
 import UIKit
 
-class MyHomePageViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
-
+class MyHomePageViewController: BaseViewController {
     var divider: UIView!
     var scrollView: UIScrollView!
     var background: Background!
@@ -19,7 +18,8 @@ class MyHomePageViewController: BaseViewController, UITableViewDataSource, UITab
     
     var myCommunitiesTag: ObjectLabelTag!
     var reloadCommunitiesButton: RectangleButton!
-    var myCommunitiesTableList: UITableView!
+    //var myCommunitiesTableList: UITableView!
+    var communitiesTableView: CommunityTableView!
     
     var findCommunities: RectangleButton!
     var createCommunity: RectangleButton!
@@ -43,11 +43,10 @@ class MyHomePageViewController: BaseViewController, UITableViewDataSource, UITab
             let getCommunityRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: String(communityId), methodType: "GET", postContent: nil)
             if (getCommunityRequest != nil) {
                 APIDelegate.performTask(withRequest: getCommunityRequest!, completion: {json in
-                    //|||||||||ActivityHelper.stopActivity(view: self.view)
                     if (json != nil && json?.count != 0) {
                         do {
                             UserSession.user?.communities.append(try Community(json: json![0])!)
-                            self.myCommunitiesTableList.reloadData()
+                            self.communitiesTableView.reloadCommunities(communities: UserSession.user?.communities ?? [])
                         } catch {
                             print(error)
                         }
@@ -59,8 +58,7 @@ class MyHomePageViewController: BaseViewController, UITableViewDataSource, UITab
         }
         closeMenu()
         headerName.text = "| " + (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!
-        myCommunitiesTableList.delegate = self
-        myCommunitiesTableList.dataSource = self
+       
     }
     
     func setupViews() {
@@ -83,12 +81,17 @@ class MyHomePageViewController: BaseViewController, UITableViewDataSource, UITab
         myCommunitiesTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: 0, width: 200, height: 40), withLabel: "My Communities")
         reloadCommunitiesButton = RectangleButton(frame: CGRect(x: scrollView.frame.minX + 210, y: 0, width: 100, height: 40), withText: "Reload")
         reloadCommunitiesButton.addTarget(self, action: #selector(reloadCommunities), for: .touchUpInside)
-        myCommunitiesTableList = UITableView(frame: CGRect(x: scrollView.frame.minX, y: 40, width: scrollView.frame.width, height: 400))
-        myCommunitiesTableList.register(CommunityTableCell.self, forCellReuseIdentifier: "cell")
         
-        findCommunities = RectangleButton(frame: CGRect(x: scrollView.frame.minX, y: myCommunitiesTableList.frame.maxY, width: (self.view.frame.width / 2), height: 40), withText: "Find Communities")
+        communitiesTableView = CommunityTableView(frame: CGRect(x: scrollView.frame.minX, y: 40, width: scrollView.frame.width, height: 400), communities: UserSession.user?.communities ?? [], communitySelectedCallback: { (community) in
+                UserSession.selectedCommunity = community
+                let communityTabsViewController = CommunityTabsViewController()
+                self.present(communityTabsViewController, animated: true, completion: nil)
+            })
+        
+        findCommunities = RectangleButton(frame: CGRect(x: scrollView.frame.minX, y: communitiesTableView.frame.maxY, width: (self.view.frame.width / 2), height: 40), withText: "Find Communities")
         findCommunities.addTarget(self, action: #selector(goToFindCommunities), for: .touchUpInside)
-        createCommunity = RectangleButton(frame: CGRect(x: scrollView.frame.maxX - (self.view.frame.width / 2), y: myCommunitiesTableList.frame.maxY, width: (self.view.frame.width / 2), height: 40), withText: "Create Community")
+        
+        createCommunity = RectangleButton(frame: CGRect(x: scrollView.frame.maxX - (self.view.frame.width / 2), y: communitiesTableView.frame.maxY, width: (self.view.frame.width / 2), height: 40), withText: "Create Community")
         createCommunity.addTarget(self, action: #selector(createNewCommunity), for: .touchUpInside)
         
         myEventsTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: findCommunities.frame.maxY, width: 200, height: 40), withLabel: "My Events")
@@ -103,36 +106,11 @@ class MyHomePageViewController: BaseViewController, UITableViewDataSource, UITab
         self.view.addSubview(headerName)
         scrollView.addSubview(myCommunitiesTag)
         scrollView.addSubview(reloadCommunitiesButton)
-        scrollView.addSubview(myCommunitiesTableList)
+        scrollView.addSubview(communitiesTableView)
         scrollView.addSubview(findCommunities)
         scrollView.addSubview(createCommunity)
         scrollView.addSubview(myEventsTag)
         scrollView.addSubview(myEventsTableList)
-    }
-    
-//    func setCommunities(newCommunity: Community?) {
-//        if (newCommunity != nil) {
-//            UserSession.user?.communities.append(newCommunity!)
-//        } else {
-//            print("Failed to retrieve community!")
-//        }
-//    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserSession.user!.communities.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = myCommunitiesTableList.dequeueReusableCell(withIdentifier: "cell")
-        cell?.textLabel?.text = UserSession.user!.communities[indexPath.row].name
-        cell?.detailTextLabel?.text = UserSession.user!.communities[indexPath.row].description
-        return cell!
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        UserSession.selectedCommunity = UserSession.user!.communities[indexPath.row]
-        let communityTabsViewController = CommunityTabsViewController()
-        self.present(communityTabsViewController, animated: true, completion: nil)
     }
     
     @objc func toggleMenu(_ sender: Any) {
@@ -153,8 +131,7 @@ class MyHomePageViewController: BaseViewController, UITableViewDataSource, UITab
     }
     
     @objc func reloadCommunities(_ sender: Any) {
-        print(UserSession.user?.communities)
-        myCommunitiesTableList.reloadData()
+        communitiesTableView.reloadCommunities(communities: UserSession.user?.communities ?? [])
     }
     
     @objc func createNewCommunity(_ sender: Any) {

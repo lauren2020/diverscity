@@ -57,8 +57,8 @@ class CommunityEventsViewController: BaseTabViewController {
         self.view.addSubview(eventSearchBar)
         self.view.addSubview(eventsTable)
         
-        eventsTable.reloadData()
-        recomendedEventsCollectionView.reloadData()
+        eventsTable.reloadEvents(events: events)
+        recomendedEventsCollectionView.reloadEvents(events: events)
     }
 
     override func didReceiveMemoryWarning() {

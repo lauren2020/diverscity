@@ -37,24 +37,15 @@ class CommunityHomeViewController: BaseTabViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         self.title = "Home"
-        //let offset: CGFloat = 87
-        //self.view.frame = CGRect(x: self.view.frame.minX, y: self.view.frame.minY + offset, width: self.view.frame.width, height: self.view.frame.height)
-        
         setPermissions()
         setupViews()
-        
-        //communityTitle.text = UserSession.selectedCommunity?.name
         updateLayoutForPermissions()
-        closeMenu()
     }
     
     func setupViews() {
         if (PERMISSION == Permission.VISITOR) {
             setupBaseViewForVisitor()
-            //setupBaseViewForNotVisitor()
         } else {
             setupBaseViewForNonVisitor()
         }
@@ -246,30 +237,28 @@ class CommunityHomeViewController: BaseTabViewController {
         }
     }
     
-    @objc func toggleMenu(_ sender: Any) {
-        print("Toggle Menu")
-        if(menuIsOpen) {
-            closeMenu()
-        } else {
-            openMenu()
-        }
-    }
+//    @objc func toggleMenu(_ sender: Any) {
+//        print("Toggle Menu")
+//        if(menuIsOpen) {
+//            closeMenu()
+//        } else {
+//            openMenu()
+//        }
+//    }
     
     @objc func backToHomePage(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        //let myHomePageViewController = MyHomePageViewController()
-        //present(myHomePageViewController, animated: true, completion: nil)
     }
     
-    func openMenu() {
-        menuIsOpen = true
-        backToHomeButton.isHidden = false
-    }
-    
-    func closeMenu() {
-        menuIsOpen = false
-        backToHomeButton.isHidden = true
-    }
+//    func openMenu() {
+//        menuIsOpen = true
+//        backToHomeButton.isHidden = false
+//    }
+//
+//    func closeMenu() {
+//        menuIsOpen = false
+//        backToHomeButton.isHidden = true
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

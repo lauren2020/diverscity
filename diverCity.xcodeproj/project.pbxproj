@@ -66,6 +66,7 @@
 		80AD9117223365570080EEF0 /* BaseTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9116223365570080EEF0 /* BaseTabViewController.swift */; };
 		80AD911A223366C90080EEF0 /* CommunityTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9119223366C90080EEF0 /* CommunityTableView.swift */; };
 		80AD911C2233681C0080EEF0 /* PostsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD911B2233681C0080EEF0 /* PostsTableView.swift */; };
+		80AD911E223391AC0080EEF0 /* UserCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD911D223391AC0080EEF0 /* UserCover.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +169,7 @@
 		80AD9116223365570080EEF0 /* BaseTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabViewController.swift; sourceTree = "<group>"; };
 		80AD9119223366C90080EEF0 /* CommunityTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTableView.swift; sourceTree = "<group>"; };
 		80AD911B2233681C0080EEF0 /* PostsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableView.swift; sourceTree = "<group>"; };
+		80AD911D223391AC0080EEF0 /* UserCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCover.swift; sourceTree = "<group>"; };
 		A9816917CD50D67D99302640 /* Pods-diverCityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityTests/Pods-diverCityTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC8ED338B8C05F0C3F75259D /* Pods-diverCityUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EEB383ABE8B5AB460B3CEB0F /* Pods-diverCityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -376,28 +378,15 @@
 		80AD90D42230D17E0080EEF0 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				80AD9124223393770080EEF0 /* Bases */,
+				80AD9123223393520080EEF0 /* Buttons */,
+				80AD91222233932B0080EEF0 /* Covers */,
+				80AD9121223392B90080EEF0 /* CollectionViews */,
+				80AD9120223392B10080EEF0 /* TableViews */,
 				80AD90D52230D19A0080EEF0 /* Background.swift */,
 				80AD90D72230D3BC0080EEF0 /* FormEntryField.swift */,
-				80AD90D92230D6030080EEF0 /* RectangleButton.swift */,
-				80AD90DB2230D6D50080EEF0 /* TextOnlyButton.swift */,
-				80AD90E32231EE610080EEF0 /* MenuIconButton.swift */,
-				80AD90E52231EFE30080EEF0 /* MenuItemButton.swift */,
 				80AD90E72231F0DD0080EEF0 /* ObjectLabelTag.swift */,
-				80AD90EB223214000080EEF0 /* CommunityTableCell.swift */,
-				80AD90F32232D5B00080EEF0 /* EventTableCell.swift */,
-				80AD90F52232D5D90080EEF0 /* PostTableCell.swift */,
 				80AD90F922330BBA0080EEF0 /* TitleTextView.swift */,
-				80AD90FB2233141D0080EEF0 /* EventCollectionTile.swift */,
-				80AD90FE223316940080EEF0 /* EventsCollectionView.swift */,
-				80AD9100223318990080EEF0 /* EventsTableView.swift */,
-				80AD91022233233B0080EEF0 /* CommunityHeader.swift */,
-				80AD910E223362D50080EEF0 /* CommunitiesCollectionView.swift */,
-				80AD91102233638C0080EEF0 /* CommunityCollectionTile.swift */,
-				80AD9112223364E30080EEF0 /* GenericCover.swift */,
-				80AD91142233652C0080EEF0 /* BaseViewController.swift */,
-				80AD9116223365570080EEF0 /* BaseTabViewController.swift */,
-				80AD9119223366C90080EEF0 /* CommunityTableView.swift */,
-				80AD911B2233681C0080EEF0 /* PostsTableView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -472,6 +461,60 @@
 			children = (
 			);
 			path = AmbassadorProgram;
+			sourceTree = "<group>";
+		};
+		80AD9120223392B10080EEF0 /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				80AD9119223366C90080EEF0 /* CommunityTableView.swift */,
+				80AD90EB223214000080EEF0 /* CommunityTableCell.swift */,
+				80AD911B2233681C0080EEF0 /* PostsTableView.swift */,
+				80AD90F52232D5D90080EEF0 /* PostTableCell.swift */,
+				80AD9100223318990080EEF0 /* EventsTableView.swift */,
+				80AD90F32232D5B00080EEF0 /* EventTableCell.swift */,
+			);
+			path = TableViews;
+			sourceTree = "<group>";
+		};
+		80AD9121223392B90080EEF0 /* CollectionViews */ = {
+			isa = PBXGroup;
+			children = (
+				80AD91102233638C0080EEF0 /* CommunityCollectionTile.swift */,
+				80AD910E223362D50080EEF0 /* CommunitiesCollectionView.swift */,
+				80AD90FB2233141D0080EEF0 /* EventCollectionTile.swift */,
+				80AD90FE223316940080EEF0 /* EventsCollectionView.swift */,
+			);
+			path = CollectionViews;
+			sourceTree = "<group>";
+		};
+		80AD91222233932B0080EEF0 /* Covers */ = {
+			isa = PBXGroup;
+			children = (
+				80AD911D223391AC0080EEF0 /* UserCover.swift */,
+				80AD9112223364E30080EEF0 /* GenericCover.swift */,
+				80AD91022233233B0080EEF0 /* CommunityHeader.swift */,
+			);
+			path = Covers;
+			sourceTree = "<group>";
+		};
+		80AD9123223393520080EEF0 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				80AD90D92230D6030080EEF0 /* RectangleButton.swift */,
+				80AD90E32231EE610080EEF0 /* MenuIconButton.swift */,
+				80AD90E52231EFE30080EEF0 /* MenuItemButton.swift */,
+				80AD90DB2230D6D50080EEF0 /* TextOnlyButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		80AD9124223393770080EEF0 /* Bases */ = {
+			isa = PBXGroup;
+			children = (
+				80AD91142233652C0080EEF0 /* BaseViewController.swift */,
+				80AD9116223365570080EEF0 /* BaseTabViewController.swift */,
+			);
+			path = Bases;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -699,6 +742,7 @@
 				8008EB55216EE79F004B7799 /* AppDelegate.swift in Sources */,
 				80AD9117223365570080EEF0 /* BaseTabViewController.swift in Sources */,
 				8008EB8F2170FF97004B7799 /* User.swift in Sources */,
+				80AD911E223391AC0080EEF0 /* UserCover.swift in Sources */,
 				80AD91152233652C0080EEF0 /* BaseViewController.swift in Sources */,
 				80278EB5218A143B0023D8D7 /* APIDelegate.swift in Sources */,
 				80AD90D62230D19A0080EEF0 /* Background.swift in Sources */,

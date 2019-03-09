@@ -18,6 +18,8 @@ class CommunitiesCollectionView: UICollectionView {
         onCommunitySelected = communitySelectedCallback
         self.communitiesList = communitiesList
         super.init(frame: frame, collectionViewLayout: layout)
+        self.delegate = self
+        self.dataSource = self
         self.backgroundColor = UIColor.gray
         self.register(CommunityCollectionTile.self, forCellWithReuseIdentifier: "communityCell")
     }

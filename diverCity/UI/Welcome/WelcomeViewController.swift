@@ -29,14 +29,11 @@ class WelcomeViewController: UIViewController {
         titleView.backgroundColor = UIColor.init(white: 1, alpha: 0)
         titleView.textAlignment = NSTextAlignment.center
         titleView.font = UIFont(name: "HelveticaNeue-Bold", size: 48)
-        //titleView.font?.withSize(48)
         
-        signInButton = RectangleButton(frame: CGRect(x: background.bounds.midX - 50, y: background.bounds.midY - 10, width: 100, height: 40), withText: "Sign In")
-        //signInButton.setupButton(withText: "Sign In", frame: signInButton.bounds)
+        signInButton = RectangleButton(frame: CGRect(x: background.bounds.midX - 75, y: background.bounds.midY - 10, width: 150, height: 40), withText: "Sign In")
         signInButton.addTarget(self, action: #selector(goToSignInPage), for: .touchUpInside)
         
-        createAccountButton = RectangleButton(frame: CGRect(x: background.bounds.midX - 50, y: signInButton.bounds.maxY + 20, width: 100, height: 40), withText: "Create Account")
-        //createAccountButton.setupButton(withText: "Create Account", frame: createAccountButton.bounds)
+        createAccountButton = RectangleButton(frame: CGRect(x: background.bounds.midX - 75, y: signInButton.bounds.maxY + 20, width: 150, height: 40), withText: "Create Account")
         createAccountButton.addTarget(self, action: #selector(goToCreateAccountPage), for: .touchUpInside)
         
         background.addSubview(titleView)
@@ -45,11 +42,8 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc func goToSignInPage(_ sender: Any) {
-        //performSegue(withIdentifier: "welcomeToSignIn", sender: (Any).self)
         let signInViewController = SignInViewController()
         present(signInViewController, animated: true, completion: nil)
-        //performSegue(withIdentifier: "mySegueID", sender: nil)
-        //self.navigationController?.pushViewController(signInViewController, animated: true)
     }
     
     @objc func goToCreateAccountPage(_ sender: Any) {

@@ -13,6 +13,8 @@ class ObjectLabelTag: UILabel {
     init(frame: CGRect, withLabel label: String) {
         super.init(frame: frame)
         self.text = label
+        self.layoutMargins = UIEdgeInsets.init(top: 0, left: 10, bottom: 0, right: 0)
+        self.layoutMarginsDidChange()
         self.backgroundColor = UIColor.init(red: 169, green: 169, blue: 169, alpha: 0.8)
     }
     

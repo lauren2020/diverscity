@@ -19,6 +19,8 @@ struct Community {
     var location: CLLocation?
     var beacon: CLBeacon?
     var creator: String!
+    var events: [CommunityEvent]
+    var feed: [Post]
 }
 
 extension Community {
@@ -48,121 +50,11 @@ extension Community {
         for member in members.split(separator: ",") {
             self.members.append(String(member))
         }
+        self.events = []
+        self.feed = []
         //self.location = CLLocation.init(latitude: 0, longitude: 0)
         //self.beacon = CLBeacon.init()
         self.creator = "1"//creator
     }
-    
-//    static func communityInfo (withId id:String, completion: @escaping (Community?) -> ()) {
-//        let request = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: id, methodType: "GET", postContent: nil)
-//        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
-//            var targetCommunity:Community? = nil
-//            if let data = data {
-//                do {
-//                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
-//                        if let communityObject = try? Community(json: json) {
-//                            targetCommunity = communityObject!
-//                            //targetCommunity.append(communityObject!)
-//                        }
-//                    }
-//                } catch {
-//                    print("error")
-//                    print(error)
-//                }
-//
-//                completion(targetCommunity)
-//            }
-//        })
-//
-//        task.resume()
-//    }
-//
-//    static func patch(id: String, body: [String], completion: @escaping (Community?) -> ()) {
-//        let request = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: id, methodType: "PATCH", postContent: APIDelegate.buildPostString(body: body))
-//        if(request == nil) {
-//            completion(nil)
-//        }
-//        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
-//            var targetCommunity:Community? = nil
-//            print("In Task.")
-//            if let data = data {
-//                do {
-//                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
-//                        if let communityObject = try? Community(json: json) {
-//                            print("CommunityObject: ", communityObject)
-//                            targetCommunity = communityObject!
-//                        }
-//                    }
-//                } catch {
-//                    print("error in creation")
-//                    print(error)
-//                }
-//                DispatchQueue.main.async {
-//                    completion(targetCommunity)
-//                }
-//            }
-//        })
-//
-//        task.resume()
-//    }
-//
-//    static func createNew(body: [String], completion: @escaping (Community?) -> ()) {
-//        let request = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: "1", methodType: "POST", postContent: APIDelegate.buildPostString(body: body))
-//        if(request == nil) {
-//            completion(nil)
-//        }
-//        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
-//            var targetCommunity:Community? = nil
-//            print("In Task.")
-//            if let data = data {
-//                do {
-//                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
-//                        if let communityObject = try? Community(json: json) {
-//                            print("CommunityObject: ", communityObject)
-//                            targetCommunity = communityObject!
-//                        }
-//                    }
-//                } catch {
-//                    print("error in creation")
-//                    print(error)
-//                }
-//                DispatchQueue.main.async {
-//                    completion(targetCommunity)
-//                }
-//            }
-//        })
-//
-//        task.resume()
-//    }
-//
-//    static func all (completion: @escaping ([Community]) -> ()) {
-//        //print("Enters Get All Function")
-//        let request = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: "all", methodType: "GET", postContent: nil)
-//        //print("REQUEST: ", request)
-//        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
-//            var targetCommunities: [Community] = []
-//            if let data = data {
-//                do {
-//                    //print("DATA: ", data)
-//                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String:Any]] {
-//                        //print("JSON: ", json)
-//                            for community in json {
-//                                if let communityObject = try? Community(json: community) {
-//                                    targetCommunities.append(communityObject!)
-//                                }
-//                            }
-//                    }
-//                } catch {
-//                    print("error")
-//                    print(error)
-//                }
-//                DispatchQueue.main.async {
-//                    completion(targetCommunities)
-//                }
-//            }
-//        })
-//
-//        task.resume()
-//    }
 }
 

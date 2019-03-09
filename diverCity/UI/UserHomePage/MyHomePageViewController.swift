@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyHomePageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MyHomePageViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 
     var divider: UIView!
     var scrollView: UIScrollView!

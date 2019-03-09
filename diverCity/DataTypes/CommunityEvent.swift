@@ -17,6 +17,7 @@ struct CommunityEvent {
     var going: [String] = []
     var interested: [String] = []
     var notGoing: [String] = []
+    var description: String?
 }
 
 extension CommunityEvent {

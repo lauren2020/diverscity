@@ -20,7 +20,7 @@ public class RectangleButton: UIButton {
     }
     
     func setupButton(withText text: String, frame: CGRect) {
-        self.bounds = CGRect(x: frame.minX, y: frame.minY, width: 150, height: 40)
+        //self.bounds = CGRect(x: frame.minX, y: frame.minY, width: 150, height: 40)
         self.setTitle(text, for: .normal)
         self.backgroundColor = UIColor.blue
     }

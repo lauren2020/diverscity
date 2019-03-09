@@ -33,29 +33,29 @@ class MyHomePageViewController: BaseViewController {
         super.viewDidLoad()
         
         setupViews()
-
+        loadCommunities()
         // Do any additional setup after loading the view.
         //||||||||ActivityHelper.startActivity(view: self.view)
-        UserSession.user?.communities = []
-        for communityId in (UserSession.user?.communityIds)! {
-            //Community.communityInfo(withId: String(communityId), completion: setCommunities)
-            //ActivityHelper.startActivity(view: self.view)
-            let getCommunityRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: String(communityId), methodType: "GET", postContent: nil)
-            if (getCommunityRequest != nil) {
-                APIDelegate.performTask(withRequest: getCommunityRequest!, completion: {json in
-                    if (json != nil && json?.count != 0) {
-                        do {
-                            UserSession.user?.communities.append(try Community(json: json![0])!)
-                            self.communitiesTableView.reloadCommunities(communities: UserSession.user?.communities ?? [])
-                        } catch {
-                            print(error)
-                        }
-                    }
-                })
-            } else {
-                //|||||||||ActivityHelper.stopActivity(view: self.view)
-            }
-        }
+        //UserSession.user?.communities = []
+//        for communityId in (UserSession.user?.communityIds)! {
+//            //Community.communityInfo(withId: String(communityId), completion: setCommunities)
+//            //ActivityHelper.startActivity(view: self.view)
+//            let getCommunityRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: String(communityId), methodType: "GET", postContent: nil)
+//            if (getCommunityRequest != nil) {
+//                APIDelegate.performTask(withRequest: getCommunityRequest!, completion: {json in
+//                    if (json != nil && json?.count != 0) {
+//                        do {
+//                            UserSession.user?.communities.append(try Community(json: json![0])!)
+//                            self.communitiesTableView.reloadCommunities(communities: UserSession.user?.communities ?? [])
+//                        } catch {
+//                            print(error)
+//                        }
+//                    }
+//                })
+//            } else {
+//                //|||||||||ActivityHelper.stopActivity(view: self.view)
+//            }
+//        }
         closeMenu()
         headerName.text = "| " + (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!
        
@@ -82,7 +82,7 @@ class MyHomePageViewController: BaseViewController {
         reloadCommunitiesButton = RectangleButton(frame: CGRect(x: scrollView.frame.minX + 210, y: 0, width: 100, height: 40), withText: "Reload")
         reloadCommunitiesButton.addTarget(self, action: #selector(reloadCommunities), for: .touchUpInside)
         
-        communitiesTableView = CommunityTableView(frame: CGRect(x: scrollView.frame.minX, y: 40, width: scrollView.frame.width, height: 400), communities: UserSession.user?.communities ?? [], communitySelectedCallback: { (community) in
+        communitiesTableView = CommunityTableView(frame: CGRect(x: scrollView.frame.minX, y: 40, width: scrollView.frame.width, height: 400), communities: [], communitySelectedCallback: { (community) in
                 UserSession.selectedCommunity = community
                 let communityTabsViewController = CommunityTabsViewController()
                 self.present(communityTabsViewController, animated: true, completion: nil)
@@ -131,7 +131,36 @@ class MyHomePageViewController: BaseViewController {
     }
     
     @objc func reloadCommunities(_ sender: Any) {
-        communitiesTableView.reloadCommunities(communities: UserSession.user?.communities ?? [])
+        loadCommunities()
+    }
+    
+    func loadCommunities() {
+        var newCommunities: [Community] = []
+        var numberOfCommunitiesToLoad = 0
+        if ((UserSession.user?.communities)!.count <= UserSession.defaultLoadCountCommunities) {
+            numberOfCommunitiesToLoad = (UserSession.user?.communities)!.count - 1
+        } else {
+            numberOfCommunitiesToLoad = UserSession.defaultLoadCountCommunities
+        }
+        for index in 0...numberOfCommunitiesToLoad {
+            //Community.communityInfo(withId: String(communityId), completion: setCommunities)
+            //ActivityHelper.startActivity(view: self.view)
+            let getCommunityRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: String((UserSession.user?.communities)![index]), methodType: "GET", postContent: nil)
+            if (getCommunityRequest != nil) {
+                APIDelegate.performTask(withRequest: getCommunityRequest!, completion: {json in
+                    if (json != nil && json?.count != 0) {
+                        do {
+                            newCommunities.append(try Community(json: json![0])!)
+                            self.communitiesTableView.reloadCommunities(communities: newCommunities)
+                        } catch {
+                            print(error)
+                        }
+                    }
+                })
+            } else {
+                //|||||||||ActivityHelper.stopActivity(view: self.view)
+            }
+        }
     }
     
     @objc func createNewCommunity(_ sender: Any) {

@@ -81,7 +81,7 @@ class CreateNewCommunityViewController: UIViewController, UITableViewDataSource,
                     do {
                         //UserSession.user?.communities.append(try Community(json: json![0])!)
                         UserSession.selectedCommunity = try Community(json: json![0])
-                        let newCommunities = (UserSession.user?.communityIds.joined(separator: ","))! == "" ? (UserSession.selectedCommunity?.id)! : (UserSession.user?.communityIds.joined(separator: ","))! + "," + (UserSession.selectedCommunity?.id)!
+                        let newCommunities = (UserSession.user?.communities.joined(separator: ","))! == "" ? (UserSession.selectedCommunity?.id)! : (UserSession.user?.communities.joined(separator: ","))! + "," + (UserSession.selectedCommunity?.id)!
                         self.patchUser(newCommunities: newCommunities)
                     } catch {
                         print(error)

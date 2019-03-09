@@ -184,7 +184,7 @@ class CommunityHomeViewController: BaseTabViewController {
         if(community != nil) {
             UserSession.selectedCommunity = community
             let community = UserSession.selectedCommunity
-            let newCommunities = (UserSession.user?.communityIds.joined(separator: ","))! == "" ? (community?.id) : (UserSession.user?.communityIds.joined(separator: ","))! + "," + (community?.id)!
+            let newCommunities = (UserSession.user?.communities.joined(separator: ","))! == "" ? (community?.id) : (UserSession.user?.communities.joined(separator: ","))! + "," + (community?.id)!
             //User.patch(id: (UserSession.user?.id)!, body: ["communities=" + newCommunities!], completion: patchUserCompletion)
             //startActivity()
             let content = APIDelegate.buildPostString(body: ["communities=" + newCommunities!])

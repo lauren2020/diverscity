@@ -15,6 +15,8 @@ struct APIDelegate {
     static let usersPath = "/users"
     static let communitiesPath = "/communities"
     static let eventsPath = "/events"
+    static let mediaPath = "/media"
+    static let postsPath = "/posts"
     
     
 //    func basePath(withVersion version: String) -> String {
@@ -107,5 +109,13 @@ extension APIDelegate {
         })
         
         task.resume()
+    }
+    
+    static func addNewElemnentToValue(value: String, element: String) -> String {
+        if (value == "") {
+            return element
+        } else {
+            return value + "," + element
+        }
     }
 }

@@ -19,7 +19,7 @@ class Post {
     var likedBy: [String]
     var postDate: Date
     var user: User?
-    var community: Community?
+    var community: Community!
     
     init(id: String, title: String, body: String, media: [Media], comments: [String], sharedBy: [String], likedBy: [String], postDate: Date, user: User?, community: Community) {
         self.id = id
@@ -43,13 +43,13 @@ class Post {
         guard let id = json["id"] as? Int,
             let title = json["title"] as? String, //one
             let body = json["body"] as? String, //one
-            let postDate = json["date"] as? Double, //one
+            let postDate = json["date"] as? Int, //one
             let comments = json["comments"] as? String, //many
             let shared_by = json["shared_by"] as? String, //many
             let liked_by = json["liked_by"] as? String, //many
             let community = json["community"] as? String
             else {
-                print("error")
+                //print(error)
                 throw SerializationError.missing("Value id missing for x")
         }
         let userId = json["user"] as? String
@@ -69,6 +69,14 @@ class Post {
         self.likedBy = liked_by.split(separator: ",").map(String.init)
         self.media = []
 //        //Get Community
+        let devStubs = DevStubs()
+        self.user = devStubs.getUser()
+        do {
+            self.community = try Community(json: devStubs.communityJson1)
+        } catch {
+            print(error)
+            throw SerializationError.invalid("Community is not valid!", devStubs.communityJson1)
+        }
 //        launchSetCommunity(community: community, setter: setCommunity)
 //        //Get User
 //        launchSetUser(user: userId, setter: setUser)

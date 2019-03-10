@@ -39,13 +39,18 @@ extension EventsTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
-        cell.textLabel?.text = eventsList[indexPath.row].name
-        cell.detailTextLabel?.text = eventsList[indexPath.row].description
+        let cell = self.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableCell
+        cell.eventItemView.loadEvent(event: eventsList[indexPath.row])
+        //cell.textLabel?.text = eventsList[indexPath.row].name
+        //cell.detailTextLabel?.text = eventsList[indexPath.row].description
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         onEventSelected(eventsList[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250
     }
 }

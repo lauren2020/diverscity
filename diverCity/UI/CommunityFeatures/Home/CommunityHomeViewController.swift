@@ -19,13 +19,15 @@ class CommunityHomeViewController: BaseTabViewController {
     var addUserToCommunityButton: UIButton!
     
     var trendingEventsTag: ObjectLabelTag!
-    var trendingEventsTable: UITableView!
+    var trendingEventsTable: EventsTableView!
     
     //var addPostButton: RectangleButton!
     var postsTableTag: ObjectLabelTag!
-    var postsTable: UITableView!
+    var postsTable: PostsTableView!
     
     var menuIsOpen = false
+    
+    let devStubs = DevStubs()
     //Owner, Admin, Member, Visitor
     enum Permission {
         case OWNER
@@ -40,6 +42,8 @@ class CommunityHomeViewController: BaseTabViewController {
         self.title = "Home"
         setPermissions()
         setupViews()
+        loadTrendingEvents()
+        loadCommunityFeed()
         updateLayoutForPermissions()
     }
     
@@ -52,17 +56,31 @@ class CommunityHomeViewController: BaseTabViewController {
         scrollView.isScrollEnabled = true
         
         trendingEventsTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: 0, width: 200, height: 40), withLabel: "Trending Events")
-        trendingEventsTable = UITableView(frame: CGRect(x: scrollView.frame.minX, y: trendingEventsTag.frame.maxY, width: scrollView.frame.width, height: 200))
-        trendingEventsTable.register(EventTableCell.self, forCellReuseIdentifier: "eventCell")
+        trendingEventsTable = EventsTableView(frame: CGRect(x: scrollView.frame.minX, y: trendingEventsTag.frame.maxY, width: scrollView.frame.width, height: 400), eventsList: [], eventSelectedCallback: { (event) in
+            
+            })
+            //UITableView(frame: CGRect(x: scrollView.frame.minX, y: trendingEventsTag.frame.maxY, width: scrollView.frame.width, height: 200))
+        //trendingEventsTable.register(EventTableCell.self, forCellReuseIdentifier: "eventCell")
         
         postsTableTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: trendingEventsTable.frame.maxY, width: 200, height: 40), withLabel: "Community Feed")
-        postsTable = UITableView(frame: CGRect(x: scrollView.frame.minX, y: postsTableTag.frame.maxY, width: scrollView.frame.width, height: 500))
-        postsTable.register(PostTableCell.self, forCellReuseIdentifier: "postCell")
+        postsTable = PostsTableView(frame: CGRect(x: scrollView.frame.minX, y: postsTableTag.frame.maxY, width: scrollView.frame.width, height: 500), posts: [], postSelectedCallback: { (post) in
+            
+            })
+            //UITableView(frame: CGRect(x: scrollView.frame.minX, y: postsTableTag.frame.maxY, width: scrollView.frame.width, height: 500))
+        //postsTable.register(PostTableCell.self, forCellReuseIdentifier: "postCell")
         
         scrollView.addSubview(trendingEventsTag)
         scrollView.addSubview(trendingEventsTable)
         scrollView.addSubview(postsTableTag)
         scrollView.addSubview(postsTable)
+    }
+    
+    func loadTrendingEvents() {
+        trendingEventsTable.reloadEvents(events: devStubs.getEventList())
+    }
+    
+    func loadCommunityFeed() {
+        postsTable.reloadPosts(posts: devStubs.getPostList())
     }
     
     func setupBaseViewForVisitor() {

@@ -43,7 +43,7 @@ class Media {
         }
         //Set Values
         self.id = String(id)
-        self.image = UIImage(data: data) ?? UIImage()
+        self.image = UIImage(data: data) ?? UIImage(named: "omaha1") ?? UIImage()
         let timeInterval = TimeInterval(exactly: date)
         if (timeInterval != nil) {
             self.date = Date(timeIntervalSince1970: timeInterval!)

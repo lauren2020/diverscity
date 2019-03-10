@@ -10,8 +10,13 @@ import Foundation
 import UIKit
 
 class PostTableCell: UITableViewCell {
+    var postView: PostView!
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        postView = PostView(x: self.contentView.frame.minX, y: self.contentView.frame.minY, width: self.contentView.frame.width)
+        
+        self.contentView.addSubview(postView)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -67,6 +67,11 @@
 		80AD911A223366C90080EEF0 /* CommunityTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9119223366C90080EEF0 /* CommunityTableView.swift */; };
 		80AD911C2233681C0080EEF0 /* PostsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD911B2233681C0080EEF0 /* PostsTableView.swift */; };
 		80AD911E223391AC0080EEF0 /* UserCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD911D223391AC0080EEF0 /* UserCover.swift */; };
+		80AD912622357C9D0080EEF0 /* DevStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD912522357C9D0080EEF0 /* DevStubs.swift */; };
+		80AD9129223594C70080EEF0 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9128223594C70080EEF0 /* PostView.swift */; };
+		80AD912B22359FC00080EEF0 /* MediaCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD912A22359FC00080EEF0 /* MediaCollectionView.swift */; };
+		80AD912D2235A08C0080EEF0 /* MediaCollectionTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD912C2235A08C0080EEF0 /* MediaCollectionTile.swift */; };
+		80AD91312235BFFC0080EEF0 /* EventItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD91302235BFFC0080EEF0 /* EventItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +175,11 @@
 		80AD9119223366C90080EEF0 /* CommunityTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTableView.swift; sourceTree = "<group>"; };
 		80AD911B2233681C0080EEF0 /* PostsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableView.swift; sourceTree = "<group>"; };
 		80AD911D223391AC0080EEF0 /* UserCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCover.swift; sourceTree = "<group>"; };
+		80AD912522357C9D0080EEF0 /* DevStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevStubs.swift; sourceTree = "<group>"; };
+		80AD9128223594C70080EEF0 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		80AD912A22359FC00080EEF0 /* MediaCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCollectionView.swift; sourceTree = "<group>"; };
+		80AD912C2235A08C0080EEF0 /* MediaCollectionTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCollectionTile.swift; sourceTree = "<group>"; };
+		80AD91302235BFFC0080EEF0 /* EventItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItemView.swift; sourceTree = "<group>"; };
 		A9816917CD50D67D99302640 /* Pods-diverCityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityTests/Pods-diverCityTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC8ED338B8C05F0C3F75259D /* Pods-diverCityUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EEB383ABE8B5AB460B3CEB0F /* Pods-diverCityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -378,6 +388,7 @@
 		80AD90D42230D17E0080EEF0 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				80AD9127223594840080EEF0 /* CellViews */,
 				80AD9124223393770080EEF0 /* Bases */,
 				80AD9123223393520080EEF0 /* Buttons */,
 				80AD91222233932B0080EEF0 /* Covers */,
@@ -421,6 +432,7 @@
 				80278EB6218D5C910023D8D7 /* EventDispatcher.swift */,
 				8008EB902170FFA6004B7799 /* Event.swift */,
 				8008EBA02174E8E5004B7799 /* UserSession.swift */,
+				80AD912522357C9D0080EEF0 /* DevStubs.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -483,6 +495,8 @@
 				80AD910E223362D50080EEF0 /* CommunitiesCollectionView.swift */,
 				80AD90FB2233141D0080EEF0 /* EventCollectionTile.swift */,
 				80AD90FE223316940080EEF0 /* EventsCollectionView.swift */,
+				80AD912A22359FC00080EEF0 /* MediaCollectionView.swift */,
+				80AD912C2235A08C0080EEF0 /* MediaCollectionTile.swift */,
 			);
 			path = CollectionViews;
 			sourceTree = "<group>";
@@ -515,6 +529,15 @@
 				80AD9116223365570080EEF0 /* BaseTabViewController.swift */,
 			);
 			path = Bases;
+			sourceTree = "<group>";
+		};
+		80AD9127223594840080EEF0 /* CellViews */ = {
+			isa = PBXGroup;
+			children = (
+				80AD9128223594C70080EEF0 /* PostView.swift */,
+				80AD91302235BFFC0080EEF0 /* EventItemView.swift */,
+			);
+			path = CellViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -713,16 +736,19 @@
 				80AD90F62232D5D90080EEF0 /* PostTableCell.swift in Sources */,
 				80278EB7218D5C910023D8D7 /* EventDispatcher.swift in Sources */,
 				80278EB9218D5D8F0023D8D7 /* EventHandler.swift in Sources */,
+				80AD91312235BFFC0080EEF0 /* EventItemView.swift in Sources */,
 				80AD911A223366C90080EEF0 /* CommunityTableView.swift in Sources */,
 				80AD91072233553E0080EEF0 /* Post.swift in Sources */,
 				80AD90D32229E4610080EEF0 /* ActivityHelper.swift in Sources */,
 				80278F282194EB600023D8D7 /* EventsMapViewController.swift in Sources */,
 				80AD910F223362D50080EEF0 /* CommunitiesCollectionView.swift in Sources */,
+				80AD912B22359FC00080EEF0 /* MediaCollectionView.swift in Sources */,
 				80AD910B223356800080EEF0 /* Media.swift in Sources */,
 				80AD90DA2230D6030080EEF0 /* RectangleButton.swift in Sources */,
 				80AD91032233233B0080EEF0 /* CommunityHeader.swift in Sources */,
 				80AD90F82232F1EC0080EEF0 /* NewCommunitiesTabsViewController.swift in Sources */,
 				8008EB8721704F84004B7799 /* WelcomeViewController.swift in Sources */,
+				80AD912D2235A08C0080EEF0 /* MediaCollectionTile.swift in Sources */,
 				80AD9101223318990080EEF0 /* EventsTableView.swift in Sources */,
 				80AD90FA22330BBA0080EEF0 /* TitleTextView.swift in Sources */,
 				80AD911C2233681C0080EEF0 /* PostsTableView.swift in Sources */,
@@ -736,6 +762,7 @@
 				80AD90D82230D3BC0080EEF0 /* FormEntryField.swift in Sources */,
 				8008EB94217107AD004B7799 /* PrivacyType.swift in Sources */,
 				80AD910D223362230080EEF0 /* DiscoverCommunitiesViewController.swift in Sources */,
+				80AD912622357C9D0080EEF0 /* DevStubs.swift in Sources */,
 				80AD90E82231F0DD0080EEF0 /* ObjectLabelTag.swift in Sources */,
 				80278ECC218D66BF0023D8D7 /* CommunityEvent.swift in Sources */,
 				80AD90F42232D5B00080EEF0 /* EventTableCell.swift in Sources */,
@@ -761,6 +788,7 @@
 				80AD90DC2230D6D50080EEF0 /* TextOnlyButton.swift in Sources */,
 				80AD90FC2233141D0080EEF0 /* EventCollectionTile.swift in Sources */,
 				8008EBA521754C35004B7799 /* CommunityEventsViewController.swift in Sources */,
+				80AD9129223594C70080EEF0 /* PostView.swift in Sources */,
 				80AD90E62231EFE30080EEF0 /* MenuItemButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

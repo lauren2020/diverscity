@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct CommunityEvent {
     var name: String!
@@ -18,6 +19,10 @@ struct CommunityEvent {
     var interested: [String] = []
     var notGoing: [String] = []
     var description: String?
+    var category: String!
+    var coverImage: UIImage?
+    var creator: User?
+    var community: Community!
 }
 
 extension CommunityEvent {
@@ -34,11 +39,13 @@ extension CommunityEvent {
             let endTime = json["end_time"] as? Double,
             let going = json["going"] as? String?,
             let interested = json["interested"] as? String?,
-            let notGoing = json["not_going"] as? String?
+            let notGoing = json["not_going"] as? String?,
+            let category = json["category"] as? String?
             else {
                 print("error")
                 throw SerializationError.missing("Value id missing for x")
         }
+        let imageData = json["image"] as? String
         
         self.name = name
         self.recuring = recuring
@@ -48,6 +55,33 @@ extension CommunityEvent {
         self.going = going != nil ? going!.components(separatedBy: ",") : []
         self.notGoing = notGoing != nil ? notGoing!.components(separatedBy: ",") : []
         self.interested = interested != nil ? interested!.components(separatedBy: ",") : []
+        self.category = category
+        
+        if (imageData != nil) {
+            let data = Data(base64Encoded: imageData!)
+            if (data != nil) {
+                self.coverImage = UIImage(data: data!)
+            } else {
+                //could not load image
+                self.coverImage = UIImage(named: "omaha1")
+            }
+        } else {
+            //has no image
+            self.coverImage = UIImage(named: "omaha1")
+        }
+        
+        let devStub = DevStubs()
+        do {
+            self.creator = try User(json: devStub.userJson1)
+            let community1 = try Community(json: devStub.communityJson1)
+            if (community1 != nil) {
+                self.community = community1!
+            } else {
+                throw SerializationError.missing("No Community!")
+            }
+        } catch {
+            print(error)
+        }
     }
     
 //    static func eventInfo (withId id:String, completion: @escaping ([CommunityEvent]) -> ()) {

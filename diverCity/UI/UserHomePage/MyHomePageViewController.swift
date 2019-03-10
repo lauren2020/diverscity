@@ -25,7 +25,8 @@ class MyHomePageViewController: BaseViewController {
     var createCommunity: RectangleButton!
     
     var myEventsTag: ObjectLabelTag!
-    var myEventsTableList: UITableView!
+    //var myEventsTableList: UITableView!
+    var myEventsTableView: EventsTableView!
     
     var menuIsOpen = false
     
@@ -34,28 +35,8 @@ class MyHomePageViewController: BaseViewController {
         
         setupViews()
         loadCommunities()
-        // Do any additional setup after loading the view.
-        //||||||||ActivityHelper.startActivity(view: self.view)
-        //UserSession.user?.communities = []
-//        for communityId in (UserSession.user?.communityIds)! {
-//            //Community.communityInfo(withId: String(communityId), completion: setCommunities)
-//            //ActivityHelper.startActivity(view: self.view)
-//            let getCommunityRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: String(communityId), methodType: "GET", postContent: nil)
-//            if (getCommunityRequest != nil) {
-//                APIDelegate.performTask(withRequest: getCommunityRequest!, completion: {json in
-//                    if (json != nil && json?.count != 0) {
-//                        do {
-//                            UserSession.user?.communities.append(try Community(json: json![0])!)
-//                            self.communitiesTableView.reloadCommunities(communities: UserSession.user?.communities ?? [])
-//                        } catch {
-//                            print(error)
-//                        }
-//                    }
-//                })
-//            } else {
-//                //|||||||||ActivityHelper.stopActivity(view: self.view)
-//            }
-//        }
+        loadMyEventsList()
+        
         closeMenu()
         headerName.text = "| " + (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!
        
@@ -95,8 +76,11 @@ class MyHomePageViewController: BaseViewController {
         createCommunity.addTarget(self, action: #selector(createNewCommunity), for: .touchUpInside)
         
         myEventsTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: findCommunities.frame.maxY, width: 200, height: 40), withLabel: "My Events")
-        myEventsTableList = UITableView(frame: CGRect(x: scrollView.frame.minX, y: myEventsTag.frame.maxY, width: scrollView.frame.width, height: 400))
-        myEventsTableList.register(EventTableCell.self, forCellReuseIdentifier: "eventCell")
+        //myEventsTableList = UITableView(frame: CGRect(x: scrollView.frame.minX, y: myEventsTag.frame.maxY, width: scrollView.frame.width, height: 400))
+        //myEventsTableList.register(EventTableCell.self, forCellReuseIdentifier: "eventCell")
+        myEventsTableView = EventsTableView(frame: CGRect(x: scrollView.frame.minX, y: myEventsTag.frame.maxY, width: scrollView.frame.width, height: 400), eventsList: [], eventSelectedCallback: { (event) in
+            
+            })
         
         self.view.addSubview(background)
         self.view.addSubview(divider)
@@ -110,7 +94,7 @@ class MyHomePageViewController: BaseViewController {
         scrollView.addSubview(findCommunities)
         scrollView.addSubview(createCommunity)
         scrollView.addSubview(myEventsTag)
-        scrollView.addSubview(myEventsTableList)
+        scrollView.addSubview(myEventsTableView)
     }
     
     @objc func toggleMenu(_ sender: Any) {
@@ -161,6 +145,11 @@ class MyHomePageViewController: BaseViewController {
                 //|||||||||ActivityHelper.stopActivity(view: self.view)
             }
         }
+    }
+    
+    func loadMyEventsList() {
+        let devStubs = DevStubs()
+        myEventsTableView.reloadEvents(events: devStubs.getEventList())
     }
     
     @objc func createNewCommunity(_ sender: Any) {

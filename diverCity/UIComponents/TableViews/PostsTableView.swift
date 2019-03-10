@@ -20,7 +20,7 @@ class PostsTableView: UITableView {
         super.init(frame: frame, style: style)
         self.delegate = self
         self.dataSource = self
-        self.register(EventTableCell.self, forCellReuseIdentifier: "postCell")
+        self.register(PostTableCell.self, forCellReuseIdentifier: "postCell")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,13 +39,18 @@ extension PostsTableView: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.dequeueReusableCell(withIdentifier: "postCell")
-        cell?.textLabel?.text = posts[indexPath.row].title
-        cell?.detailTextLabel?.text = posts[indexPath.row].body
-        return cell!
+        let cell = self.dequeueReusableCell(withIdentifier: "postCell") as! PostTableCell
+        cell.postView.loadPost(post: posts[indexPath.row])
+        //cell?.textLabel?.text = posts[indexPath.row].title
+        //cell?.detailTextLabel?.text = posts[indexPath.row].body
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         onPostSelected(posts[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 305
     }
 }

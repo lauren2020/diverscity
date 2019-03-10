@@ -10,8 +10,13 @@ import Foundation
 import UIKit
 
 class EventTableCell: UITableViewCell {
+    var eventItemView: EventItemView!
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        eventItemView = EventItemView(x: self.contentView.frame.minX, y: self.contentView.frame.minY, width: self.contentView.frame.width)
+        
+        self.contentView.addSubview(eventItemView)
     }
     
     required init?(coder aDecoder: NSCoder) {

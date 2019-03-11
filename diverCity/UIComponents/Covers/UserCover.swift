@@ -32,6 +32,8 @@ class UserCover: UIView {
         self.backgroundColor = UIColor.white
         menuIcon!.addTarget(self, action: #selector(toggleMenu), for: .touchUpInside)
         
+        profilePhoto.image = UIImage(named: "michaelProfile")
+        
         self.addSubview(coverPhoto)
         self.addSubview(profilePhoto)
         self.addSubview(communityTitle!)

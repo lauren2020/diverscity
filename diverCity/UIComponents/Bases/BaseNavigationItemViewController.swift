@@ -12,8 +12,9 @@ import UIKit
 class BaseNavigationItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let offset: CGFloat = 60
+        let offset: CGFloat = 87
         self.view.frame = CGRect(x: self.view.frame.minX, y: self.view.frame.minY + offset, width: self.view.frame.width, height: self.view.frame.height)
+//        let offset: CGFloat = 60
+//        self.view.frame = CGRect(x: self.view.frame.minX, y: self.view.frame.minY + offset, width: self.view.frame.width, height: self.view.frame.height - offset)
     }
 }

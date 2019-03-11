@@ -83,6 +83,7 @@
 		80AD91472236FF980080EEF0 /* UserSessionNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD91462236FF980080EEF0 /* UserSessionNavigationController.swift */; };
 		80AD9149223702FD0080EEF0 /* BaseNavigationItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9148223702FD0080EEF0 /* BaseNavigationItemViewController.swift */; };
 		80AD914B223708970080EEF0 /* UserHeaderInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD914A223708970080EEF0 /* UserHeaderInformationView.swift */; };
+		80AD9150223715860080EEF0 /* UserSessionNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD914F223715860080EEF0 /* UserSessionNavigationBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,6 +203,7 @@
 		80AD91462236FF980080EEF0 /* UserSessionNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionNavigationController.swift; sourceTree = "<group>"; };
 		80AD9148223702FD0080EEF0 /* BaseNavigationItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationItemViewController.swift; sourceTree = "<group>"; };
 		80AD914A223708970080EEF0 /* UserHeaderInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderInformationView.swift; sourceTree = "<group>"; };
+		80AD914F223715860080EEF0 /* UserSessionNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionNavigationBar.swift; sourceTree = "<group>"; };
 		A9816917CD50D67D99302640 /* Pods-diverCityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityTests/Pods-diverCityTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC8ED338B8C05F0C3F75259D /* Pods-diverCityUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EEB383ABE8B5AB460B3CEB0F /* Pods-diverCityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 		80AD90D42230D17E0080EEF0 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				80AD914E2237155F0080EEF0 /* Navigation */,
 				80AD9123223393520080EEF0 /* Buttons */,
 				80AD9127223594840080EEF0 /* CellViews */,
 				80AD9124223393770080EEF0 /* Bases */,
@@ -587,6 +590,14 @@
 			children = (
 			);
 			path = ExpandedItemDetailViews;
+			sourceTree = "<group>";
+		};
+		80AD914E2237155F0080EEF0 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				80AD914F223715860080EEF0 /* UserSessionNavigationBar.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -832,6 +843,7 @@
 				80AD9143223619F00080EEF0 /* FeaturesTableSelector.swift in Sources */,
 				80AD90E22230E1820080EEF0 /* SignInViewController.swift in Sources */,
 				80AD914522361BED0080EEF0 /* FeatureTableCell.swift in Sources */,
+				80AD9150223715860080EEF0 /* UserSessionNavigationBar.swift in Sources */,
 				8008EB8B2170FA02004B7799 /* FindCommunitiesViewController.swift in Sources */,
 				8008EB9621711A66004B7799 /* API.swift in Sources */,
 				80AD913C223603380080EEF0 /* ContactUsViewController.swift in Sources */,

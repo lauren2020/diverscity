@@ -47,7 +47,7 @@ class MyHomePageViewController: BaseNavigationItemViewController {
     }
     
     func setupViews() {
-        cover = UserCover(frame: CGRect(x: self.view.bounds.minX, y: self.view.bounds.minY, width: self.view.frame.width, height: 150), withTitle: (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!, withMenuOptions: [])
+        cover = UserCover(frame: CGRect(x: self.view.bounds.minX, y: self.view.bounds.minY + 80, width: self.view.frame.width, height: 150), withTitle: (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!, withMenuOptions: [])
         infoOptions = UserHeaderInformationView(frame: CGRect(x: self.view.frame.minX, y: cover.frame.maxY, width: self.view.frame.width, height: 100), name: "Info")
         
         divider = UIView(frame: CGRect(x: self.view.frame.minX, y: infoOptions.frame.maxY, width: self.view.frame.width, height: 5))
@@ -88,7 +88,7 @@ class MyHomePageViewController: BaseNavigationItemViewController {
         myEventsTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: findCommunities.frame.maxY, width: 200, height: 40), withLabel: "My Events")
         //myEventsTableList = UITableView(frame: CGRect(x: scrollView.frame.minX, y: myEventsTag.frame.maxY, width: scrollView.frame.width, height: 400))
         //myEventsTableList.register(EventTableCell.self, forCellReuseIdentifier: "eventCell")
-        myEventsTableView = EventsTableView(frame: CGRect(x: scrollView.frame.minX, y: myEventsTag.frame.maxY, width: scrollView.frame.width, height: 400), eventsList: [], eventSelectedCallback: { (event) in
+        myEventsTableView = EventsTableView(frame: CGRect(x: scrollView.frame.minX, y: myEventsTag.frame.maxY, width: scrollView.frame.width, height: 550), eventsList: [], eventSelectedCallback: { (event) in
             
             })
         

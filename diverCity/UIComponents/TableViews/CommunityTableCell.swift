@@ -10,8 +10,13 @@ import Foundation
 import UIKit
 
 class CommunityTableCell: UITableViewCell {
+    var communityView: CommunityItemView!
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        communityView = CommunityItemView(x: self.contentView.frame.minX, y: self.contentView.frame.minY, width: self.contentView.frame.width)
+        
+        self.contentView.addSubview(communityView)
     }
     
     required init?(coder aDecoder: NSCoder) {

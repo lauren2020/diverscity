@@ -41,14 +41,19 @@ extension CommunityTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.dequeueReusableCell(withIdentifier: "communityCell")
-        cell?.textLabel?.text = communities[indexPath.row].name
-        cell?.detailTextLabel?.text = communities[indexPath.row].description
-        return cell!
+        let cell = self.dequeueReusableCell(withIdentifier: "communityCell") as! CommunityTableCell
+        cell.communityView.loadCommunity(community: communities[indexPath.row])
+//        cell?.textLabel?.text = communities[indexPath.row].name
+//        cell?.detailTextLabel?.text = communities[indexPath.row].description
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         UserSession.selectedCommunity = communities[indexPath.row]
         onCommunityClicked(communities[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
     }
 }

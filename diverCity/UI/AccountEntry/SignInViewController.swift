@@ -16,7 +16,7 @@ class SignInViewController: UIViewController {
     var signInButton: RectangleButton!
     var forgotYourPasswordButton: TextOnlyButton!
     var signInEntryBackground: UIView!
-    //var privacyPolicyButton: TextOnlyButton!
+    var backToWelcomePageButton: TextOnlyButton!
     var background: Background!
     
     override func viewDidLoad() {
@@ -27,44 +27,59 @@ class SignInViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+//
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        return true
+//    }
     
     func setupViews() {
-        background = Background(frame: self.view.bounds)
-        background.setupBackground(forView: self.view, withImage: UIImage(named: "omaha1") ?? UIImage())
-        titleView = UITextView(frame: CGRect(x: self.view.bounds.midX - 150, y: self.view.bounds.minY + 100, width: 300, height: 100))
+        background = Background(frame: self.view.frame, withImage: UIImage(named: "omaha1") ?? UIImage())
+        
+        titleView = UITextView(frame: CGRect(x: self.view.frame.midX - 150, y: self.view.frame.minY + 100, width: 300, height: 100))
         titleView.text = "Sign In"
         titleView.backgroundColor = UIColor.init(white: 1, alpha: 0)
         titleView.textAlignment = NSTextAlignment.center
         titleView.font = UIFont(name: "HelveticaNeue-Bold", size: 48)
         
-        usernameTextField = FormEntryField(frame: CGRect(x: self.view.bounds.minX + 60, y: self.view.bounds.midY - 100, width: 300, height: 40), withHint: "Username")
+        backToWelcomePageButton = TextOnlyButton(frame: CGRect(x: self.view.frame.maxX - 70, y: self.view.frame.minX + 20, width: 50, height: 100), withText: "Back")
+        backToWelcomePageButton.addTarget(self, action: #selector(goBackToWelcomePage), for: .touchUpInside)
         
-        passwordTextField = FormEntryField(frame: CGRect(x: self.view.bounds.minX + 60, y: self.view.bounds.midY - 60, width: 300, height: 40), withHint: "Password")
+        usernameTextField = FormEntryField(frame: CGRect(x: self.view.frame.midX - 150, y: self.view.frame.midY - 100, width: 300, height: 40), withHint: "Username")
         
-        signInButton = RectangleButton(frame: CGRect(x: self.view.frame.midX - 75, y: passwordTextField.bounds.maxY + 20 + (self.view.bounds.height / 2), width: 150, height: 40), withText: "Sign In")
+        passwordTextField = FormEntryField(frame: CGRect(x: self.view.frame.midX - 150, y: usernameTextField.frame.maxY, width: 300, height: 40), withHint: "Password")
+        
+        signInButton = RectangleButton(frame: CGRect(x: self.view.frame.midX - 75, y: passwordTextField.frame.maxY + 20, width: 150, height: 40), withText: "Sign In")
         signInButton.addTarget(self, action: #selector(signInToUserAccount), for: .touchUpInside)
         
-        forgotYourPasswordButton = TextOnlyButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        forgotYourPasswordButton.setupButton(withText: "Forgot your password?", atX: signInButton.bounds.minX, atY: signInButton.bounds.maxY + 20)
+        forgotYourPasswordButton = TextOnlyButton(frame: CGRect(x: self.view.frame.midX - 100, y: signInButton.frame.maxY + 30, width: 200, height: 40), withText: "Forgot your password?")
+        forgotYourPasswordButton.addTarget(self, action: #selector(showForgotYourPasswordPage), for: .touchUpInside)
         
+//        forgotYourPasswordButton = TextOnlyButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+//        forgotYourPasswordButton.setupButton(withText: "Forgot your password?", atX: signInButton.bounds.minX, atY: signInButton.bounds.maxY + 20)
+//        usernameTextField.textField.isEnabled = true
+//        usernameTextField.textField.isUserInteractionEnabled = true
+        
+        self.view.addSubview(background)
+        self.view.addSubview(backToWelcomePageButton)
         self.view.addSubview(titleView)
         self.view.addSubview(usernameTextField)
-        self.view.bringSubview(toFront: usernameTextField)
+        //self.view.bringSubview(toFront: usernameTextField)
         self.view.addSubview(passwordTextField)
-        self.view.bringSubview(toFront: passwordTextField)
+        //self.view.bringSubview(toFront: passwordTextField)
         self.view.addSubview(signInButton)
+        //
         self.view.bringSubview(toFront: signInButton)
         self.view.addSubview(forgotYourPasswordButton)
     }
     
     @objc func goBackToWelcomePage(_ sender: Any) {
-        let welcomeViewController = WelcomeViewController()
-        self.present(welcomeViewController, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func showForgotYourPasswordPage(_ sender: Any) {
+        let forgotYourPasswordViewController = ForgotYourPasswordViewController()
+        present(forgotYourPasswordViewController, animated: true, completion: nil)
     }
     
     @objc func signInToUserAccount(_ sender: Any) {
@@ -76,8 +91,9 @@ class SignInViewController: UIViewController {
                 if (json != nil && json?.count != 0) {
                     do {
                         UserSession.user = try User(json: json![0])
-                        let homePageViewController = MyHomePageViewController()
-                        self.present(homePageViewController, animated: true, completion: nil)
+                        //let homePageViewController = MyHomePageViewController()
+                        let userSessionNavigationController = UserSessionNavigationController()
+                        self.present(userSessionNavigationController, animated: true, completion: nil)
                     } catch {
                         print(error)
                     }
@@ -92,12 +108,6 @@ class SignInViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //        if segue.identifier == "signInToWelcome"
-        //        {
-        //            if let vc = segue.destination as? WelcomeViewController
-        //            {
-        //            }
-        //        }
     }
     
 }

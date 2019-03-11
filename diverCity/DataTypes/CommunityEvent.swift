@@ -83,27 +83,4 @@ extension CommunityEvent {
             print(error)
         }
     }
-    
-//    static func eventInfo (withId id:String, completion: @escaping ([CommunityEvent]) -> ()) {
-//        let request = APIDelegate.requestBuilder(withPath: APIDelegate.eventsPath, withId: id, methodType: "GET", postContent: nil)
-//        let task = URLSession.shared.dataTask(with: request!, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
-//            var targetEvent:[CommunityEvent] = []
-//            if let data = data {
-//                do {
-//                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
-//                        if let eventObject = try? CommunityEvent(json: json) {
-//                            targetEvent.append(eventObject!)
-//                        }
-//                    }
-//                } catch {
-//                    print("error")
-//                    print(error)
-//                }
-//
-//                completion(targetEvent)
-//            }
-//        })
-//
-//        task.resume()
-//    }
 }

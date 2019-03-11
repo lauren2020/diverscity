@@ -11,7 +11,6 @@ import UIKit
 
 class DiscoverCommunitiesViewController: UIViewController {
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

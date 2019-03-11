@@ -39,7 +39,7 @@ class CommunityHomeViewController: BaseTabViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Home"
+        self.title = "Community Home"
         setPermissions()
         setupViews()
         loadTrendingEvents()
@@ -86,8 +86,7 @@ class CommunityHomeViewController: BaseTabViewController {
     func setupBaseViewForVisitor() {
         addUserToCommunityButton = RectangleButton(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: 50), withText: "+ Add To My Communities")
         addUserToCommunityButton.addTarget(self, action: #selector(addUserToCommunity), for: .touchUpInside)
-        background = Background(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: self.view.frame.height))
-        background.setupBackground(forView: self.view, withImage: UIImage(named: "omaha1") ?? UIImage())
+        background = Background(frame: self.view.frame, withImage: UIImage(named: "omaha1") ?? UIImage())
         
         backToHomeButton = MenuItemButton(frame: CGRect(x: self.view.frame.maxX - 150, y: self.view.frame.minY, width: 150, height: 30), withTaskName: "Back")
         backToHomeButton.addTarget(self, action: #selector(backToHomePage), for: .touchUpInside)
@@ -113,8 +112,7 @@ class CommunityHomeViewController: BaseTabViewController {
         addUserToCommunityButton.addTarget(self, action: #selector(addUserToCommunity), for: .touchUpInside)
         addUserToCommunityButton.isHidden = true
         //////////////
-        background = Background(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: self.view.frame.height))
-        background.setupBackground(forView: self.view, withImage: UIImage(named: "omaha1") ?? UIImage())
+        background = Background(frame: self.view.frame, withImage: UIImage(named: "omaha1") ?? UIImage())
 
         backToHomeButton = MenuItemButton(frame: CGRect(x: self.view.frame.maxX - 40, y: self.view.frame.minY, width: 400, height: 20), withTaskName: "Back To Home")
         backToHomeButton.addTarget(self, action: #selector(backToHomePage), for: .touchUpInside)

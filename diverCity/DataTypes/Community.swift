@@ -8,9 +8,11 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 struct Community {
     var id: String
+    var profileImage: UIImage?
     var name: String
     var description: String
     var privacyType: PrivacyType!
@@ -19,8 +21,8 @@ struct Community {
     var location: CLLocation?
     var beacon: CLBeacon?
     var creator: String!
-    var events: [CommunityEvent]
-    var feed: [Post]
+    var events: [String]
+    var feed: [String]
 }
 
 extension Community {
@@ -37,6 +39,8 @@ extension Community {
             let features = json["features"] as? String,
             let members = json["members"] as? String
             //let creator = json["creator"] as? String
+            //let events = json["events"] as? String
+            //let posts = json["posts"] as? String
         else {
                 print("error")
                 throw SerializationError.missing("Value id missing for x")
@@ -50,6 +54,7 @@ extension Community {
         for member in members.split(separator: ",") {
             self.members.append(String(member))
         }
+        let devStubs = DevStubs()
         self.events = []
         self.feed = []
         //self.location = CLLocation.init(latitude: 0, longitude: 0)

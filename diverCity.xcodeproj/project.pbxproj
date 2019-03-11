@@ -29,7 +29,6 @@
 		80278EB5218A143B0023D8D7 /* APIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278EB4218A143B0023D8D7 /* APIDelegate.swift */; };
 		80278EB7218D5C910023D8D7 /* EventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278EB6218D5C910023D8D7 /* EventDispatcher.swift */; };
 		80278EB9218D5D8F0023D8D7 /* EventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278EB8218D5D8F0023D8D7 /* EventHandler.swift */; };
-		80278ECA218D61F30023D8D7 /* AccountAccess in Resources */ = {isa = PBXBuildFile; fileRef = 80278EC9218D61F30023D8D7 /* AccountAccess */; };
 		80278ECC218D66BF0023D8D7 /* CommunityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278ECB218D66BF0023D8D7 /* CommunityEvent.swift */; };
 		80278F202193E7680023D8D7 /* CreateNewCommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F1F2193E7680023D8D7 /* CreateNewCommunityViewController.swift */; };
 		80278F222193EAFD0023D8D7 /* CommunityFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80278F212193EAFD0023D8D7 /* CommunityFeature.swift */; };
@@ -72,6 +71,18 @@
 		80AD912B22359FC00080EEF0 /* MediaCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD912A22359FC00080EEF0 /* MediaCollectionView.swift */; };
 		80AD912D2235A08C0080EEF0 /* MediaCollectionTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD912C2235A08C0080EEF0 /* MediaCollectionTile.swift */; };
 		80AD91312235BFFC0080EEF0 /* EventItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD91302235BFFC0080EEF0 /* EventItemView.swift */; };
+		80AD91332235D5140080EEF0 /* CommunityItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD91322235D5140080EEF0 /* CommunityItemView.swift */; };
+		80AD91352235FC990080EEF0 /* CreateNewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD91342235FC990080EEF0 /* CreateNewAccountViewController.swift */; };
+		80AD9138223602E30080EEF0 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9137223602E30080EEF0 /* PrivacyPolicyViewController.swift */; };
+		80AD913A2236030D0080EEF0 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD91392236030D0080EEF0 /* FAQViewController.swift */; };
+		80AD913C223603380080EEF0 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD913B223603380080EEF0 /* ContactUsViewController.swift */; };
+		80AD913E2236035C0080EEF0 /* AboutDivircityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD913D2236035C0080EEF0 /* AboutDivircityViewController.swift */; };
+		80AD9140223603950080EEF0 /* ForgotYourPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD913F223603950080EEF0 /* ForgotYourPasswordViewController.swift */; };
+		80AD9143223619F00080EEF0 /* FeaturesTableSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9142223619F00080EEF0 /* FeaturesTableSelector.swift */; };
+		80AD914522361BED0080EEF0 /* FeatureTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD914422361BED0080EEF0 /* FeatureTableCell.swift */; };
+		80AD91472236FF980080EEF0 /* UserSessionNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD91462236FF980080EEF0 /* UserSessionNavigationController.swift */; };
+		80AD9149223702FD0080EEF0 /* BaseNavigationItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9148223702FD0080EEF0 /* BaseNavigationItemViewController.swift */; };
+		80AD914B223708970080EEF0 /* UserHeaderInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD914A223708970080EEF0 /* UserHeaderInformationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,7 +146,6 @@
 		80278EB4218A143B0023D8D7 /* APIDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDelegate.swift; sourceTree = "<group>"; };
 		80278EB6218D5C910023D8D7 /* EventDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDispatcher.swift; sourceTree = "<group>"; };
 		80278EB8218D5D8F0023D8D7 /* EventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHandler.swift; sourceTree = "<group>"; };
-		80278EC9218D61F30023D8D7 /* AccountAccess */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AccountAccess; sourceTree = "<group>"; };
 		80278ECB218D66BF0023D8D7 /* CommunityEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityEvent.swift; sourceTree = "<group>"; };
 		80278ECF218E8ED30023D8D7 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80278EDC218E90D20023D8D7 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,6 +190,18 @@
 		80AD912A22359FC00080EEF0 /* MediaCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCollectionView.swift; sourceTree = "<group>"; };
 		80AD912C2235A08C0080EEF0 /* MediaCollectionTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCollectionTile.swift; sourceTree = "<group>"; };
 		80AD91302235BFFC0080EEF0 /* EventItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItemView.swift; sourceTree = "<group>"; };
+		80AD91322235D5140080EEF0 /* CommunityItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityItemView.swift; sourceTree = "<group>"; };
+		80AD91342235FC990080EEF0 /* CreateNewAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewAccountViewController.swift; sourceTree = "<group>"; };
+		80AD9137223602E30080EEF0 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		80AD91392236030D0080EEF0 /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
+		80AD913B223603380080EEF0 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
+		80AD913D2236035C0080EEF0 /* AboutDivircityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDivircityViewController.swift; sourceTree = "<group>"; };
+		80AD913F223603950080EEF0 /* ForgotYourPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotYourPasswordViewController.swift; sourceTree = "<group>"; };
+		80AD9142223619F00080EEF0 /* FeaturesTableSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesTableSelector.swift; sourceTree = "<group>"; };
+		80AD914422361BED0080EEF0 /* FeatureTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureTableCell.swift; sourceTree = "<group>"; };
+		80AD91462236FF980080EEF0 /* UserSessionNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionNavigationController.swift; sourceTree = "<group>"; };
+		80AD9148223702FD0080EEF0 /* BaseNavigationItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationItemViewController.swift; sourceTree = "<group>"; };
+		80AD914A223708970080EEF0 /* UserHeaderInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderInformationView.swift; sourceTree = "<group>"; };
 		A9816917CD50D67D99302640 /* Pods-diverCityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityTests/Pods-diverCityTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC8ED338B8C05F0C3F75259D /* Pods-diverCityUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EEB383ABE8B5AB460B3CEB0F /* Pods-diverCityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -301,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				8008EB882170F5EF004B7799 /* MyHomePageViewController.swift */,
+				80AD91462236FF980080EEF0 /* UserSessionNavigationController.swift */,
 			);
 			path = UserHomePage;
 			sourceTree = "<group>";
@@ -388,9 +411,9 @@
 		80AD90D42230D17E0080EEF0 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				80AD9123223393520080EEF0 /* Buttons */,
 				80AD9127223594840080EEF0 /* CellViews */,
 				80AD9124223393770080EEF0 /* Bases */,
-				80AD9123223393520080EEF0 /* Buttons */,
 				80AD91222233932B0080EEF0 /* Covers */,
 				80AD9121223392B90080EEF0 /* CollectionViews */,
 				80AD9120223392B10080EEF0 /* TableViews */,
@@ -405,9 +428,10 @@
 		80AD90DD2230E0480080EEF0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				80AD91412236066E0080EEF0 /* ExpandedItemDetailViews */,
+				80AD9136223602B30080EEF0 /* InformationalPages */,
 				80AD90E02230E16A0080EEF0 /* AccountEntry */,
 				80278F232194BD830023D8D7 /* PopUps */,
-				80278EC9218D61F30023D8D7 /* AccountAccess */,
 				80278EBA218D5DD80023D8D7 /* UserHomePage */,
 				80278EBB218D5DF00023D8D7 /* CommunityFeatures */,
 				80278EC4218D61140023D8D7 /* DiscoverCommunities */,
@@ -441,6 +465,7 @@
 			isa = PBXGroup;
 			children = (
 				80AD90E12230E1820080EEF0 /* SignInViewController.swift */,
+				80AD91342235FC990080EEF0 /* CreateNewAccountViewController.swift */,
 			);
 			path = AccountEntry;
 			sourceTree = "<group>";
@@ -484,6 +509,8 @@
 				80AD90F52232D5D90080EEF0 /* PostTableCell.swift */,
 				80AD9100223318990080EEF0 /* EventsTableView.swift */,
 				80AD90F32232D5B00080EEF0 /* EventTableCell.swift */,
+				80AD9142223619F00080EEF0 /* FeaturesTableSelector.swift */,
+				80AD914422361BED0080EEF0 /* FeatureTableCell.swift */,
 			);
 			path = TableViews;
 			sourceTree = "<group>";
@@ -507,6 +534,7 @@
 				80AD911D223391AC0080EEF0 /* UserCover.swift */,
 				80AD9112223364E30080EEF0 /* GenericCover.swift */,
 				80AD91022233233B0080EEF0 /* CommunityHeader.swift */,
+				80AD914A223708970080EEF0 /* UserHeaderInformationView.swift */,
 			);
 			path = Covers;
 			sourceTree = "<group>";
@@ -527,6 +555,7 @@
 			children = (
 				80AD91142233652C0080EEF0 /* BaseViewController.swift */,
 				80AD9116223365570080EEF0 /* BaseTabViewController.swift */,
+				80AD9148223702FD0080EEF0 /* BaseNavigationItemViewController.swift */,
 			);
 			path = Bases;
 			sourceTree = "<group>";
@@ -536,8 +565,28 @@
 			children = (
 				80AD9128223594C70080EEF0 /* PostView.swift */,
 				80AD91302235BFFC0080EEF0 /* EventItemView.swift */,
+				80AD91322235D5140080EEF0 /* CommunityItemView.swift */,
 			);
 			path = CellViews;
+			sourceTree = "<group>";
+		};
+		80AD9136223602B30080EEF0 /* InformationalPages */ = {
+			isa = PBXGroup;
+			children = (
+				80AD9137223602E30080EEF0 /* PrivacyPolicyViewController.swift */,
+				80AD91392236030D0080EEF0 /* FAQViewController.swift */,
+				80AD913B223603380080EEF0 /* ContactUsViewController.swift */,
+				80AD913D2236035C0080EEF0 /* AboutDivircityViewController.swift */,
+				80AD913F223603950080EEF0 /* ForgotYourPasswordViewController.swift */,
+			);
+			path = InformationalPages;
+			sourceTree = "<group>";
+		};
+		80AD91412236066E0080EEF0 /* ExpandedItemDetailViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ExpandedItemDetailViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -648,7 +697,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80278ECA218D61F30023D8D7 /* AccountAccess in Resources */,
 				8008EB61216EE7A3004B7799 /* LaunchScreen.storyboard in Resources */,
 				8008EB5E216EE7A3004B7799 /* Assets.xcassets in Resources */,
 				8008EB5C216EE79F004B7799 /* Main.storyboard in Resources */,
@@ -734,6 +782,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80AD90F62232D5D90080EEF0 /* PostTableCell.swift in Sources */,
+				80AD91472236FF980080EEF0 /* UserSessionNavigationController.swift in Sources */,
 				80278EB7218D5C910023D8D7 /* EventDispatcher.swift in Sources */,
 				80278EB9218D5D8F0023D8D7 /* EventHandler.swift in Sources */,
 				80AD91312235BFFC0080EEF0 /* EventItemView.swift in Sources */,
@@ -744,7 +793,9 @@
 				80AD910F223362D50080EEF0 /* CommunitiesCollectionView.swift in Sources */,
 				80AD912B22359FC00080EEF0 /* MediaCollectionView.swift in Sources */,
 				80AD910B223356800080EEF0 /* Media.swift in Sources */,
+				80AD913E2236035C0080EEF0 /* AboutDivircityViewController.swift in Sources */,
 				80AD90DA2230D6030080EEF0 /* RectangleButton.swift in Sources */,
+				80AD9149223702FD0080EEF0 /* BaseNavigationItemViewController.swift in Sources */,
 				80AD91032233233B0080EEF0 /* CommunityHeader.swift in Sources */,
 				80AD90F82232F1EC0080EEF0 /* NewCommunitiesTabsViewController.swift in Sources */,
 				8008EB8721704F84004B7799 /* WelcomeViewController.swift in Sources */,
@@ -754,15 +805,19 @@
 				80AD911C2233681C0080EEF0 /* PostsTableView.swift in Sources */,
 				8008EB892170F5EF004B7799 /* MyHomePageViewController.swift in Sources */,
 				80AD91112233638C0080EEF0 /* CommunityCollectionTile.swift in Sources */,
+				80AD91352235FC990080EEF0 /* CreateNewAccountViewController.swift in Sources */,
 				80AD90EF223228DB0080EEF0 /* CommunityTabsViewController.swift in Sources */,
 				80278F252194BDB20023D8D7 /* AlertMessageViewController.swift in Sources */,
+				80AD914B223708970080EEF0 /* UserHeaderInformationView.swift in Sources */,
 				8008EBA12174E8E5004B7799 /* UserSession.swift in Sources */,
 				8008EB912170FFA6004B7799 /* Event.swift in Sources */,
 				80AD90F12232C64C0080EEF0 /* GetToKnowYouNetworkingViewController.swift in Sources */,
+				80AD9138223602E30080EEF0 /* PrivacyPolicyViewController.swift in Sources */,
 				80AD90D82230D3BC0080EEF0 /* FormEntryField.swift in Sources */,
 				8008EB94217107AD004B7799 /* PrivacyType.swift in Sources */,
 				80AD910D223362230080EEF0 /* DiscoverCommunitiesViewController.swift in Sources */,
 				80AD912622357C9D0080EEF0 /* DevStubs.swift in Sources */,
+				80AD913A2236030D0080EEF0 /* FAQViewController.swift in Sources */,
 				80AD90E82231F0DD0080EEF0 /* ObjectLabelTag.swift in Sources */,
 				80278ECC218D66BF0023D8D7 /* CommunityEvent.swift in Sources */,
 				80AD90F42232D5B00080EEF0 /* EventTableCell.swift in Sources */,
@@ -774,10 +829,15 @@
 				80278EB5218A143B0023D8D7 /* APIDelegate.swift in Sources */,
 				80AD90D62230D19A0080EEF0 /* Background.swift in Sources */,
 				80278F202193E7680023D8D7 /* CreateNewCommunityViewController.swift in Sources */,
+				80AD9143223619F00080EEF0 /* FeaturesTableSelector.swift in Sources */,
 				80AD90E22230E1820080EEF0 /* SignInViewController.swift in Sources */,
+				80AD914522361BED0080EEF0 /* FeatureTableCell.swift in Sources */,
 				8008EB8B2170FA02004B7799 /* FindCommunitiesViewController.swift in Sources */,
 				8008EB9621711A66004B7799 /* API.swift in Sources */,
+				80AD913C223603380080EEF0 /* ContactUsViewController.swift in Sources */,
 				80AD9109223355E80080EEF0 /* Comment.swift in Sources */,
+				80AD91332235D5140080EEF0 /* CommunityItemView.swift in Sources */,
+				80AD9140223603950080EEF0 /* ForgotYourPasswordViewController.swift in Sources */,
 				8008EB8D2170FF1B004B7799 /* Community.swift in Sources */,
 				80AD90FF223316940080EEF0 /* EventsCollectionView.swift in Sources */,
 				80AD90E42231EE610080EEF0 /* MenuIconButton.swift in Sources */,

@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class UserCover: UIView {
+    var coverPhoto: UIImageView!
+    var profilePhoto: UIImageView!
     var communityTitle: TitleTextView!
     var menuIcon: MenuIconButton!
     var menuOptions: [MenuItemButton]
@@ -18,15 +20,20 @@ class UserCover: UIView {
     
     init(frame: CGRect, withTitle title: String, withMenuOptions options: [MenuItemButton]) {
         //136
-        let offset: CGFloat = 85
-        communityTitle = TitleTextView(frame: CGRect(x: frame.minX + 5, y: frame.minY + 5 - offset, width: frame.width - 45, height: frame.height - 10), withTitle: title)
-        menuIcon = MenuIconButton(frame: CGRect(x: frame.maxX - 45, y: frame.minY + 5 - offset, width: 40, height: 40))
+        coverPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
+        profilePhoto = UIImageView(frame: CGRect(x: 10, y: 10, width: 75, height: 75))
+        
+        //let offset: CGFloat = 85
+        communityTitle = TitleTextView(frame: CGRect(x: 5, y: 5, width: frame.width - 45, height: frame.height - 10), withTitle: title)
+        menuIcon = MenuIconButton(frame: CGRect(x: -45, y: 5, width: 40, height: 40))
         menuOptions = options
         super.init(frame: frame)
         
         self.backgroundColor = UIColor.white
         menuIcon!.addTarget(self, action: #selector(toggleMenu), for: .touchUpInside)
         
+        self.addSubview(coverPhoto)
+        self.addSubview(profilePhoto)
         self.addSubview(communityTitle!)
         self.addSubview(menuIcon!)
         let menuStartPosition: CGFloat = menuIcon!.frame.maxY
@@ -61,6 +68,14 @@ class UserCover: UIView {
         for option in menuOptions {
             option.isHidden = true
         }
+    }
+    
+    func updateCoverPhoto(image: UIImage) {
+        coverPhoto.image = image
+    }
+    
+    func updateProfilePhoto(image: UIImage) {
+        profilePhoto.image = image
     }
     
     required init?(coder aDecoder: NSCoder) {

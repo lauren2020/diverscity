@@ -14,24 +14,32 @@ class CommunityTabsViewController: UITabBarController {
     var communityEventsViewController = CommunityEventsViewController()
     var getToKnowYouNetworkingViewController = GetToKNowYouNetworkingViewController()
     
+    var rootNavigationController: UINavigationController?
+    
+//    init(rootNavigationController: UINavigationController) {
+//        self.rootNavigationController = rootNavigationController
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabs()
     }
     
     func setupTabs() {
-        communityHomeViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
-        communityEventsViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 1)
-        getToKnowYouNetworkingViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
-        
-//        groupListViewController.tabBarItem = UITabBarItem(title: "Groups", image: UIImage(named: "groups-icon"), tag: 0)
-//        receiptScannerViewController.tabBarItem = UITabBarItem(title: "+ Add", image: UIImage(named: "scanner-icon1"), tag: 2)
-//        addNewReceiptFormViewController.tabBarItem = UITabBarItem(title: "Receipts", image: UIImage(named: "receipt-icon1"), tag: 1)
-//
-//        spendingReportViewController.tabBarItem = UITabBarItem(title: "Report", image: UIImage(named: "report-icon"), tag: 3)
+        communityHomeViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "HomeTabIcon"), tag: 0)
+        communityEventsViewController.tabBarItem = UITabBarItem(title: "Events", image: UIImage(named: "StarTabIcon"), tag: 1)
+        getToKnowYouNetworkingViewController.tabBarItem = UITabBarItem(title: "GTYK", image: UIImage(named: "ChainLinkTabIcon"), tag: 2)
         
         let tabBarList = [communityHomeViewController, communityEventsViewController, getToKnowYouNetworkingViewController]
-        viewControllers = tabBarList.map { UINavigationController(rootViewController: $0) }
+        //if (rootNavigationController != nil) {
+            //viewControllers = tabBarList.map { _ in rootNavigationController! }
+        //} else {
+            viewControllers = tabBarList.map { UINavigationController(rootViewController: $0) }
+        //}
     }
     
 }

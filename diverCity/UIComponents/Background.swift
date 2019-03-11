@@ -10,21 +10,16 @@ import Foundation
 import UIKit
 
 public class Background: UIView {
+    var imageView: UIImageView!
     
-    public override init(frame: CGRect) {
+    init(frame: CGRect, withImage image: UIImage) {
         super.init(frame: frame)
+        imageView = UIImageView(frame: frame)
+        imageView.image = image
+        self.addSubview(imageView)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setupBackground(forView view: UIView, withImage image: UIImage) {
-        self.bounds = CGRect(x: view.bounds.minX - (view.bounds.width / 2), y: view.bounds.minY - (view.bounds.height / 2), width: view.bounds.width, height: view.bounds.height)
-        let imageView = UIImageView()
-        imageView.image = image
-        imageView.bounds = self.bounds
-        self.addSubview(imageView)
-        view.addSubview(self)
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 
 class NewCommunitiesTabsViewController: UITabBarController {
     var findCommunitiesViewController = FindCommunitiesViewController()
-    //var discoverCommunitiesViewController =
+    var discoverCommunitiesViewController = DiscoverCommunitiesViewController()
     var createNewCommunityViewController = CreateNewCommunityViewController()
     
     override func viewDidLoad() {
@@ -20,16 +20,11 @@ class NewCommunitiesTabsViewController: UITabBarController {
     }
     
     func setupTabs() {
-        findCommunitiesViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
-        createNewCommunityViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 1)
+        findCommunitiesViewController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(named: "SearchTabIcon"), tag: 0)
+        createNewCommunityViewController.tabBarItem = UITabBarItem(title: "Create", image: UIImage(named: "PlusTabIcon"), tag: 1)
+        discoverCommunitiesViewController.tabBarItem = UITabBarItem(title: "Discover", image: UIImage(named: "DiscoverTabIcon"), tag: 2)
         
-        //        groupListViewController.tabBarItem = UITabBarItem(title: "Groups", image: UIImage(named: "groups-icon"), tag: 0)
-        //        receiptScannerViewController.tabBarItem = UITabBarItem(title: "+ Add", image: UIImage(named: "scanner-icon1"), tag: 2)
-        //        addNewReceiptFormViewController.tabBarItem = UITabBarItem(title: "Receipts", image: UIImage(named: "receipt-icon1"), tag: 1)
-        //
-        //        spendingReportViewController.tabBarItem = UITabBarItem(title: "Report", image: UIImage(named: "report-icon"), tag: 3)
-        
-        let tabBarList = [findCommunitiesViewController, createNewCommunityViewController]
+        let tabBarList = [findCommunitiesViewController, discoverCommunitiesViewController,createNewCommunityViewController]
         viewControllers = tabBarList.map { UINavigationController(rootViewController: $0) }
     }
 }

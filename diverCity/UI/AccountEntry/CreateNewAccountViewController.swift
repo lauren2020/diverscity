@@ -1,21 +1,24 @@
 //
 //  CreateNewAccountViewController.swift
+//  diverCity
 //
-//
-//  Created by Lauren Shultz on 11/4/18.
+//  Created by Lauren Shultz on 3/10/19.
+//  Copyright © 2019 Lauren Shultz. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class CreateNewAccountViewController: UIViewController {
+class CreateNewAccountViewController: BaseViewController {
     
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var confirmPasswordTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var confirmEmailTextField: UITextField!
+    var firstNameTextField: UITextField!
+    var lastNameTextField: UITextField!
+    var usernameTextField: UITextField!
+    var passwordTextField: UITextField!
+    var confirmPasswordTextField: UITextField!
+    var emailTextField: UITextField!
+    var confirmEmailTextField: UITextField!
+    
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
@@ -89,32 +92,32 @@ class CreateNewAccountViewController: UIViewController {
         }
     }
     
-//    /*
-//     * FUNCTION: startActivity
-//     * PURPOSE: Shows the activity indicator and stops recording user touches.
-//     */
-//    func startActivity()
-//    {
-//        print("Activity Started")
-//        self.view.alpha = 0.5
-//        activityIndicator.center = self.view.center
-//        activityIndicator.hidesWhenStopped = true
-//        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-//        self.view.addSubview(activityIndicator)
-//        activityIndicator.startAnimating()
-//        UIApplication.shared.beginIgnoringInteractionEvents()
-//    }
-//    /*
-//     * FUNCTION: stopActivity
-//     * PURPOSE: Hides the activity indicator and resumes responding to user touches
-//     */
-//    func stopActivity()
-//    {
-//        print("Activity Stopped")
-//        self.view.alpha = 1
-//        activityIndicator.stopAnimating()
-//        UIApplication.shared.endIgnoringInteractionEvents()
-//    }
+    //    /*
+    //     * FUNCTION: startActivity
+    //     * PURPOSE: Shows the activity indicator and stops recording user touches.
+    //     */
+    //    func startActivity()
+    //    {
+    //        print("Activity Started")
+    //        self.view.alpha = 0.5
+    //        activityIndicator.center = self.view.center
+    //        activityIndicator.hidesWhenStopped = true
+    //        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+    //        self.view.addSubview(activityIndicator)
+    //        activityIndicator.startAnimating()
+    //        UIApplication.shared.beginIgnoringInteractionEvents()
+    //    }
+    //    /*
+    //     * FUNCTION: stopActivity
+    //     * PURPOSE: Hides the activity indicator and resumes responding to user touches
+    //     */
+    //    func stopActivity()
+    //    {
+    //        print("Activity Stopped")
+    //        self.view.alpha = 1
+    //        activityIndicator.stopAnimating()
+    //        UIApplication.shared.endIgnoringInteractionEvents()
+    //    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

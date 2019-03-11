@@ -8,61 +8,92 @@
 
 import UIKit
 
-class CreateNewCommunityViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CreateNewCommunityViewController: BaseTabViewController {
+    
+    var titleHeader: GenericCover!
+    var backButton: TextOnlyButton!
+    var scrollView: UIScrollView!
 
-    @IBOutlet weak var privacyTypeSelector: UISegmentedControl!
-    @IBOutlet weak var featuresTable: UITableView!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var descriptionTextField: UITextField!
+    var privacyTypeSelector: UISegmentedControl!
+    var featuresTable: FeaturesTableSelector!
+    var nameTextField: FormEntryField!
+    var descriptionTextField: FormEntryField!
+    var createButton: RectangleButton!
     
-    var features:[CommunityFeature] = [CommunityFeature(name: "Ambassador Program", description: "", id: "0"), CommunityFeature(name: "Events Board", description: "", id: "1"), CommunityFeature(name: "Events Map", description: "", id: "2"), CommunityFeature(name: "Carpool Coordination", description: "", id: "3"), CommunityFeature(name: "Get To Know You", description: "", id: "4")]
+    //var features:[CommunityFeature] = [CommunityFeature(name: "Ambassador Program", description: "", id: "0"), CommunityFeature(name: "Events Board", description: "", id: "1"), CommunityFeature(name: "Events Map", description: "", id: "2"), CommunityFeature(name: "Carpool Coordination", description: "", id: "3"), CommunityFeature(name: "Get To Know You", description: "", id: "4")]
     
-    var selectedFeatures: [String] = []
+    //var selectedFeatures: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        featuresTable.delegate = self
-        featuresTable.dataSource = self
+        self.title = "Create Community"
+        self.view.backgroundColor = UIColor.white
+        setupViews()
         
+        //featuresTable.delegate = self
+        //featuresTable.dataSource = self
+    }
+    
+    func setupViews() {
+        titleHeader = GenericCover(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: 100), withTitle: "Create Community", withMenuOptions: [])
+        backButton = TextOnlyButton(frame: CGRect(x: self.view.frame.maxX - 60, y: self.view.frame.minX + 60, width: 40, height: 40), withText: "X")
+        backButton.addTarget(self, action: #selector(backToMyHomePage), for: .touchUpInside)
+        
+        nameTextField = FormEntryField(frame: CGRect(x: self.view.frame.minX + 20, y: titleHeader.frame.maxY + 20, width: self.view.frame.width - 40, height: 40), withHint: "Name")
+        descriptionTextField = FormEntryField(frame: CGRect(x: self.view.frame.minX + 20, y: nameTextField.frame.maxY + 20, width: self.view.frame.width - 40, height: 40), withHint: "Description")
+        
+        privacyTypeSelector = UISegmentedControl(frame: CGRect(x: self.view.frame.minX + 20, y: descriptionTextField.frame.maxY + 20, width: self.view.frame.width - 40, height: 40))
         privacyTypeSelector.removeAllSegments()
         privacyTypeSelector.insertSegment(withTitle: "Public", at: 0, animated: true)
         privacyTypeSelector.insertSegment(withTitle: "Private", at: 1, animated: true)
         privacyTypeSelector.insertSegment(withTitle: "Secret", at: 2, animated: true)
         privacyTypeSelector.apportionsSegmentWidthsByContent = true
+        
+        featuresTable = FeaturesTableSelector(frame: CGRect(x: self.view.frame.minX, y: privacyTypeSelector.frame.maxY + 10, width: self.view.frame.width, height: 200))
+        //featuresTable = UITableView(frame: CGRect(x: self.view.frame.minX, y: privacyTypeSelector.frame.maxY + 10, width: self.view.frame.width, height: 200), style: UITableViewStyle.plain)
+        //featuresTable.register(UITableViewCell.self, forCellReuseIdentifier: "featureCell")
+        
+        createButton = RectangleButton(frame: CGRect(x: self.view.frame.midX - 50, y: featuresTable.frame.maxY + 10, width: 100, height: 40), withText: "Create")
+        createButton.addTarget(self, action: #selector(createCommunity), for: .touchUpInside)
+        
+        
+        self.view.addSubview(titleHeader)
+        self.view.addSubview(backButton)
+        self.view.addSubview(nameTextField)
+        self.view.addSubview(descriptionTextField)
+        self.view.addSubview(privacyTypeSelector)
+        self.view.addSubview(featuresTable)
+        self.view.addSubview(createButton)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return features.count
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return features.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = featuresTable.dequeueReusableCell(withIdentifier: "featureCell")
+//        cell?.textLabel?.text = features[indexPath.row].name
+//        cell?.detailTextLabel?.text = features[indexPath.row].description
+//        return cell!
+//    }
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        featuresTable.deselectRow(at: indexPath, animated: true)
+//        let cell = featuresTable.cellForRow(at: indexPath)
+//        if(cell?.backgroundColor == UIColor.blue) {
+//            features[indexPath.row].selected = false
+//            cell?.backgroundColor = UIColor.white
+//        } else {
+//            features[indexPath.row].selected = true
+//            cell?.backgroundColor = UIColor.blue
+//        }
+//    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = featuresTable.dequeueReusableCell(withIdentifier: "featureCell")
-        cell?.textLabel?.text = features[indexPath.row].name
-        cell?.detailTextLabel?.text = features[indexPath.row].description
-        return cell!
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        UserSession.selectedCommunity = UserSession.user!.communities[indexPath.row]
-//        self.performSegue(withIdentifier: "myHomePageToCommunityHomePage", sender: (Any).self)
-        featuresTable.deselectRow(at: indexPath, animated: true)
-        let cell = featuresTable.cellForRow(at: indexPath)
-        //cell?.backgroundColor = UIColor.blue
-        if(cell?.backgroundColor == UIColor.blue) {
-            features[indexPath.row].selected = false
-            cell?.backgroundColor = UIColor.white
-        } else {
-            //selectedFeatures[indexPath]
-            features[indexPath.row].selected = true
-            cell?.backgroundColor = UIColor.blue
-        }
-    }
-    
-    @IBAction func createCommunity(_ sender: Any) {
-        for feature in features {
+    @objc func createCommunity(_ sender: Any) {
+        for feature in featuresTable.featuresList {
             if (feature.selected) {
-                selectedFeatures.append(String(feature.id))
+                featuresTable.selectedFeatures.append(String(feature.id))
             }
         }
         var body = ["name=" + nameTextField.text!]
@@ -71,7 +102,12 @@ class CreateNewCommunityViewController: UIViewController, UITableViewDataSource,
         body.append("creator=" + (UserSession.user?.id)!)
         body.append("members=" + (UserSession.user?.id)!)
         body.append("events=")
-        body.append("features=" + selectedFeatures.joined(separator: ","))
+        body.append("requests_to_join=")
+        body.append("location_center=")
+        body.append("radius=")
+        body.append("icon=")
+        body.append("images=")
+        body.append("features=" + featuresTable.selectedFeatures.joined(separator: ","))
 
         let postCommunityRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: "", methodType: "POST", postContent: APIDelegate.buildPostString(body: body))
         if (postCommunityRequest != nil) {
@@ -99,7 +135,8 @@ class CreateNewCommunityViewController: UIViewController, UITableViewDataSource,
                 if (json != nil && json?.count != 0) {
                     do {
                         UserSession.user = try User(json: json![0])
-                        self.performSegue(withIdentifier: "createCommunityToMyHomePage", sender: (Any).self)
+                        let homePageViewController = MyHomePageViewController()
+                        self.present(homePageViewController, animated: true, completion: nil)
                     } catch {
                         print(error)
                     }
@@ -108,25 +145,13 @@ class CreateNewCommunityViewController: UIViewController, UITableViewDataSource,
         }
     }
     
-    @IBAction func backToMyHomePage(_ sender: Any) {
-        //createCommunityToMyHomePage
-        performSegue(withIdentifier: "createCommunityToMyHomePage", sender: (Any).self)
+    @objc func backToMyHomePage(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

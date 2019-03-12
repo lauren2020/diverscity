@@ -91,9 +91,9 @@ class SignInViewController: UIViewController {
                 if (json != nil && json?.count != 0) {
                     do {
                         UserSession.user = try User(json: json![0])
-                        //let homePageViewController = MyHomePageViewController()
-                        let userSessionNavigationController = UserSessionNavigationController()
-                        self.present(userSessionNavigationController, animated: true, completion: nil)
+                        let homePageViewController = MyHomePageViewController()
+                        //let userSessionNavigationController = UserSessionNavigationController()
+                        self.present(homePageViewController, animated: true, completion: nil)
                     } catch {
                         print(error)
                     }

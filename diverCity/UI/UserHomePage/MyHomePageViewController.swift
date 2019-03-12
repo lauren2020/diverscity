@@ -47,7 +47,7 @@ class MyHomePageViewController: BaseNavigationItemViewController {
     }
     
     func setupViews() {
-        cover = UserCover(frame: CGRect(x: self.view.bounds.minX, y: self.view.bounds.minY + 80, width: self.view.frame.width, height: 150), withTitle: (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!, withMenuOptions: [])
+        cover = UserCover(frame: CGRect(x: self.view.bounds.minX, y: self.view.bounds.minY, width: self.view.frame.width, height: 150), withTitle: (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!, withMenuOptions: [])
         infoOptions = UserHeaderInformationView(frame: CGRect(x: self.view.frame.minX, y: cover.frame.maxY, width: self.view.frame.width, height: 100), name: "Info")
         
         divider = UIView(frame: CGRect(x: self.view.frame.minX, y: infoOptions.frame.maxY, width: self.view.frame.width, height: 5))
@@ -75,8 +75,8 @@ class MyHomePageViewController: BaseNavigationItemViewController {
                 let communityTabsViewController = CommunityTabsViewController()
             communityTabsViewController.rootNavigationController = self.navigationController
             print("Navigation Controller: ", communityTabsViewController.rootNavigationController)
-            self.navigationController?.pushViewController(communityTabsViewController, animated: true)
-                //self.present(communityTabsViewController, animated: true, completion: nil)
+            //self.navigationController?.pushViewController(communityTabsViewController, animated: true)
+                self.present(communityTabsViewController, animated: true, completion: nil)
             })
         
         findCommunities = RectangleButton(frame: CGRect(x: scrollView.frame.minX, y: communitiesTableView.frame.maxY, width: (self.view.frame.width / 2), height: 40), withText: "Find Communities")
@@ -174,8 +174,8 @@ class MyHomePageViewController: BaseNavigationItemViewController {
     
     @objc func goToFindCommunities(_ sender: Any) {
         let newCommunitiesTabsViewController = NewCommunitiesTabsViewController()
-        self.navigationController?.pushViewController(newCommunitiesTabsViewController, animated: true)
-        //self.present(newCommunitiesTabsViewController, animated: true, completion: nil)
+        //self.navigationController?.pushViewController(newCommunitiesTabsViewController, animated: true)
+        self.present(newCommunitiesTabsViewController, animated: true, completion: nil)
     }
     
     @objc func logoutOfAccount(_ sender: Any) {

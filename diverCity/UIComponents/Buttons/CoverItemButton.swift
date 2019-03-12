@@ -1,5 +1,5 @@
 //
-//  UserHeaderInformationView.swift
+//  CoverItemButton.swift
 //  diverCity
 //
 //  Created by Lauren Shultz on 3/11/19.
@@ -9,15 +9,12 @@
 import Foundation
 import UIKit
 
-class UserHeaderInformationView: UIView {
-    var notificationsIcon: UIButton!
-    var settingsIcon: UIButton!
-    var manageCommunitiesIcon: UIButton!
-    init(frame: CGRect, name: String) {
+class CoverItemButton: UIButton {
+    init(x: CGFloat, y: CGFloat, icon: UIImage) {
+        let frame = CGRect(x: x, y: y, width: 60, height: 60)
         super.init(frame: frame)
-        self.backgroundColor = UIColor.gray
         
-        //var 
+        self.setImage(icon, for: .normal)
     }
     
     required init?(coder aDecoder: NSCoder) {

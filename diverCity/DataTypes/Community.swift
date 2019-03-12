@@ -23,6 +23,9 @@ struct Community {
     var creator: String!
     var events: [String]
     var feed: [String]
+    
+    var allowMembersToPostToFeed: Bool = false
+    var allowMembersToPostEvents: Bool = false
 }
 
 extension Community {

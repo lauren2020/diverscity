@@ -1,5 +1,5 @@
 //
-//  UserHeaderInformationView.swift
+//  CommunityHeaderInformationView.swift
 //  diverCity
 //
 //  Created by Lauren Shultz on 3/11/19.
@@ -9,15 +9,10 @@
 import Foundation
 import UIKit
 
-class UserHeaderInformationView: UIView {
-    var notificationsIcon: UIButton!
-    var settingsIcon: UIButton!
-    var manageCommunitiesIcon: UIButton!
+class CommunityHeaderInformationView: UIView {
     init(frame: CGRect, name: String) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.gray
-        
-        //var 
     }
     
     required init?(coder aDecoder: NSCoder) {

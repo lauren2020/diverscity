@@ -9,23 +9,19 @@
 import UIKit
 
 class CommunityHomeViewController: BaseTabViewController {
+    //var sidebarMenu: SideBarMenu!
     var communityCover: CommunityHeader!
-    var scrollView: UIScrollView!
     var divider: UIView!
     var background: Background!
-    //var menuIconButton: MenuIconButton!
-    var backToHomeButton: MenuItemButton!
-    //var communityTitle: UITextView!
     var addUserToCommunityButton: UIButton!
-    
-    var trendingEventsTag: ObjectLabelTag!
-    var trendingEventsTable: EventsTableView!
-    
-    //var addPostButton: RectangleButton!
+//    var trendingEventsTag: ObjectLabelTag!
+//    var trendingEventsTable: EventsTableView!
     var postsTableTag: ObjectLabelTag!
     var postsTable: PostsTableView!
     
-    var menuIsOpen = false
+    var postTableActionBar: UIView!
+    var addPostButton: ActionButton!
+    var filterPostButton: ActionButton!
     
     let devStubs = DevStubs()
     //Owner, Admin, Member, Visitor
@@ -48,96 +44,106 @@ class CommunityHomeViewController: BaseTabViewController {
     }
     
     func setupViews() {
-        if (PERMISSION == Permission.VISITOR) {
-            setupBaseViewForVisitor()
-        } else {
-            setupBaseViewForNonVisitor()
+        background = Background(frame: self.view.frame, withImage: UIImage(named: "omaha1") ?? UIImage())
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(backToHomePage))
+        
+        switch PERMISSION {
+        case Permission.OWNER:
+            configurePageForOwner()
+        case Permission.ADMIN:
+            configurePageForAdmin()
+        case Permission.MEMBER:
+            configurePageForMember()
+        default:
+            configurePageForVisitor()
         }
-        scrollView.isScrollEnabled = true
+    }
+    
+    func configurePageForOwner() {
+        communityCover = CommunityHeader(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: 100), withTitle: UserSession.selectedCommunity?.name ?? "My Community", withMenuOptions: [])
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(openEditCommunity))]
+        setupCommonLayout()
+    }
+    
+    func configurePageForAdmin() {
+        communityCover = CommunityHeader(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: 100), withTitle: UserSession.selectedCommunity?.name ?? "My Community", withMenuOptions: [])
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(openEditCommunity))]
+        setupCommonLayout()
+    }
+    
+    func configurePageForMember() {
+        communityCover = CommunityHeader(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: 100), withTitle: UserSession.selectedCommunity?.name ?? "My Community", withMenuOptions: [])
+        setupCommonLayout()
+    }
+    
+    func configurePageForVisitor() {
+        addUserToCommunityButton = RectangleButton(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: 50), withText: "+ Add To My Communities")
+        addUserToCommunityButton.addTarget(self, action: #selector(addUserToCommunity), for: .touchUpInside)
+
+        communityCover = CommunityHeader(frame: CGRect(x: self.view.frame.minX, y: addUserToCommunityButton.frame.maxY, width: self.view.frame.width, height: 100), withTitle: UserSession.selectedCommunity?.name ?? "My Community", withMenuOptions: [])
+        setupCommonLayout()
         
-        trendingEventsTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: 0, width: 200, height: 40), withLabel: "Trending Events")
-        trendingEventsTable = EventsTableView(frame: CGRect(x: scrollView.frame.minX, y: trendingEventsTag.frame.maxY, width: scrollView.frame.width, height: 400), eventsList: [], eventSelectedCallback: { (event) in
+    }
+    
+    func setupCommonLayout() {
+        divider = UIView(frame: CGRect(x: self.view.frame.minX, y: communityCover.frame.maxY, width: self.view.frame.width, height: 5))
+        divider.backgroundColor = UIColor.darkGray
+        
+        postsTableTag = ObjectLabelTag(frame: CGRect(x: self.view.frame.minX, y: divider.frame.maxY, width: self.view.frame.width, height: 40), withLabel: "Community Feed")
+        filterPostButton = ActionButton(x: self.view.frame.maxX - 50, y: postsTableTag.frame.minY + 5, icon: "filterIcon")
+        filterPostButton.addTarget(self, action: #selector(openFilterPostsOptions), for: .touchUpInside)
+        postsTable = PostsTableView(frame: CGRect(x: self.view.frame.minX, y: postsTableTag.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - postsTableTag.frame.maxY), posts: [], postSelectedCallback: { (post) in
             
-            })
-            //UITableView(frame: CGRect(x: scrollView.frame.minX, y: trendingEventsTag.frame.maxY, width: scrollView.frame.width, height: 200))
-        //trendingEventsTable.register(EventTableCell.self, forCellReuseIdentifier: "eventCell")
+        })
         
-        postsTableTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: trendingEventsTable.frame.maxY, width: 200, height: 40), withLabel: "Community Feed")
-        postsTable = PostsTableView(frame: CGRect(x: scrollView.frame.minX, y: postsTableTag.frame.maxY, width: scrollView.frame.width, height: 500), posts: [], postSelectedCallback: { (post) in
-            
-            })
-            //UITableView(frame: CGRect(x: scrollView.frame.minX, y: postsTableTag.frame.maxY, width: scrollView.frame.width, height: 500))
-        //postsTable.register(PostTableCell.self, forCellReuseIdentifier: "postCell")
+        self.view.addSubview(background)
+        self.view.addSubview(communityCover)
+        self.view.addSubview(divider)
+        self.view.addSubview(postsTableTag)
+        self.view.addSubview(postsTable)
+        self.view.addSubview(filterPostButton)
         
-        scrollView.addSubview(trendingEventsTag)
-        scrollView.addSubview(trendingEventsTable)
-        scrollView.addSubview(postsTableTag)
-        scrollView.addSubview(postsTable)
+        if (PERMISSION == Permission.OWNER || PERMISSION == Permission.ADMIN || (PERMISSION == Permission.MEMBER && (UserSession.selectedCommunity?.allowMembersToPostToFeed)!)) {
+            addPostButton = ActionButton(x: filterPostButton.frame.minX - 50, y: postsTableTag.frame.minY + 5, icon: "addIcon")
+            addPostButtonaddTarget(self, action: #selector(addNewPost), for: .touchUpInside)
+            self.view.addSubview(addPostButton)
+        }
+    }
+    
+    @objc func leaveCommunity(_ sender: Any) {
+        
+    }
+    
+    @objc func openEditCommunity(_ sender: Any) {
+        
+    }
+    
+    @objc func viewMembers(_ sender: Any) {
+        
+    }
+    
+    @objc func openFilterPostsOptions(_ sender: Any) {
+        
+    }
+    
+    @objc func addNewPost(_ sender: Any) {
+        
     }
     
     func loadTrendingEvents() {
-        trendingEventsTable.reloadEvents(events: devStubs.getEventList())
+        //trendingEventsTable.reloadEvents(events: devStubs.getEventList())
     }
     
     func loadCommunityFeed() {
         postsTable.reloadPosts(posts: devStubs.getPostList())
     }
     
-    func setupBaseViewForVisitor() {
-        addUserToCommunityButton = RectangleButton(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: 50), withText: "+ Add To My Communities")
-        addUserToCommunityButton.addTarget(self, action: #selector(addUserToCommunity), for: .touchUpInside)
-        background = Background(frame: self.view.frame, withImage: UIImage(named: "omaha1") ?? UIImage())
-        
-        backToHomeButton = MenuItemButton(frame: CGRect(x: self.view.frame.maxX - 150, y: self.view.frame.minY, width: 150, height: 30), withTaskName: "Back")
-        backToHomeButton.addTarget(self, action: #selector(backToHomePage), for: .touchUpInside)
-
-        communityCover = CommunityHeader(frame: CGRect(x: self.view.frame.minX, y: addUserToCommunityButton.frame.maxY, width: self.view.frame.width, height: 100), withTitle: UserSession.selectedCommunity?.name ?? "My Community", withMenuOptions: [backToHomeButton])
-        
-        scrollView = UIScrollView(frame: CGRect(x: self.view.frame.minX, y: communityCover.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - communityCover.frame.maxY))
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: 1000)
-        
-        divider = UIView(frame: CGRect(x: self.view.frame.minX, y: communityCover.frame.maxY - 5, width: self.view.frame.width, height: 5))
-        divider.backgroundColor = UIColor.darkGray
-        
-        self.view.addSubview(background)
-        self.view.addSubview(addUserToCommunityButton)
-        self.view.addSubview(communityCover)
-        self.view.addSubview(scrollView)
-        self.view.bringSubview(toFront: scrollView)
-        self.view.addSubview(divider)
-    }
-    
-    func setupBaseViewForNonVisitor() {
-        addUserToCommunityButton = RectangleButton(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: 50), withText: "+ Add To My Communities")
-        addUserToCommunityButton.addTarget(self, action: #selector(addUserToCommunity), for: .touchUpInside)
-        addUserToCommunityButton.isHidden = true
-        //////////////
-        background = Background(frame: self.view.frame, withImage: UIImage(named: "omaha1") ?? UIImage())
-
-        backToHomeButton = MenuItemButton(frame: CGRect(x: self.view.frame.maxX - 40, y: self.view.frame.minY, width: 400, height: 20), withTaskName: "Back To Home")
-        backToHomeButton.addTarget(self, action: #selector(backToHomePage), for: .touchUpInside)
-        
-        communityCover = CommunityHeader(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: 100), withTitle: UserSession.selectedCommunity?.name ?? "My Community", withMenuOptions: [backToHomeButton])
-        
-        scrollView = UIScrollView(frame: CGRect(x: self.view.frame.minX, y: communityCover.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - communityCover.frame.maxY))
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: 1000)
-        
-        divider = UIView(frame: CGRect(x: self.view.frame.minX, y: communityCover.frame.maxY - 5, width: self.view.frame.width, height: 5))
-        divider.backgroundColor = UIColor.darkGray
-        
-        self.view.addSubview(background)
-        self.view.addSubview(communityCover)
-        self.view.addSubview(scrollView)
-        self.view.bringSubview(toFront: scrollView)
-        self.view.addSubview(divider)
-    }
-    
     func updateLayoutForPermissions() {
         setPermissions()
-        if(PERMISSION == Permission.OWNER) {
-            addUserToCommunityButton.isHidden = true
-        } else if (PERMISSION == Permission.MEMBER) {
-            addUserToCommunityButton.isHidden = true
+        if (PERMISSION == Permission.MEMBER) {
+            if (addUserToCommunityButton != nil) {
+                addUserToCommunityButton.isHidden = true
+            }
         } else if (PERMISSION == Permission.VISITOR) {
             addUserToCommunityButton.isHidden = false
         }
@@ -178,7 +184,6 @@ class CommunityHomeViewController: BaseTabViewController {
     
     @objc func addUserToCommunity(_ sender: Any) {
         let newMembers = (UserSession.selectedCommunity?.members.joined(separator: ","))! == "" ? (UserSession.user?.id)! : (UserSession.selectedCommunity?.members.joined(separator: ","))! + "," + (UserSession.user?.id)!
-        //Community.patch(id: (UserSession.selectedCommunity?.id)!, body: ["members=" + newMembers], completion: patchCommunityCompletion)
         ActivityHelper.startActivity(view: self.view)
         let content = APIDelegate.buildPostString(body: ["members=" + newMembers])
         let patchCommunityRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: (UserSession.selectedCommunity?.id)!, methodType: "PATCH", postContent: content)
@@ -201,8 +206,6 @@ class CommunityHomeViewController: BaseTabViewController {
             UserSession.selectedCommunity = community
             let community = UserSession.selectedCommunity
             let newCommunities = (UserSession.user?.communities.joined(separator: ","))! == "" ? (community?.id) : (UserSession.user?.communities.joined(separator: ","))! + "," + (community?.id)!
-            //User.patch(id: (UserSession.user?.id)!, body: ["communities=" + newCommunities!], completion: patchUserCompletion)
-            //startActivity()
             let content = APIDelegate.buildPostString(body: ["communities=" + newCommunities!])
             let patchUserRequest = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: (UserSession.user?.id)!, methodType: "PATCH", postContent: content)
             if (patchUserRequest != nil) {

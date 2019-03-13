@@ -45,7 +45,8 @@ class CommunityHomeViewController: BaseTabViewController {
     
     func setupViews() {
         background = Background(frame: self.view.frame, withImage: UIImage(named: "omaha1") ?? UIImage())
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(backToHomePage))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(backToHomePage))
+        //self.navigationItem.leftBarButtonItem =
         
         switch PERMISSION {
         case Permission.OWNER:
@@ -105,7 +106,7 @@ class CommunityHomeViewController: BaseTabViewController {
         
         if (PERMISSION == Permission.OWNER || PERMISSION == Permission.ADMIN || (PERMISSION == Permission.MEMBER && (UserSession.selectedCommunity?.allowMembersToPostToFeed)!)) {
             addPostButton = ActionButton(x: filterPostButton.frame.minX - 50, y: postsTableTag.frame.minY + 5, icon: "addIcon")
-            addPostButtonaddTarget(self, action: #selector(addNewPost), for: .touchUpInside)
+            addPostButton.addTarget(self, action: #selector(addNewPost), for: .touchUpInside)
             self.view.addSubview(addPostButton)
         }
     }

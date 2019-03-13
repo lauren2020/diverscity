@@ -10,8 +10,6 @@ import UIKit
 
 class FindCommunitiesViewController: BaseViewController {
 
-    var titleView: UITextView!
-    var backButton: RectangleButton!
     var searchCommunitiesBar: UISearchBar!
     var searchResults: CommunityTableView!
     
@@ -27,25 +25,15 @@ class FindCommunitiesViewController: BaseViewController {
     }
     
     func setupViews() {
-        titleView = UITextView(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: 300, height: 100))
-        titleView.text = "Find Communities"
-        titleView.backgroundColor = UIColor.init(white: 1, alpha: 0)
-        titleView.textAlignment = NSTextAlignment.center
-        titleView.font = UIFont(name: "HelveticaNeue-Bold", size: 24)
+        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(navigateBackToHomePage))]
         
-        backButton = RectangleButton(frame: CGRect(x: self.view.frame.maxX - 30, y: self.view.frame.minY + 40, width: 30, height: 30), withText: "<--")
-        backButton.addTarget(self, action: #selector(navigateBackToHomePage), for: .touchUpInside)
-        
-        searchCommunitiesBar = UISearchBar(frame: CGRect(x: self.view.frame.minX, y: titleView.frame.maxY, width: self.view.frame.width, height: 40))
+        searchCommunitiesBar = UISearchBar(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.maxY, width: self.view.frame.width, height: 40))
         searchResults = CommunityTableView(frame: CGRect(x: self.view.frame.minX, y: searchCommunitiesBar.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - searchCommunitiesBar.frame.maxY), communities: [], communitySelectedCallback: { (community) in
             UserSession.selectedCommunity = community
             let communityTabsViewController = CommunityTabsViewController()
             self.present(communityTabsViewController, animated: true, completion: nil)
         })
         
-        self.view.addSubview(titleView)
-        self.view.addSubview(backButton)
-        self.view.bringSubview(toFront: backButton)
         self.view.addSubview(searchCommunitiesBar)
         self.view.addSubview(searchResults)
     }

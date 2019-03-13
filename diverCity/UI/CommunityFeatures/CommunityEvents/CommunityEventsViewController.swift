@@ -47,7 +47,8 @@ class CommunityEventsViewController: BaseTabViewController {
         
         eventSearchBar = UISearchBar(frame: CGRect(x: self.view.frame.minX, y: recomendedEventsCollectionView.frame.maxY, width: self.view.frame.width, height: 50))
         eventsTable = EventsTableView(frame: CGRect(x: self.view.frame.minX, y: eventSearchBar.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - eventSearchBar.frame.maxY), eventsList: events, eventSelectedCallback: {event in
-            
+            let eventDetailsViewController = EventDetailsViewController()
+            self.navigationController?.pushViewController(eventDetailsViewController, animated: true)
         })
         
         print("Events: ", events)

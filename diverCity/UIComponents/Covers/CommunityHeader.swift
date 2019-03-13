@@ -28,7 +28,7 @@ class CommunityHeader: UIView {
         menuIcon!.addTarget(self, action: #selector(toggleMenu), for: .touchUpInside)
         
         self.addSubview(communityTitle!)
-        self.addSubview(menuIcon!)
+        //self.addSubview(menuIcon!)
         let menuStartPosition: CGFloat = menuIcon!.frame.maxY
         if (menuOptions.count != 0) {
         for optionIndex in 0...menuOptions.count - 1 {

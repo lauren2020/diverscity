@@ -11,6 +11,7 @@ import UIKit
 
 class CreateNewAccountViewController: BaseViewController {
     
+    var backToWelcomePageButton: TextOnlyButton!
     var firstNameTextField: UITextField!
     var lastNameTextField: UITextField!
     var usernameTextField: UITextField!
@@ -23,9 +24,16 @@ class CreateNewAccountViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupViews()
         // Do any additional setup after loading the view.
         // Data type user has properties that are force unwrapped when intitialized, ensure usere enetered properties fill all force unwrapped property fields
+    }
+    
+    func setupViews() {
+        self.view.backgroundColor = UIColor.gray
+        backToWelcomePageButton = TextOnlyButton(frame: CGRect(x: self.view.frame.maxX - 70, y: self.view.frame.minX + 20, width: 50, height: 100), withText: "Back")
+        backToWelcomePageButton.addTarget(self, action: #selector(goBackToHomePage), for: .touchUpInside)
+        self.view.addSubview(backToWelcomePageButton)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -37,8 +45,9 @@ class CreateNewAccountViewController: BaseViewController {
         return true
     }
     
-    @IBAction func goBackToHomePage(_ sender: Any) {
-        performSegue(withIdentifier: "createAccountToWelcome", sender: (Any).self)
+    @objc func goBackToHomePage(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        //performSegue(withIdentifier: "createAccountToWelcome", sender: (Any).self)
     }
     
     @IBAction func createNewUser(_ sender: Any) {
@@ -92,33 +101,6 @@ class CreateNewAccountViewController: BaseViewController {
         }
     }
     
-    //    /*
-    //     * FUNCTION: startActivity
-    //     * PURPOSE: Shows the activity indicator and stops recording user touches.
-    //     */
-    //    func startActivity()
-    //    {
-    //        print("Activity Started")
-    //        self.view.alpha = 0.5
-    //        activityIndicator.center = self.view.center
-    //        activityIndicator.hidesWhenStopped = true
-    //        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-    //        self.view.addSubview(activityIndicator)
-    //        activityIndicator.startAnimating()
-    //        UIApplication.shared.beginIgnoringInteractionEvents()
-    //    }
-    //    /*
-    //     * FUNCTION: stopActivity
-    //     * PURPOSE: Hides the activity indicator and resumes responding to user touches
-    //     */
-    //    func stopActivity()
-    //    {
-    //        print("Activity Stopped")
-    //        self.view.alpha = 1
-    //        activityIndicator.stopAnimating()
-    //        UIApplication.shared.endIgnoringInteractionEvents()
-    //    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -126,18 +108,6 @@ class CreateNewAccountViewController: BaseViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //        if segue.identifier == "createAccountToMyHomePage"
-        //        {
-        //            if let vc = segue.destination as? MyHomePageViewController
-        //            {
-        //            }
-        //        }
-        //        if segue.identifier == "createAccountToWelcome"
-        //        {
-        //            if let vc = segue.destination as? WelcomeViewController
-        //            {
-        //            }
-        //        }
     }
     
 }

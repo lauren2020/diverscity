@@ -35,11 +35,7 @@ class CommunityTabsViewController: UITabBarController {
         getToKnowYouNetworkingViewController.tabBarItem = UITabBarItem(title: "GTYK", image: UIImage(named: "ChainLinkTabIcon"), tag: 2)
         
         let tabBarList = [communityHomeViewController, communityEventsViewController, getToKnowYouNetworkingViewController]
-        //if (rootNavigationController != nil) {
-            //viewControllers = tabBarList.map { _ in rootNavigationController! }
-        //} else {
-            viewControllers = tabBarList.map { UINavigationController(rootViewController: $0) }
-        //}
+        viewControllers = tabBarList.map { UINavigationController(rootViewController: $0) }
     }
     
 }

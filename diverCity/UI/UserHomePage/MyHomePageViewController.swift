@@ -15,9 +15,7 @@ class MyHomePageViewController: BaseNavigationItemViewController {
     var scrollView: UIScrollView!
     
     var background: Background!
-    //var menuButton: MenuIconButton!
-    var logoutButton: MenuItemButton!
-    //var headerName: UILabel!
+    //var logoutButton: MenuItemButton!
     var cover: UserCover!
     var infoOptions: UserHeaderInformationView!
     
@@ -40,15 +38,13 @@ class MyHomePageViewController: BaseNavigationItemViewController {
         setupViews()
         loadCommunities()
         loadMyEventsList()
-        
-       //closeMenu()
-        //headerName.text = "| " + (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!
-       
     }
     
     func setupViews() {
-        cover = UserCover(frame: CGRect(x: self.view.bounds.minX, y: self.view.bounds.minY, width: self.view.frame.width, height: 150), withTitle: (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!, withMenuOptions: [])
-        infoOptions = UserHeaderInformationView(frame: CGRect(x: self.view.frame.minX, y: cover.frame.maxY, width: self.view.frame.width, height: 100), name: "Info")
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(logoutOfAccount))]
+        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(openUserSettings))]
+        cover = UserCover(frame: CGRect(x: self.view.bounds.minX, y: self.view.bounds.minY, width: self.view.frame.width, height: 200), withTitle: (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!, withMenuOptions: [])
+        infoOptions = UserHeaderInformationView(frame: CGRect(x: self.view.frame.minX, y: cover.frame.maxY, width: self.view.frame.width, height: 50), name: "Info")
         
         divider = UIView(frame: CGRect(x: self.view.frame.minX, y: infoOptions.frame.maxY, width: self.view.frame.width, height: 5))
         divider.backgroundColor = UIColor.darkGray
@@ -59,22 +55,15 @@ class MyHomePageViewController: BaseNavigationItemViewController {
         
         background = Background(frame: self.view.frame, withImage: UIImage(named: "omaha1") ?? UIImage())
         
-        //menuButton = MenuIconButton(frame: CGRect(x: self.view.frame.maxX - 55, y: self.view.frame.minY + 40, width: 50, height: 50))
-        //menuButton.addTarget(self, action: #selector(toggleMenu), for: .touchUpInside)
-        //logoutButton = MenuItemButton(frame: CGRect(x: self.view.frame.maxX - 100, y: menuButton.frame.maxY + 20, width: 100, height: 40), withTaskName: "Logout")
-        //logoutButton.addTarget(self, action: #selector(logoutOfAccount), for: .touchUpInside)
-        //headerName = UILabel(frame: CGRect(x: self.view.frame.minX + 10, y: self.view.frame.minY + 30, width: 400, height: 100))
-        //headerName.font = UIFont(name: "HelveticaNeue-Bold", size: 36)
-        ////////////////////////////////////
-        myCommunitiesTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: 0, width: 200, height: 40), withLabel: "My Communities")
+        myCommunitiesTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: 0, width: scrollView.frame.width, height: 40), withLabel: "My Communities")
         reloadCommunitiesButton = RectangleButton(frame: CGRect(x: scrollView.frame.minX + 210, y: 0, width: 100, height: 40), withText: "Reload")
         reloadCommunitiesButton.addTarget(self, action: #selector(reloadCommunities), for: .touchUpInside)
         
         communitiesTableView = CommunityTableView(frame: CGRect(x: scrollView.frame.minX, y: myCommunitiesTag.frame.maxY, width: scrollView.frame.width, height: 400), communities: [], communitySelectedCallback: { (community) in
                 UserSession.selectedCommunity = community
                 let communityTabsViewController = CommunityTabsViewController()
-            communityTabsViewController.rootNavigationController = self.navigationController
-            print("Navigation Controller: ", communityTabsViewController.rootNavigationController)
+            //communityTabsViewController.rootNavigationController = self.navigationController
+            //print("Navigation Controller: ", communityTabsViewController.rootNavigationController)
             //self.navigationController?.pushViewController(communityTabsViewController, animated: true)
                 self.present(communityTabsViewController, animated: true, completion: nil)
             })
@@ -85,11 +74,10 @@ class MyHomePageViewController: BaseNavigationItemViewController {
         createCommunity = RectangleButton(frame: CGRect(x: scrollView.frame.maxX - (self.view.frame.width / 2), y: communitiesTableView.frame.maxY, width: (self.view.frame.width / 2), height: 40), withText: "Create Community")
         createCommunity.addTarget(self, action: #selector(createNewCommunity), for: .touchUpInside)
         
-        myEventsTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: findCommunities.frame.maxY, width: 200, height: 40), withLabel: "My Events")
-        //myEventsTableList = UITableView(frame: CGRect(x: scrollView.frame.minX, y: myEventsTag.frame.maxY, width: scrollView.frame.width, height: 400))
-        //myEventsTableList.register(EventTableCell.self, forCellReuseIdentifier: "eventCell")
+        myEventsTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: findCommunities.frame.maxY, width: scrollView.frame.width, height: 40), withLabel: "My Events")
         myEventsTableView = EventsTableView(frame: CGRect(x: scrollView.frame.minX, y: myEventsTag.frame.maxY, width: scrollView.frame.width, height: 550), eventsList: [], eventSelectedCallback: { (event) in
-            
+            let eventDetailsViewController = EventDetailsViewController()
+            self.navigationController?.pushViewController(eventDetailsViewController, animated: true)
             })
         
         self.view.addSubview(background)
@@ -98,11 +86,7 @@ class MyHomePageViewController: BaseNavigationItemViewController {
         self.view.addSubview(infoOptions)
         self.view.addSubview(divider)
         self.view.addSubview(scrollView)
-        //self.view.addSubview(menuButton)
-        //self.view.addSubview(logoutButton)
-        //self.view.addSubview(headerName)
         scrollView.addSubview(myCommunitiesTag)
-        scrollView.addSubview(reloadCommunitiesButton)
         scrollView.addSubview(communitiesTableView)
         scrollView.addSubview(findCommunities)
         scrollView.addSubview(createCommunity)
@@ -111,24 +95,29 @@ class MyHomePageViewController: BaseNavigationItemViewController {
     }
     
     @objc func toggleMenu(_ sender: Any) {
-        if(menuIsOpen) {
-            closeMenu()
-        } else {
-            openMenu()
-        }
+//        if(menuIsOpen) {
+//            closeMenu()
+//        } else {
+//            openMenu()
+//        }
     }
     
     func openMenu() {
-        menuIsOpen = true
-        logoutButton.isHidden = false
+        //menuIsOpen = true
+        //logoutButton.isHidden = false
     }
     func closeMenu() {
-        menuIsOpen = false
-        logoutButton.isHidden = true
+        //menuIsOpen = false
+        //logoutButton.isHidden = true
     }
     
     @objc func reloadCommunities(_ sender: Any) {
         loadCommunities()
+    }
+    
+    @objc func openUserSettings(_ sender: Any) {
+        let userSettingsViewController = UserSettingsViewController()
+        self.navigationController?.pushViewController(userSettingsViewController, animated: true)
     }
     
     func loadCommunities() {
@@ -169,6 +158,8 @@ class MyHomePageViewController: BaseNavigationItemViewController {
     
     @objc func createNewCommunity(_ sender: Any) {
         let createNewCommunityPageViewController = CreateNewCommunityViewController()
+        
+        self.navigationController?.pushViewController(createNewCommunityPageViewController, animated: true)
         self.present(createNewCommunityPageViewController, animated: true, completion: nil)
     }
     
@@ -179,8 +170,9 @@ class MyHomePageViewController: BaseNavigationItemViewController {
     }
     
     @objc func logoutOfAccount(_ sender: Any) {
-        let welcomeViewController = WelcomeViewController()
-        self.present(welcomeViewController, animated: true, completion: nil)
+        //let welcomeViewController = WelcomeViewController()
+        self.dismiss(animated: true, completion: nil)
+        //self.present(welcomeViewController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

@@ -13,7 +13,8 @@ class ActionButton: UIButton {
     init(x: CGFloat, y: CGFloat, icon: String) {
         super.init(frame: CGRect(x: x, y: y, width: 30, height: 30))
         
-        self.setImage(UIImage(named: icon), for: .normal)
+        self.setBackgroundImage(UIImage(named: icon), for: .normal)
+        //self.setImage(UIImage(named: icon), for: .normal)
     }
     
     required init?(coder aDecoder: NSCoder) {

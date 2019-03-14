@@ -12,7 +12,7 @@ import UIKit
 class EventItemView: UIView {
     var eventImage: UIImageView!
     var eventTitle: UILabel!
-    var eventCategory: UILabel!
+    var eventCategory: TagIndicator!
     var eventDate: UILabel!
     var eventTime: UILabel!
     var eventLocation: UILabel!
@@ -22,7 +22,7 @@ class EventItemView: UIView {
         super.init(frame: frame)
         
         eventImage = UIImageView(frame: CGRect(x: x + 10, y: y + 10, width: width - 20, height: 150))
-        eventCategory = UILabel(frame: CGRect(x: width - 110, y: eventImage.frame.maxY + 10, width: 100, height: 40))
+        eventCategory = TagIndicator(origin: CGPoint(x: width - 110, y: eventImage.frame.maxY + 10), text: "PARTY", color: UIColor.yellow)//UILabel(frame: CGRect(x: width - 110, y: eventImage.frame.maxY + 10, width: 100, height: 40))
         eventTitle = UILabel(frame: CGRect(x: x + 10, y: eventImage.frame.maxY + 10, width: width - 20 - eventCategory.frame.width, height: 40))
         
         eventDate = UILabel(frame: CGRect(x: x + 10, y: eventTitle.frame.maxY + 10, width: (width / 3) - 10, height: 40))
@@ -48,7 +48,8 @@ class EventItemView: UIView {
     func loadEvent(event: CommunityEvent) {
         eventImage.image = event.coverImage
         eventTitle.text = event.name
-        eventCategory.text = event.category
+        eventCategory.text = event.category.label
+        eventCategory.backgroundColor = event.category.color
         eventDate.text = event.date?.toString()
         eventTime.text = event.startTime?.toString()
         eventLocation.text = event.community.name

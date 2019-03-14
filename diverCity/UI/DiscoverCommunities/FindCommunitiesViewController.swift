@@ -27,7 +27,7 @@ class FindCommunitiesViewController: BaseViewController {
     func setupViews() {
         self.navigationItem.leftBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(navigateBackToHomePage))]
         
-        searchCommunitiesBar = UISearchBar(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.maxY, width: self.view.frame.width, height: 40))
+        searchCommunitiesBar = UISearchBar(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: 40))
         searchResults = CommunityTableView(frame: CGRect(x: self.view.frame.minX, y: searchCommunitiesBar.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - searchCommunitiesBar.frame.maxY), communities: [], communitySelectedCallback: { (community) in
             UserSession.selectedCommunity = community
             let communityTabsViewController = CommunityTabsViewController()

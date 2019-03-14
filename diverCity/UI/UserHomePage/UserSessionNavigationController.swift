@@ -17,12 +17,10 @@ class UserSessionNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //myHomePageViewController
-        //viewControllers = [myHomePageViewController]
         self.title = "Navigation Controller"
         self.viewControllers = [myHomePageViewController, userSettingsViewController, eventDetailsViewController]
-        //self.navigationController?.pushViewController(myHomePageViewController, animated: true)
-        //let navigationItemsList = [myHomePageViewController]
-       // viewControllers = navigationItemsList.map { UINavigationController(rootViewController: $0) }
+        
+//        popViewController(animated: true)
+//        popViewController(animated: true)
     }
 }

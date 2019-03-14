@@ -27,7 +27,7 @@ struct User {
     var ambassador_requests: String
     var communities_invited: String
     var privacy_type: Int
-    var tags: String
+    var tags: [Tag] = []
 }
 
 extension User {
@@ -80,6 +80,6 @@ extension User {
         self.ambassador_requests = ambassador_requests != nil ? ambassador_requests! : ""
         self.communities_invited = communities_invited != nil ? communities_invited! : ""
         self.privacy_type = privacy_type != nil ? privacy_type! : -1
-        self.tags = tags != nil ? tags! : ""
+        self.tags = [Tag(label: "Paper", colorCode: 3), Tag(label: "Business", colorCode: 6)]//tags != nil ? tags! : ""
     }
 }

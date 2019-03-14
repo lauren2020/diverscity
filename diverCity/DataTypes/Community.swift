@@ -23,6 +23,8 @@ struct Community {
     var creator: String!
     var events: [String]
     var feed: [String]
+    var tags: [Tag] = []
+    var category: Tag?
     
     var allowMembersToPostToFeed: Bool = false
     var allowMembersToPostEvents: Bool = false

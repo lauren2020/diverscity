@@ -91,6 +91,10 @@
 		80AD915A223757AF0080EEF0 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9159223757AF0080EEF0 /* ActionButton.swift */; };
 		80AD915C2238B0370080EEF0 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD915B2238B0370080EEF0 /* UserSettingsViewController.swift */; };
 		80AD915F2238B47E0080EEF0 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD915E2238B47E0080EEF0 /* EventDetailsViewController.swift */; };
+		80AD91612239A4EB0080EEF0 /* TagIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD91602239A4EB0080EEF0 /* TagIndicator.swift */; };
+		80AD91642239CD890080EEF0 /* SetableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD91632239CD890080EEF0 /* SetableTextField.swift */; };
+		80AD91662239E9A90080EEF0 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD91652239E9A90080EEF0 /* Divider.swift */; };
+		80AD91682239F9E00080EEF0 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD91672239F9DF0080EEF0 /* Tag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -218,6 +222,10 @@
 		80AD9159223757AF0080EEF0 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		80AD915B2238B0370080EEF0 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		80AD915E2238B47E0080EEF0 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
+		80AD91602239A4EB0080EEF0 /* TagIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagIndicator.swift; sourceTree = "<group>"; };
+		80AD91632239CD890080EEF0 /* SetableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetableTextField.swift; sourceTree = "<group>"; };
+		80AD91652239E9A90080EEF0 /* Divider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divider.swift; sourceTree = "<group>"; };
+		80AD91672239F9DF0080EEF0 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		A9816917CD50D67D99302640 /* Pods-diverCityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityTests/Pods-diverCityTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC8ED338B8C05F0C3F75259D /* Pods-diverCityUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EEB383ABE8B5AB460B3CEB0F /* Pods-diverCityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -379,6 +387,7 @@
 				80AD9108223355E80080EEF0 /* Comment.swift */,
 				80AD910A223356800080EEF0 /* Media.swift */,
 				80AD9157223749670080EEF0 /* MenuItem.swift */,
+				80AD91672239F9DF0080EEF0 /* Tag.swift */,
 			);
 			path = DataTypes;
 			sourceTree = "<group>";
@@ -429,6 +438,7 @@
 		80AD90D42230D17E0080EEF0 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				80AD91622239CD690080EEF0 /* Text */,
 				80AD914E2237155F0080EEF0 /* Navigation */,
 				80AD9123223393520080EEF0 /* Buttons */,
 				80AD9127223594840080EEF0 /* CellViews */,
@@ -437,10 +447,9 @@
 				80AD9121223392B90080EEF0 /* CollectionViews */,
 				80AD9120223392B10080EEF0 /* TableViews */,
 				80AD90D52230D19A0080EEF0 /* Background.swift */,
-				80AD90D72230D3BC0080EEF0 /* FormEntryField.swift */,
-				80AD90E72231F0DD0080EEF0 /* ObjectLabelTag.swift */,
-				80AD90F922330BBA0080EEF0 /* TitleTextView.swift */,
 				80AD9155223748D80080EEF0 /* SideBarMenu.swift */,
+				80AD91602239A4EB0080EEF0 /* TagIndicator.swift */,
+				80AD91652239E9A90080EEF0 /* Divider.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -627,6 +636,17 @@
 				80AD915E2238B47E0080EEF0 /* EventDetailsViewController.swift */,
 			);
 			path = Events;
+			sourceTree = "<group>";
+		};
+		80AD91622239CD690080EEF0 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				80AD90F922330BBA0080EEF0 /* TitleTextView.swift */,
+				80AD90D72230D3BC0080EEF0 /* FormEntryField.swift */,
+				80AD90E72231F0DD0080EEF0 /* ObjectLabelTag.swift */,
+				80AD91632239CD890080EEF0 /* SetableTextField.swift */,
+			);
+			path = Text;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -831,6 +851,7 @@
 				80AD91072233553E0080EEF0 /* Post.swift in Sources */,
 				80AD90D32229E4610080EEF0 /* ActivityHelper.swift in Sources */,
 				80278F282194EB600023D8D7 /* EventsMapViewController.swift in Sources */,
+				80AD91612239A4EB0080EEF0 /* TagIndicator.swift in Sources */,
 				80AD910F223362D50080EEF0 /* CommunitiesCollectionView.swift in Sources */,
 				80AD912B22359FC00080EEF0 /* MediaCollectionView.swift in Sources */,
 				80AD910B223356800080EEF0 /* Media.swift in Sources */,
@@ -857,6 +878,7 @@
 				80AD9138223602E30080EEF0 /* PrivacyPolicyViewController.swift in Sources */,
 				80AD90D82230D3BC0080EEF0 /* FormEntryField.swift in Sources */,
 				8008EB94217107AD004B7799 /* PrivacyType.swift in Sources */,
+				80AD91642239CD890080EEF0 /* SetableTextField.swift in Sources */,
 				80AD910D223362230080EEF0 /* DiscoverCommunitiesViewController.swift in Sources */,
 				80AD912622357C9D0080EEF0 /* DevStubs.swift in Sources */,
 				80AD913A2236030D0080EEF0 /* FAQViewController.swift in Sources */,
@@ -866,9 +888,11 @@
 				8008EB55216EE79F004B7799 /* AppDelegate.swift in Sources */,
 				80AD9117223365570080EEF0 /* BaseTabViewController.swift in Sources */,
 				80AD9158223749670080EEF0 /* MenuItem.swift in Sources */,
+				80AD91662239E9A90080EEF0 /* Divider.swift in Sources */,
 				8008EB8F2170FF97004B7799 /* User.swift in Sources */,
 				80AD911E223391AC0080EEF0 /* UserCover.swift in Sources */,
 				80AD91152233652C0080EEF0 /* BaseViewController.swift in Sources */,
+				80AD91682239F9E00080EEF0 /* Tag.swift in Sources */,
 				80AD9156223748D80080EEF0 /* SideBarMenu.swift in Sources */,
 				80278EB5218A143B0023D8D7 /* APIDelegate.swift in Sources */,
 				80AD90D62230D19A0080EEF0 /* Background.swift in Sources */,

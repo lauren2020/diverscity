@@ -13,7 +13,7 @@ import CoreLocation
 class CommunityItemView: UIView {
     var profileImageHolder: UIImageView!
     var communityNameLabel: UILabel!
-    var communityTypeIndicator: UILabel!
+    var communityTypeIndicator: TagIndicator!//UILabel!
     var communityDescriptionPreviewLabel: UILabel!
     var communityCityLabel: UILabel!
     
@@ -26,7 +26,7 @@ class CommunityItemView: UIView {
         
         communityDescriptionPreviewLabel = UILabel(frame: CGRect(x: profileImageHolder.frame.maxX + 10, y: communityNameLabel.frame.maxY + 10, width: 200, height: 30))
         
-        communityTypeIndicator = UILabel(frame: CGRect(x: 10, y: profileImageHolder.frame.maxY + 10, width: 100, height: 30))
+        communityTypeIndicator = TagIndicator(origin: CGPoint(x: 10, y: profileImageHolder.frame.maxY + 10), text: "BUSINESS", color: UIColor.purple)//UILabel(frame: CGRect(x: 10, y: profileImageHolder.frame.maxY + 10, width: 100, height: 30))
         communityCityLabel = UILabel(frame: CGRect(x: communityTypeIndicator.frame.maxX + 10, y: profileImageHolder.frame.maxY + 10, width: 100, height: 30))
         
         self.addSubview(profileImageHolder)

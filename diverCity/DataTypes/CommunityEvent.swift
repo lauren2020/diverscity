@@ -19,10 +19,11 @@ struct CommunityEvent {
     var interested: [String] = []
     var notGoing: [String] = []
     var description: String?
-    var category: String!
+    var category: Tag!
     var coverImage: UIImage?
     var creator: User?
     var community: Community!
+    var tags: [Tag] = []
 }
 
 extension CommunityEvent {
@@ -55,7 +56,7 @@ extension CommunityEvent {
         self.going = going != nil ? going!.components(separatedBy: ",") : []
         self.notGoing = notGoing != nil ? notGoing!.components(separatedBy: ",") : []
         self.interested = interested != nil ? interested!.components(separatedBy: ",") : []
-        self.category = category
+        self.category = Tag(label: category ?? "PARTY", colorCode: 0)
         
         if (imageData != nil) {
             let data = Data(base64Encoded: imageData!)

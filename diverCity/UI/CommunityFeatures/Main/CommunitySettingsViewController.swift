@@ -1,17 +1,16 @@
 //
-//  BaseViewController.swift
+//  CommunitySettingsViewController.swift
 //  diverCity
 //
-//  Created by Lauren Shultz on 3/8/19.
+//  Created by Lauren Shultz on 3/15/19.
 //  Copyright © 2019 Lauren Shultz. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class BaseViewController: UIViewController {
+class CommunitySettingsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.edgesForExtendedLayout = []
     }
 }

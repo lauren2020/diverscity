@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class UserSettingsViewController: BaseNavigationItemViewController {
+class UserSettingsViewController: BaseViewController {
     var scrollView: UIScrollView!
     var personalInfoTitle: UILabel!
     var nameTextField: SetableTextField!
@@ -35,10 +35,14 @@ class UserSettingsViewController: BaseNavigationItemViewController {
     }
     
     func setupViews() {
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(enableEditMode))]
         scrollView = UIScrollView(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: self.view.frame.height))
         setupPersonalInfo()
         setupAddress()
         setupTags()
+        
+        scrollView.isScrollEnabled = true
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: tagsTitle.frame.maxY)
         
         addSubviews()
     }
@@ -85,5 +89,13 @@ class UserSettingsViewController: BaseNavigationItemViewController {
         scrollView.addSubview(zipTextField)
         scrollView.addSubview(divider2)
         scrollView.addSubview(tagsTitle)
+    }
+    
+    @objc func enableEditMode(_ sender: Any) {
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(disableEditMode))]
+    }
+    
+    @objc func disableEditMode(_ sender: Any) {
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(enableEditMode))]
     }
 }

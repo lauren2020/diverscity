@@ -116,7 +116,8 @@ class CommunityHomeViewController: BaseTabViewController {
     }
     
     @objc func openEditCommunity(_ sender: Any) {
-        
+        let communitySettingsViewController = CommunitySettingsViewController()
+        self.navigationController?.pushViewController(communitySettingsViewController, animated: true)
     }
     
     @objc func viewMembers(_ sender: Any) {

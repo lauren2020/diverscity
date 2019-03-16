@@ -25,16 +25,13 @@ struct Community {
     var feed: [String]
     var tags: [Tag] = []
     var category: Tag?
+    var address: Address!
     
     var allowMembersToPostToFeed: Bool = false
     var allowMembersToPostEvents: Bool = false
 }
 
 extension Community {
-    enum SerializationError:Error {
-        case missing(String)
-        case invalid(String, Any)
-    }
     init?(json: [String: Any]) throws {
         print("structing")
         guard let name = json["name"] as? String,
@@ -62,6 +59,7 @@ extension Community {
         let devStubs = DevStubs()
         self.events = []
         self.feed = []
+        self.address = Address(line1: "1234 Linden Ave", line2: nil, city: "Scranton", state: "PA", zipcode: "10087")
         //self.location = CLLocation.init(latitude: 0, longitude: 0)
         //self.beacon = CLBeacon.init()
         self.creator = "1"//creator

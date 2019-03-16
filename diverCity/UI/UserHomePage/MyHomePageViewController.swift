@@ -8,14 +8,13 @@
 
 import UIKit
 
-class MyHomePageViewController: BaseNavigationItemViewController {
+class MyHomePageViewController: BaseViewController {
     var divider: UIView!
     
     //Consider converting to table view
     var scrollView: UIScrollView!
     
     var background: Background!
-    //var logoutButton: MenuItemButton!
     var cover: UserCover!
     var infoOptions: UserHeaderInformationView!
     
@@ -43,7 +42,7 @@ class MyHomePageViewController: BaseNavigationItemViewController {
     func setupViews() {
         self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(logoutOfAccount))]
         self.navigationItem.leftBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(openUserSettings))]
-        cover = UserCover(frame: CGRect(x: self.view.bounds.minX, y: self.view.bounds.minY, width: self.view.frame.width, height: 200), withTitle: (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!, withMenuOptions: [])
+        cover = UserCover(frame: CGRect(x: self.view.bounds.minX, y: self.view.bounds.minY, width: self.view.frame.width, height: 180), withTitle: (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!, withMenuOptions: [])
         infoOptions = UserHeaderInformationView(frame: CGRect(x: self.view.frame.minX, y: cover.frame.maxY, width: self.view.frame.width, height: 50), name: "Info")
         
         divider = UIView(frame: CGRect(x: self.view.frame.minX, y: infoOptions.frame.maxY, width: self.view.frame.width, height: 5))
@@ -62,9 +61,6 @@ class MyHomePageViewController: BaseNavigationItemViewController {
         communitiesTableView = CommunityTableView(frame: CGRect(x: scrollView.frame.minX, y: myCommunitiesTag.frame.maxY, width: scrollView.frame.width, height: 400), communities: [], communitySelectedCallback: { (community) in
                 UserSession.selectedCommunity = community
                 let communityTabsViewController = CommunityTabsViewController()
-            //communityTabsViewController.rootNavigationController = self.navigationController
-            //print("Navigation Controller: ", communityTabsViewController.rootNavigationController)
-            //self.navigationController?.pushViewController(communityTabsViewController, animated: true)
                 self.present(communityTabsViewController, animated: true, completion: nil)
             })
         
@@ -77,6 +73,7 @@ class MyHomePageViewController: BaseNavigationItemViewController {
         myEventsTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: findCommunities.frame.maxY, width: scrollView.frame.width, height: 40), withLabel: "My Events")
         myEventsTableView = EventsTableView(frame: CGRect(x: scrollView.frame.minX, y: myEventsTag.frame.maxY, width: scrollView.frame.width, height: 550), eventsList: [], eventSelectedCallback: { (event) in
             let eventDetailsViewController = EventDetailsViewController()
+            eventDetailsViewController.event = event
             self.navigationController?.pushViewController(eventDetailsViewController, animated: true)
             })
         

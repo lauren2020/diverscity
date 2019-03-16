@@ -24,6 +24,8 @@ struct CommunityEvent {
     var creator: User?
     var community: Community!
     var tags: [Tag] = []
+    var address: Address?
+    var locationName: String!
 }
 
 extension CommunityEvent {
@@ -57,6 +59,8 @@ extension CommunityEvent {
         self.notGoing = notGoing != nil ? notGoing!.components(separatedBy: ",") : []
         self.interested = interested != nil ? interested!.components(separatedBy: ",") : []
         self.category = Tag(label: category ?? "PARTY", colorCode: 0)
+        self.address = Address(line1: "1234 Linden Ave", line2: nil, city: "Scranton", state: "PA", zipcode: "10087")
+        self.locationName = "Central Perk"
         
         if (imageData != nil) {
             let data = Data(base64Encoded: imageData!)

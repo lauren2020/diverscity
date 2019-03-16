@@ -95,6 +95,18 @@
 		80AD91642239CD890080EEF0 /* SetableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD91632239CD890080EEF0 /* SetableTextField.swift */; };
 		80AD91662239E9A90080EEF0 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD91652239E9A90080EEF0 /* Divider.swift */; };
 		80AD91682239F9E00080EEF0 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD91672239F9DF0080EEF0 /* Tag.swift */; };
+		80AD916A223B57640080EEF0 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9169223B57640080EEF0 /* Address.swift */; };
+		80AD916C223B59120080EEF0 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD916B223B59120080EEF0 /* Enums.swift */; };
+		80AD916E223C02310080EEF0 /* EventCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD916D223C02310080EEF0 /* EventCover.swift */; };
+		80AD9170223C14C70080EEF0 /* EventDetailsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD916F223C14C70080EEF0 /* EventDetailsTableView.swift */; };
+		80AD9172223C14FD0080EEF0 /* EventDetailsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9171223C14FD0080EEF0 /* EventDetailsTableCell.swift */; };
+		80AD9174223C45670080EEF0 /* EventDetailDateItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9173223C45670080EEF0 /* EventDetailDateItemView.swift */; };
+		80AD9176223C46740080EEF0 /* EventDetailInfoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9175223C46740080EEF0 /* EventDetailInfoItemView.swift */; };
+		80AD9178223C46B40080EEF0 /* EventDetailLocationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9177223C46B40080EEF0 /* EventDetailLocationItemView.swift */; };
+		80AD917A223C474F0080EEF0 /* EventDetailRecurringItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9179223C474F0080EEF0 /* EventDetailRecurringItemView.swift */; };
+		80AD917C223C47B70080EEF0 /* EventDetailAttendanceItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD917B223C47B70080EEF0 /* EventDetailAttendanceItemView.swift */; };
+		80AD917E223C49D40080EEF0 /* EventDetailItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD917D223C49D40080EEF0 /* EventDetailItemView.swift */; };
+		80AD9180223C905A0080EEF0 /* CommunitySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD917F223C905A0080EEF0 /* CommunitySettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,6 +238,18 @@
 		80AD91632239CD890080EEF0 /* SetableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetableTextField.swift; sourceTree = "<group>"; };
 		80AD91652239E9A90080EEF0 /* Divider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divider.swift; sourceTree = "<group>"; };
 		80AD91672239F9DF0080EEF0 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		80AD9169223B57640080EEF0 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		80AD916B223B59120080EEF0 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		80AD916D223C02310080EEF0 /* EventCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCover.swift; sourceTree = "<group>"; };
+		80AD916F223C14C70080EEF0 /* EventDetailsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsTableView.swift; sourceTree = "<group>"; };
+		80AD9171223C14FD0080EEF0 /* EventDetailsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsTableCell.swift; sourceTree = "<group>"; };
+		80AD9173223C45670080EEF0 /* EventDetailDateItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailDateItemView.swift; sourceTree = "<group>"; };
+		80AD9175223C46740080EEF0 /* EventDetailInfoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailInfoItemView.swift; sourceTree = "<group>"; };
+		80AD9177223C46B40080EEF0 /* EventDetailLocationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailLocationItemView.swift; sourceTree = "<group>"; };
+		80AD9179223C474F0080EEF0 /* EventDetailRecurringItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailRecurringItemView.swift; sourceTree = "<group>"; };
+		80AD917B223C47B70080EEF0 /* EventDetailAttendanceItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailAttendanceItemView.swift; sourceTree = "<group>"; };
+		80AD917D223C49D40080EEF0 /* EventDetailItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailItemView.swift; sourceTree = "<group>"; };
+		80AD917F223C905A0080EEF0 /* CommunitySettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySettingsViewController.swift; sourceTree = "<group>"; };
 		A9816917CD50D67D99302640 /* Pods-diverCityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityTests/Pods-diverCityTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC8ED338B8C05F0C3F75259D /* Pods-diverCityUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EEB383ABE8B5AB460B3CEB0F /* Pods-diverCityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -388,6 +412,7 @@
 				80AD910A223356800080EEF0 /* Media.swift */,
 				80AD9157223749670080EEF0 /* MenuItem.swift */,
 				80AD91672239F9DF0080EEF0 /* Tag.swift */,
+				80AD9169223B57640080EEF0 /* Address.swift */,
 			);
 			path = DataTypes;
 			sourceTree = "<group>";
@@ -431,6 +456,7 @@
 			isa = PBXGroup;
 			children = (
 				80AD90D22229E4610080EEF0 /* ActivityHelper.swift */,
+				80AD916B223B59120080EEF0 /* Enums.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -504,6 +530,7 @@
 			isa = PBXGroup;
 			children = (
 				80AD90EE223228DB0080EEF0 /* CommunityTabsViewController.swift */,
+				80AD917F223C905A0080EEF0 /* CommunitySettingsViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -541,6 +568,8 @@
 				80AD90F32232D5B00080EEF0 /* EventTableCell.swift */,
 				80AD9142223619F00080EEF0 /* FeaturesTableSelector.swift */,
 				80AD914422361BED0080EEF0 /* FeatureTableCell.swift */,
+				80AD916F223C14C70080EEF0 /* EventDetailsTableView.swift */,
+				80AD9171223C14FD0080EEF0 /* EventDetailsTableCell.swift */,
 			);
 			path = TableViews;
 			sourceTree = "<group>";
@@ -566,6 +595,7 @@
 				80AD91022233233B0080EEF0 /* CommunityHeader.swift */,
 				80AD914A223708970080EEF0 /* UserHeaderInformationView.swift */,
 				80AD915122371CCF0080EEF0 /* CommunityHeaderInformationView.swift */,
+				80AD916D223C02310080EEF0 /* EventCover.swift */,
 			);
 			path = Covers;
 			sourceTree = "<group>";
@@ -599,6 +629,12 @@
 				80AD9128223594C70080EEF0 /* PostView.swift */,
 				80AD91302235BFFC0080EEF0 /* EventItemView.swift */,
 				80AD91322235D5140080EEF0 /* CommunityItemView.swift */,
+				80AD9173223C45670080EEF0 /* EventDetailDateItemView.swift */,
+				80AD9175223C46740080EEF0 /* EventDetailInfoItemView.swift */,
+				80AD9177223C46B40080EEF0 /* EventDetailLocationItemView.swift */,
+				80AD9179223C474F0080EEF0 /* EventDetailRecurringItemView.swift */,
+				80AD917B223C47B70080EEF0 /* EventDetailAttendanceItemView.swift */,
+				80AD917D223C49D40080EEF0 /* EventDetailItemView.swift */,
 			);
 			path = CellViews;
 			sourceTree = "<group>";
@@ -851,6 +887,7 @@
 				80AD91072233553E0080EEF0 /* Post.swift in Sources */,
 				80AD90D32229E4610080EEF0 /* ActivityHelper.swift in Sources */,
 				80278F282194EB600023D8D7 /* EventsMapViewController.swift in Sources */,
+				80AD9174223C45670080EEF0 /* EventDetailDateItemView.swift in Sources */,
 				80AD91612239A4EB0080EEF0 /* TagIndicator.swift in Sources */,
 				80AD910F223362D50080EEF0 /* CommunitiesCollectionView.swift in Sources */,
 				80AD912B22359FC00080EEF0 /* MediaCollectionView.swift in Sources */,
@@ -883,8 +920,11 @@
 				80AD912622357C9D0080EEF0 /* DevStubs.swift in Sources */,
 				80AD913A2236030D0080EEF0 /* FAQViewController.swift in Sources */,
 				80AD90E82231F0DD0080EEF0 /* ObjectLabelTag.swift in Sources */,
+				80AD9180223C905A0080EEF0 /* CommunitySettingsViewController.swift in Sources */,
+				80AD9176223C46740080EEF0 /* EventDetailInfoItemView.swift in Sources */,
 				80278ECC218D66BF0023D8D7 /* CommunityEvent.swift in Sources */,
 				80AD90F42232D5B00080EEF0 /* EventTableCell.swift in Sources */,
+				80AD916E223C02310080EEF0 /* EventCover.swift in Sources */,
 				8008EB55216EE79F004B7799 /* AppDelegate.swift in Sources */,
 				80AD9117223365570080EEF0 /* BaseTabViewController.swift in Sources */,
 				80AD9158223749670080EEF0 /* MenuItem.swift in Sources */,
@@ -893,9 +933,11 @@
 				80AD911E223391AC0080EEF0 /* UserCover.swift in Sources */,
 				80AD91152233652C0080EEF0 /* BaseViewController.swift in Sources */,
 				80AD91682239F9E00080EEF0 /* Tag.swift in Sources */,
+				80AD916C223B59120080EEF0 /* Enums.swift in Sources */,
 				80AD9156223748D80080EEF0 /* SideBarMenu.swift in Sources */,
 				80278EB5218A143B0023D8D7 /* APIDelegate.swift in Sources */,
 				80AD90D62230D19A0080EEF0 /* Background.swift in Sources */,
+				80AD917A223C474F0080EEF0 /* EventDetailRecurringItemView.swift in Sources */,
 				80278F202193E7680023D8D7 /* CreateNewCommunityViewController.swift in Sources */,
 				80AD9143223619F00080EEF0 /* FeaturesTableSelector.swift in Sources */,
 				80AD90E22230E1820080EEF0 /* SignInViewController.swift in Sources */,
@@ -904,24 +946,30 @@
 				8008EB8B2170FA02004B7799 /* FindCommunitiesViewController.swift in Sources */,
 				8008EB9621711A66004B7799 /* API.swift in Sources */,
 				80AD913C223603380080EEF0 /* ContactUsViewController.swift in Sources */,
+				80AD9178223C46B40080EEF0 /* EventDetailLocationItemView.swift in Sources */,
 				80AD9109223355E80080EEF0 /* Comment.swift in Sources */,
 				80AD91332235D5140080EEF0 /* CommunityItemView.swift in Sources */,
 				80AD9140223603950080EEF0 /* ForgotYourPasswordViewController.swift in Sources */,
 				8008EB8D2170FF1B004B7799 /* Community.swift in Sources */,
+				80AD9170223C14C70080EEF0 /* EventDetailsTableView.swift in Sources */,
 				80AD90FF223316940080EEF0 /* EventsCollectionView.swift in Sources */,
 				80AD915F2238B47E0080EEF0 /* EventDetailsViewController.swift in Sources */,
+				80AD917C223C47B70080EEF0 /* EventDetailAttendanceItemView.swift in Sources */,
 				80AD90E42231EE610080EEF0 /* MenuIconButton.swift in Sources */,
 				80AD90EC223214000080EEF0 /* CommunityTableCell.swift in Sources */,
+				80AD9172223C14FD0080EEF0 /* EventDetailsTableCell.swift in Sources */,
 				8008EBA321754B79004B7799 /* CommunityHomeViewController.swift in Sources */,
 				80278F222193EAFD0023D8D7 /* CommunityFeature.swift in Sources */,
 				80AD9113223364E30080EEF0 /* GenericCover.swift in Sources */,
 				80AD915422371E020080EEF0 /* CoverItemButton.swift in Sources */,
 				80AD90DC2230D6D50080EEF0 /* TextOnlyButton.swift in Sources */,
+				80AD916A223B57640080EEF0 /* Address.swift in Sources */,
 				80AD90FC2233141D0080EEF0 /* EventCollectionTile.swift in Sources */,
 				8008EBA521754C35004B7799 /* CommunityEventsViewController.swift in Sources */,
 				80AD9129223594C70080EEF0 /* PostView.swift in Sources */,
 				80AD90E62231EFE30080EEF0 /* MenuItemButton.swift in Sources */,
 				80AD915A223757AF0080EEF0 /* ActionButton.swift in Sources */,
+				80AD917E223C49D40080EEF0 /* EventDetailItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

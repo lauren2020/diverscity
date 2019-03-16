@@ -21,7 +21,7 @@ class UserCover: UIView {
     init(frame: CGRect, withTitle title: String, withMenuOptions options: [MenuItemButton]) {
         //136
         coverPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
-        profilePhoto = UIImageView(frame: CGRect(x: (frame.width / 2) - 37.5, y: 60, width: 75, height: 75))
+        profilePhoto = UIImageView(frame: CGRect(x: (frame.width / 2) - 37.5, y: 30, width: 75, height: 75))
         
         //let offset: CGFloat = 85
         //profilePhoto.frame.midX - 100

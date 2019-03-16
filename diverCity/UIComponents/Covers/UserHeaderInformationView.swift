@@ -10,16 +10,21 @@ import Foundation
 import UIKit
 
 class UserHeaderInformationView: UIView {
-    var notificationsIcon: ActionButton!
-    var settingsIcon: UIButton!
-    var manageCommunitiesIcon: UIButton!
+    var notificationsIcon: TaggedButton!
+    var peopleIcon: ActionButton!
+//    var settingsIcon: UIButton!
+//    var manageCommunitiesIcon: UIButton!
     
     init(frame: CGRect, name: String) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.gray
         
-        notificationsIcon = ActionButton(x: frame.maxX - 60, y: frame.midY - 15, icon: "notificationsIcon")
+        notificationsIcon = TaggedButton(frame: CGRect(x: self.frame.width - 100, y: (self.frame.height / 2) - 15, width: 30, height: 30), icon: UIImage(named: "notificationBell") ?? UIImage())
+            //ActionButton(x: frame.maxX - 60, y: frame.midY - 15, icon: "notificationsIcon")
+        
+        peopleIcon = ActionButton(x: (self.frame.width / 2) - 15, y: notificationsIcon.frame.minY, icon: "peopleIcon")
         self.addSubview(notificationsIcon)
+        self.addSubview(peopleIcon)
         bringSubview(toFront: notificationsIcon)
     }
     

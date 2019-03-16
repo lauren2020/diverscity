@@ -17,7 +17,7 @@ class TagIndicator: UILabel {
         self.text = text
         self.textAlignment = .center
         self.textColor = UIColor.white
-        self.backgroundColor = color
+        self.layer.backgroundColor = color.cgColor
         self.layer.cornerRadius = 5
     }
     

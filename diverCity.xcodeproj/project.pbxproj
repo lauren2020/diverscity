@@ -107,6 +107,7 @@
 		80AD917C223C47B70080EEF0 /* EventDetailAttendanceItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD917B223C47B70080EEF0 /* EventDetailAttendanceItemView.swift */; };
 		80AD917E223C49D40080EEF0 /* EventDetailItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD917D223C49D40080EEF0 /* EventDetailItemView.swift */; };
 		80AD9180223C905A0080EEF0 /* CommunitySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD917F223C905A0080EEF0 /* CommunitySettingsViewController.swift */; };
+		80AD9182223C98B00080EEF0 /* TaggedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9181223C98B00080EEF0 /* TaggedButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,6 +251,7 @@
 		80AD917B223C47B70080EEF0 /* EventDetailAttendanceItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailAttendanceItemView.swift; sourceTree = "<group>"; };
 		80AD917D223C49D40080EEF0 /* EventDetailItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailItemView.swift; sourceTree = "<group>"; };
 		80AD917F223C905A0080EEF0 /* CommunitySettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySettingsViewController.swift; sourceTree = "<group>"; };
+		80AD9181223C98B00080EEF0 /* TaggedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedButton.swift; sourceTree = "<group>"; };
 		A9816917CD50D67D99302640 /* Pods-diverCityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityTests/Pods-diverCityTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC8ED338B8C05F0C3F75259D /* Pods-diverCityUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EEB383ABE8B5AB460B3CEB0F /* Pods-diverCityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -609,6 +611,7 @@
 				80AD90DB2230D6D50080EEF0 /* TextOnlyButton.swift */,
 				80AD915322371E020080EEF0 /* CoverItemButton.swift */,
 				80AD9159223757AF0080EEF0 /* ActionButton.swift */,
+				80AD9181223C98B00080EEF0 /* TaggedButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -882,6 +885,7 @@
 				80278EB7218D5C910023D8D7 /* EventDispatcher.swift in Sources */,
 				80278EB9218D5D8F0023D8D7 /* EventHandler.swift in Sources */,
 				80AD91312235BFFC0080EEF0 /* EventItemView.swift in Sources */,
+				80AD9182223C98B00080EEF0 /* TaggedButton.swift in Sources */,
 				80AD911A223366C90080EEF0 /* CommunityTableView.swift in Sources */,
 				80AD915222371CCF0080EEF0 /* CommunityHeaderInformationView.swift in Sources */,
 				80AD91072233553E0080EEF0 /* Post.swift in Sources */,

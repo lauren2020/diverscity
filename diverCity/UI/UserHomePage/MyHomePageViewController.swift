@@ -40,8 +40,10 @@ class MyHomePageViewController: BaseViewController {
     }
     
     func setupViews() {
-        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(logoutOfAccount))]
-        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(openUserSettings))]
+        //var logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutOfAccount))
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutOfAccount))]
+        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "settingsIcon"), style: .plain, target: self, action: #selector(openUserSettings))]
+            //[UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(openUserSettings))]
         cover = UserCover(frame: CGRect(x: self.view.bounds.minX, y: self.view.bounds.minY, width: self.view.frame.width, height: 180), withTitle: (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!, withMenuOptions: [])
         infoOptions = UserHeaderInformationView(frame: CGRect(x: self.view.frame.minX, y: cover.frame.maxY, width: self.view.frame.width, height: 50), name: "Info")
         

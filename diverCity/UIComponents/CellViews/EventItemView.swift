@@ -59,7 +59,7 @@ class EventItemView: UIView {
         eventImage.image = event.coverImage
         eventTitle.text = event.name
         eventCategory.text = event.category.label
-        eventCategory.backgroundColor = event.category.color
+        eventCategory.layer.backgroundColor = event.category.color.cgColor
         communityTitle.text = event.community.name
         eventDate.text = event.date?.toString()
         eventTime.text = event.startTime?.toTime()

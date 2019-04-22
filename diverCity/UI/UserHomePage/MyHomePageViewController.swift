@@ -123,12 +123,12 @@ class MyHomePageViewController: BaseViewController {
         var newCommunities: [Community] = []
         var numberOfCommunitiesToLoad = 0
         if ((UserSession.user?.communities)!.count <= UserSession.defaultLoadCountCommunities) {
-            numberOfCommunitiesToLoad = (UserSession.user?.communities)!.count - 1
+            numberOfCommunitiesToLoad = (UserSession.user?.communities)!.count
         } else {
             numberOfCommunitiesToLoad = UserSession.defaultLoadCountCommunities
         }
         if (numberOfCommunitiesToLoad > 0) {
-        for index in 0...numberOfCommunitiesToLoad {
+        for index in 0...numberOfCommunitiesToLoad - 1 {
             //Community.communityInfo(withId: String(communityId), completion: setCommunities)
             //ActivityHelper.startActivity(view: self.view)
             let getCommunityRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: String((UserSession.user?.communities)![index]), methodType: "GET", postContent: nil)
@@ -137,6 +137,7 @@ class MyHomePageViewController: BaseViewController {
                     if (json != nil && json?.count != 0) {
                         do {
                             newCommunities.append(try Community(json: json![0])!)
+                            print("Setting community");
                             self.communitiesTableView.reloadCommunities(communities: newCommunities)
                         } catch {
                             print(error)
@@ -151,8 +152,33 @@ class MyHomePageViewController: BaseViewController {
     }
     
     func loadMyEventsList() {
-        let devStubs = DevStubs()
-        myEventsTableView.reloadEvents(events: devStubs.getEventList())
+        var newEvents: [CommunityEvent] = []
+        var numberOfEventsToLoad = 0
+        if (UserSession.user.events_going.count <= UserSession.defaultLoadCountEvents) {
+            numberOfEventsToLoad = UserSession.user.events_going.count - 1
+        } else {
+            numberOfEventsToLoad = UserSession.defaultLoadCountEvents
+        }
+        if (numberOfEventsToLoad > 0) {
+            for index in 0...numberOfEventsToLoad {
+                //ActivityHelper.startActivity(view: self.view)
+                let getEventRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: String(UserSession.user.events_going[index]), methodType: "GET", postContent: nil)
+                if (getEventRequest != nil) {
+                    APIDelegate.performTask(withRequest: getEventRequest!, completion: {json in
+                        if (json != nil && json?.count != 0) {
+                            do {
+                                newEvents.append(try CommunityEvent(json: json![0])!)
+                                self.myEventsTableView.reloadEvents(events: newEvents)
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    })
+                } else {
+                    //|||||||||ActivityHelper.stopActivity(view: self.view)
+                }
+            }
+        }
     }
     
     @objc func createNewCommunity(_ sender: Any) {

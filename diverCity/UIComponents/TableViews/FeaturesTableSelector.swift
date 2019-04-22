@@ -61,6 +61,12 @@ extension FeaturesTableSelector: UITableViewDelegate, UITableViewDataSource {
             featuresList[indexPath.row].selected = true
             cell?.backgroundColor = UIColor.blue
         }
+        selectedFeatures = []
+        for feature in featuresList {
+            if (feature.selected == true) {
+                selectedFeatures.append(feature.id)
+            }
+        }
     }
     
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

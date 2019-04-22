@@ -13,15 +13,15 @@ class Post {
     var id: String
     var title: String
     var body: String
-    var media: [Media]
+    var media: [String]
     var comments: [String]
     var sharedBy: [String]
     var likedBy: [String]
     var postDate: Date
-    var user: User?
-    var community: Community!
+    var user: String!
+    var community: String!
     
-    init(id: String, title: String, body: String, media: [Media], comments: [String], sharedBy: [String], likedBy: [String], postDate: Date, user: User?, community: Community) {
+    init(id: String, title: String, body: String, media: [String], comments: [String], sharedBy: [String], likedBy: [String], postDate: Date, user: String, community: String) {
         self.id = id
         self.title = title
         self.body = body
@@ -70,13 +70,14 @@ class Post {
         self.media = []
 //        //Get Community
         let devStubs = DevStubs()
-        self.user = devStubs.getUser()
-        do {
-            self.community = try Community(json: devStubs.communityJson1)
-        } catch {
-            print(error)
-            throw SerializationError.invalid("Community is not valid!", devStubs.communityJson1)
-        }
+        self.user = userId//devStubs.getUser()
+        self.community = community
+//        do {
+//            self.community = try Community(json: devStubs.communityJson1)
+//        } catch {
+//            print(error)
+//            throw SerializationError.invalid("Community is not valid!", devStubs.communityJson1)
+//        }
 //        launchSetCommunity(community: community, setter: setCommunity)
 //        //Get User
 //        launchSetUser(user: userId, setter: setUser)
@@ -141,17 +142,17 @@ class Post {
         }
     }
     
-    func setUser(user: User?) {
-        self.user = user
-    }
-    
-    func setCommunity(community: Community?) {
-        if (community != nil) {
-            self.community = community!
-        }
-    }
-    
-    func setMedia(media: [Media]) {
-        self.media = media
-    }
+//    func setUser(user: User?) {
+//        self.user = user
+//    }
+//    
+//    func setCommunity(community: Community?) {
+//        if (community != nil) {
+//            self.community = community!
+//        }
+//    }
+//    
+//    func setMedia(media: [Media]) {
+//        self.media = media
+//    }
 }

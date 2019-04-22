@@ -9,10 +9,11 @@
 import Foundation
 
 struct UserSession {
-    static var user: User?
+    static var user: User!
     static var api = API()
     static var selectedCommunity: Community?
     static var defaultLoadCountCommunities = 10
+    static var defaultLoadCountEvents = 10
     let urlComponents: URLComponents = URLComponents(string: "https://divircity-api.herokuapp.com/api/v1/users")!
     
     let session: URLSession = URLSession.shared

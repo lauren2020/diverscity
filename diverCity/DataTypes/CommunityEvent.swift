@@ -11,18 +11,22 @@ import UIKit
 
 struct CommunityEvent {
     var name: String!
-    var recuring: Bool?
+    var recuring: Bool!
     var date: Date?
     var startTime: Double?
     var endTime: Double?
+    var privacyType: PrivacyType
+    
     var going: [String] = []
     var interested: [String] = []
     var notGoing: [String] = []
+    var invited: [String] = []
+    
     var description: String?
     var category: Tag!
     var coverImage: UIImage?
-    var creator: User?
-    var community: Community!
+    var creator: String!
+    var community: String!
     var tags: [Tag] = []
     var address: Address?
     var locationName: String!
@@ -43,7 +47,12 @@ extension CommunityEvent {
             let going = json["going"] as? String?,
             let interested = json["interested"] as? String?,
             let notGoing = json["not_going"] as? String?,
-            let category = json["category"] as? String?
+            let category = json["category"] as? String?,
+            let creator = json["creator"] as? String?,
+            let locationName = json["location_name"] as? String?,
+            let address = json["address"] as? String?,
+            let privacyType = json["privacy_type"] as? String?,
+            let community = json["community"] as? String?
             else {
                 print("error")
                 throw SerializationError.missing("Value id missing for x")
@@ -58,9 +67,13 @@ extension CommunityEvent {
         self.going = going != nil ? going!.components(separatedBy: ",") : []
         self.notGoing = notGoing != nil ? notGoing!.components(separatedBy: ",") : []
         self.interested = interested != nil ? interested!.components(separatedBy: ",") : []
-        self.category = Tag(label: category ?? "PARTY", colorCode: 0)
+        self.category = Tag(id: 0, label: category ?? "PARTY", colorCode: 0)
         self.address = Address(line1: "1234 Linden Ave", line2: nil, city: "Scranton", state: "PA", zipcode: "10087")
         self.locationName = "Central Perk"
+        self.creator = creator
+        self.community = community
+        self.locationName = locationName
+        self.privacyType = PrivacyType(visibility: 0)
         
         if (imageData != nil) {
             let data = Data(base64Encoded: imageData!)
@@ -76,16 +89,5 @@ extension CommunityEvent {
         }
         
         let devStub = DevStubs()
-        do {
-            self.creator = try User(json: devStub.userJson1)
-            let community1 = try Community(json: devStub.communityJson1)
-            if (community1 != nil) {
-                self.community = community1!
-            } else {
-                throw SerializationError.missing("No Community!")
-            }
-        } catch {
-            print(error)
-        }
     }
 }

@@ -10,8 +10,8 @@ import Foundation
 
 struct APIDelegate {
     static let basePath = "https://divircity-api.herokuapp.com/api/"
-    static let currentVersion = "v1"
-    static let path = "https://divircity-api.herokuapp.com/api/v1"
+    static let currentVersion = "v2"
+    static let path = "https://divircity-api.herokuapp.com/api/v2"
     static let usersPath = "/users"
     static let communitiesPath = "/communities"
     static let eventsPath = "/events"

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		00298A376488A0CC261F59A6 /* Pods_diverCityTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297C89B9892BE83E5710786C /* Pods_diverCityTests.framework */; };
 		4F5DC98FAFB7F593A99325E1 /* Pods_diverCityUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F906D5DF113B3410984FD0BE /* Pods_diverCityUITests.framework */; };
+		8004527D22613DEA00257189 /* UserCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8004527C22613DE900257189 /* UserCollectionView.swift */; };
+		8004527F22613E8800257189 /* UserCollectionTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8004527E22613E8800257189 /* UserCollectionTile.swift */; };
+		8004528122613F1E00257189 /* UsersTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8004528022613F1E00257189 /* UsersTableView.swift */; };
+		8004528322613F6100257189 /* UserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8004528222613F6100257189 /* UserTableCell.swift */; };
 		8008EB55216EE79F004B7799 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008EB54216EE79F004B7799 /* AppDelegate.swift */; };
 		8008EB5C216EE79F004B7799 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8008EB5A216EE79F004B7799 /* Main.storyboard */; };
 		8008EB5E216EE7A3004B7799 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8008EB5D216EE7A3004B7799 /* Assets.xcassets */; };
@@ -108,6 +112,10 @@
 		80AD917E223C49D40080EEF0 /* EventDetailItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD917D223C49D40080EEF0 /* EventDetailItemView.swift */; };
 		80AD9180223C905A0080EEF0 /* CommunitySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD917F223C905A0080EEF0 /* CommunitySettingsViewController.swift */; };
 		80AD9182223C98B00080EEF0 /* TaggedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9181223C98B00080EEF0 /* TaggedButton.swift */; };
+		80AD9184223D83620080EEF0 /* Ambassadorship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9183223D83620080EEF0 /* Ambassadorship.swift */; };
+		80AD9186224877920080EEF0 /* TagsTableSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9185224877920080EEF0 /* TagsTableSelector.swift */; };
+		80AD91882248786B0080EEF0 /* TagTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD91872248786B0080EEF0 /* TagTableCell.swift */; };
+		80AD918A224878CB0080EEF0 /* TagItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AD9189224878CB0080EEF0 /* TagItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +153,10 @@
 		10292BDE488D4DA4B451C716 /* Pods-diverCity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCity.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCity/Pods-diverCity.release.xcconfig"; sourceTree = "<group>"; };
 		125F82234ABE38F0DAD97FF7 /* Pods_diverCity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_diverCity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		297C89B9892BE83E5710786C /* Pods_diverCityTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_diverCityTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8004527C22613DE900257189 /* UserCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionView.swift; sourceTree = "<group>"; };
+		8004527E22613E8800257189 /* UserCollectionTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionTile.swift; sourceTree = "<group>"; };
+		8004528022613F1E00257189 /* UsersTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableView.swift; sourceTree = "<group>"; };
+		8004528222613F6100257189 /* UserTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableCell.swift; sourceTree = "<group>"; };
 		8008EB51216EE79F004B7799 /* diverCity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diverCity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8008EB54216EE79F004B7799 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8008EB5B216EE79F004B7799 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -252,6 +264,10 @@
 		80AD917D223C49D40080EEF0 /* EventDetailItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailItemView.swift; sourceTree = "<group>"; };
 		80AD917F223C905A0080EEF0 /* CommunitySettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySettingsViewController.swift; sourceTree = "<group>"; };
 		80AD9181223C98B00080EEF0 /* TaggedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedButton.swift; sourceTree = "<group>"; };
+		80AD9183223D83620080EEF0 /* Ambassadorship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ambassadorship.swift; sourceTree = "<group>"; };
+		80AD9185224877920080EEF0 /* TagsTableSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsTableSelector.swift; sourceTree = "<group>"; };
+		80AD91872248786B0080EEF0 /* TagTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTableCell.swift; sourceTree = "<group>"; };
+		80AD9189224878CB0080EEF0 /* TagItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagItemView.swift; sourceTree = "<group>"; };
 		A9816917CD50D67D99302640 /* Pods-diverCityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityTests/Pods-diverCityTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC8ED338B8C05F0C3F75259D /* Pods-diverCityUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EEB383ABE8B5AB460B3CEB0F /* Pods-diverCityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -415,6 +431,7 @@
 				80AD9157223749670080EEF0 /* MenuItem.swift */,
 				80AD91672239F9DF0080EEF0 /* Tag.swift */,
 				80AD9169223B57640080EEF0 /* Address.swift */,
+				80AD9183223D83620080EEF0 /* Ambassadorship.swift */,
 			);
 			path = DataTypes;
 			sourceTree = "<group>";
@@ -572,6 +589,10 @@
 				80AD914422361BED0080EEF0 /* FeatureTableCell.swift */,
 				80AD916F223C14C70080EEF0 /* EventDetailsTableView.swift */,
 				80AD9171223C14FD0080EEF0 /* EventDetailsTableCell.swift */,
+				80AD9185224877920080EEF0 /* TagsTableSelector.swift */,
+				80AD91872248786B0080EEF0 /* TagTableCell.swift */,
+				8004528022613F1E00257189 /* UsersTableView.swift */,
+				8004528222613F6100257189 /* UserTableCell.swift */,
 			);
 			path = TableViews;
 			sourceTree = "<group>";
@@ -585,6 +606,8 @@
 				80AD90FE223316940080EEF0 /* EventsCollectionView.swift */,
 				80AD912A22359FC00080EEF0 /* MediaCollectionView.swift */,
 				80AD912C2235A08C0080EEF0 /* MediaCollectionTile.swift */,
+				8004527C22613DE900257189 /* UserCollectionView.swift */,
+				8004527E22613E8800257189 /* UserCollectionTile.swift */,
 			);
 			path = CollectionViews;
 			sourceTree = "<group>";
@@ -638,6 +661,7 @@
 				80AD9179223C474F0080EEF0 /* EventDetailRecurringItemView.swift */,
 				80AD917B223C47B70080EEF0 /* EventDetailAttendanceItemView.swift */,
 				80AD917D223C49D40080EEF0 /* EventDetailItemView.swift */,
+				80AD9189224878CB0080EEF0 /* TagItemView.swift */,
 			);
 			path = CellViews;
 			sourceTree = "<group>";
@@ -889,7 +913,9 @@
 				80AD911A223366C90080EEF0 /* CommunityTableView.swift in Sources */,
 				80AD915222371CCF0080EEF0 /* CommunityHeaderInformationView.swift in Sources */,
 				80AD91072233553E0080EEF0 /* Post.swift in Sources */,
+				8004528322613F6100257189 /* UserTableCell.swift in Sources */,
 				80AD90D32229E4610080EEF0 /* ActivityHelper.swift in Sources */,
+				80AD9186224877920080EEF0 /* TagsTableSelector.swift in Sources */,
 				80278F282194EB600023D8D7 /* EventsMapViewController.swift in Sources */,
 				80AD9174223C45670080EEF0 /* EventDetailDateItemView.swift in Sources */,
 				80AD91612239A4EB0080EEF0 /* TagIndicator.swift in Sources */,
@@ -903,6 +929,7 @@
 				80AD90F82232F1EC0080EEF0 /* NewCommunitiesTabsViewController.swift in Sources */,
 				8008EB8721704F84004B7799 /* WelcomeViewController.swift in Sources */,
 				80AD912D2235A08C0080EEF0 /* MediaCollectionTile.swift in Sources */,
+				80AD9184223D83620080EEF0 /* Ambassadorship.swift in Sources */,
 				80AD9101223318990080EEF0 /* EventsTableView.swift in Sources */,
 				80AD90FA22330BBA0080EEF0 /* TitleTextView.swift in Sources */,
 				80AD911C2233681C0080EEF0 /* PostsTableView.swift in Sources */,
@@ -923,9 +950,11 @@
 				80AD910D223362230080EEF0 /* DiscoverCommunitiesViewController.swift in Sources */,
 				80AD912622357C9D0080EEF0 /* DevStubs.swift in Sources */,
 				80AD913A2236030D0080EEF0 /* FAQViewController.swift in Sources */,
+				8004528122613F1E00257189 /* UsersTableView.swift in Sources */,
 				80AD90E82231F0DD0080EEF0 /* ObjectLabelTag.swift in Sources */,
 				80AD9180223C905A0080EEF0 /* CommunitySettingsViewController.swift in Sources */,
 				80AD9176223C46740080EEF0 /* EventDetailInfoItemView.swift in Sources */,
+				80AD918A224878CB0080EEF0 /* TagItemView.swift in Sources */,
 				80278ECC218D66BF0023D8D7 /* CommunityEvent.swift in Sources */,
 				80AD90F42232D5B00080EEF0 /* EventTableCell.swift in Sources */,
 				80AD916E223C02310080EEF0 /* EventCover.swift in Sources */,
@@ -970,8 +999,11 @@
 				80AD916A223B57640080EEF0 /* Address.swift in Sources */,
 				80AD90FC2233141D0080EEF0 /* EventCollectionTile.swift in Sources */,
 				8008EBA521754C35004B7799 /* CommunityEventsViewController.swift in Sources */,
+				8004527D22613DEA00257189 /* UserCollectionView.swift in Sources */,
 				80AD9129223594C70080EEF0 /* PostView.swift in Sources */,
 				80AD90E62231EFE30080EEF0 /* MenuItemButton.swift in Sources */,
+				8004527F22613E8800257189 /* UserCollectionTile.swift in Sources */,
+				80AD91882248786B0080EEF0 /* TagTableCell.swift in Sources */,
 				80AD915A223757AF0080EEF0 /* ActionButton.swift in Sources */,
 				80AD917E223C49D40080EEF0 /* EventDetailItemView.swift in Sources */,
 			);

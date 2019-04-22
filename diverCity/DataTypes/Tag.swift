@@ -10,10 +10,13 @@ import Foundation
 import UIKit
 
 class Tag {
+    var id = 0
     var label: String!
     var color: UIColor!
+    var selected: Bool = false
     
-    init(label: String, colorCode: Int) {
+    init(id: Int, label: String, colorCode: Int) {
+        self.id = id
         self.label = label
         switch colorCode {
         case 0:

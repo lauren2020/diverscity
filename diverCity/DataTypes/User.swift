@@ -24,9 +24,11 @@ struct User {
     var state: Int
     var zip: Int?
     var about_me: String
+    
     var notifications: [String] = []
     
     var communities: [String] = []
+    // notification
     var communities_invited: [String] = []
     
     var events_going: [String] = []
@@ -39,6 +41,8 @@ struct User {
     var ambassador_communities: [String] = []
     var ambassador_communities_disabled: [String] = []
     var ambassador_requests: [String] = []
+    
+    var connections: [String] = []
     
     var privacy_type: Int
     var tags: [Tag] = []
@@ -80,7 +84,10 @@ extension User {
         self.email = email
         self.phone_number = ""
         self.communities = ["1"]//communities
-        self.events_going = [events != nil ? events! : ""]
+        
+        self.events_going = []//["1", "2", "3"]//[events != nil ? events! : ""]
+        self.events_interested = []//["4", "5"]
+        
         self.state = state != nil ? state! : -1
         self.city = ""
         self.zip = zipcode != nil ? zipcode! : -1

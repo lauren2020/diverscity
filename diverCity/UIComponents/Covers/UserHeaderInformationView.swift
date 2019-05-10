@@ -12,6 +12,7 @@ import UIKit
 class UserHeaderInformationView: UIView {
     var notificationsIcon: TaggedButton!
     var peopleIcon: ActionButton!
+    var eventsIcon: ActionButton!
 //    var settingsIcon: UIButton!
 //    var manageCommunitiesIcon: UIButton!
     
@@ -23,8 +24,12 @@ class UserHeaderInformationView: UIView {
             //ActionButton(x: frame.maxX - 60, y: frame.midY - 15, icon: "notificationsIcon")
         
         peopleIcon = ActionButton(x: (self.frame.width / 2) - 15, y: notificationsIcon.frame.minY, icon: "peopleIcon")
+        
+        eventsIcon = ActionButton(x: 70, y: peopleIcon.frame.minY, icon: "eventsIcon")
+        
         self.addSubview(notificationsIcon)
         self.addSubview(peopleIcon)
+        self.addSubview(eventsIcon)
         bringSubview(toFront: notificationsIcon)
     }
     

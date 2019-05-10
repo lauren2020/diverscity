@@ -12,7 +12,7 @@ class MyHomePageViewController: BaseViewController {
     var divider: UIView!
     
     //Consider converting to table view
-    var scrollView: UIScrollView!
+   // var scrollView: UIScrollView!
     
     var background: Background!
     var cover: UserCover!
@@ -25,8 +25,8 @@ class MyHomePageViewController: BaseViewController {
     var findCommunities: RectangleButton!
     var createCommunity: RectangleButton!
     
-    var myEventsTag: ObjectLabelTag!
-    var myEventsTableView: EventsTableView!
+    //var myEventsTag: ObjectLabelTag!
+    //var myEventsTableView: EventsTableView!
     
     var menuIsOpen = false
     
@@ -36,7 +36,7 @@ class MyHomePageViewController: BaseViewController {
         title = "Home"
         setupViews()
         loadCommunities()
-        loadMyEventsList()
+        //loadMyEventsList()
     }
     
     func setupViews() {
@@ -45,38 +45,35 @@ class MyHomePageViewController: BaseViewController {
         self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "settingsIcon"), style: .plain, target: self, action: #selector(openUserSettings))]
             //[UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(openUserSettings))]
         cover = UserCover(frame: CGRect(x: self.view.bounds.minX, y: self.view.bounds.minY, width: self.view.frame.width, height: 180), withTitle: (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!, withMenuOptions: [])
+        
         infoOptions = UserHeaderInformationView(frame: CGRect(x: self.view.frame.minX, y: cover.frame.maxY, width: self.view.frame.width, height: 50), name: "Info")
+        infoOptions.eventsIcon.addTarget(self, action: #selector(openMyEvents), for: .touchUpInside)
+        infoOptions.peopleIcon.addTarget(self, action: #selector(openMyConnections), for: .touchUpInside)
+        infoOptions.notificationsIcon.addTarget(self, action: #selector(openMyNotifications), for: .touchUpInside)
         
         divider = UIView(frame: CGRect(x: self.view.frame.minX, y: infoOptions.frame.maxY, width: self.view.frame.width, height: 5))
         divider.backgroundColor = UIColor.darkGray
         
-        scrollView = UIScrollView(frame: CGRect(x: self.view.frame.minX, y: divider.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - divider.frame.maxY))
-        scrollView.isScrollEnabled = true
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: 1050)
+        //scrollView = UIScrollView(frame: CGRect(x: self.view.frame.minX, y: divider.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - divider.frame.maxY))
+        //scrollView.isScrollEnabled = true
+        //scrollView.contentSize = CGSize(width: self.view.frame.width, height: 1050)
         
         background = Background(frame: self.view.frame, withImage: UIImage(named: "omaha1") ?? UIImage())
         
-        myCommunitiesTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: 0, width: scrollView.frame.width, height: 40), withLabel: "My Communities")
-        reloadCommunitiesButton = RectangleButton(frame: CGRect(x: scrollView.frame.minX + 210, y: 0, width: 100, height: 40), withText: "Reload")
+        myCommunitiesTag = ObjectLabelTag(frame: CGRect(x: self.view.frame.minX, y: divider.frame.maxY, width: self.view.frame.width, height: 40), withLabel: "My Communities")
+        reloadCommunitiesButton = RectangleButton(frame: CGRect(x: self.view.frame.minX + 210, y: 0, width: 100, height: 40), withText: "Reload")
         reloadCommunitiesButton.addTarget(self, action: #selector(reloadCommunities), for: .touchUpInside)
         
-        communitiesTableView = CommunityTableView(frame: CGRect(x: scrollView.frame.minX, y: myCommunitiesTag.frame.maxY, width: scrollView.frame.width, height: 400), communities: [], communitySelectedCallback: { (community) in
+        findCommunities = RectangleButton(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.height - 170, width: (self.view.frame.width / 2), height: 40), withText: "Find Communities")
+        findCommunities.addTarget(self, action: #selector(goToFindCommunities), for: .touchUpInside)
+        
+        createCommunity = RectangleButton(frame: CGRect(x: self.view.frame.maxX - (self.view.frame.width / 2), y: self.view.frame.height - 170, width: (self.view.frame.width / 2), height: 40), withText: "Create Community")
+        createCommunity.addTarget(self, action: #selector(createNewCommunity), for: .touchUpInside)
+        
+        communitiesTableView = CommunityTableView(frame: CGRect(x: self.view.frame.minX, y: myCommunitiesTag.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - myCommunitiesTag.frame.maxY - 170), communities: [], communitySelectedCallback: { (community) in
                 UserSession.selectedCommunity = community
                 let communityTabsViewController = CommunityTabsViewController()
                 self.present(communityTabsViewController, animated: true, completion: nil)
-            })
-        
-        findCommunities = RectangleButton(frame: CGRect(x: scrollView.frame.minX, y: communitiesTableView.frame.maxY, width: (self.view.frame.width / 2), height: 40), withText: "Find Communities")
-        findCommunities.addTarget(self, action: #selector(goToFindCommunities), for: .touchUpInside)
-        
-        createCommunity = RectangleButton(frame: CGRect(x: scrollView.frame.maxX - (self.view.frame.width / 2), y: communitiesTableView.frame.maxY, width: (self.view.frame.width / 2), height: 40), withText: "Create Community")
-        createCommunity.addTarget(self, action: #selector(createNewCommunity), for: .touchUpInside)
-        
-        myEventsTag = ObjectLabelTag(frame: CGRect(x: scrollView.frame.minX, y: findCommunities.frame.maxY, width: scrollView.frame.width, height: 40), withLabel: "My Events")
-        myEventsTableView = EventsTableView(frame: CGRect(x: scrollView.frame.minX, y: myEventsTag.frame.maxY, width: scrollView.frame.width, height: 550), eventsList: [], eventSelectedCallback: { (event) in
-            let eventDetailsViewController = EventDetailsViewController()
-            eventDetailsViewController.event = event
-            self.navigationController?.pushViewController(eventDetailsViewController, animated: true)
             })
         
         self.view.addSubview(background)
@@ -84,13 +81,10 @@ class MyHomePageViewController: BaseViewController {
         self.view.addSubview(cover)
         self.view.addSubview(infoOptions)
         self.view.addSubview(divider)
-        self.view.addSubview(scrollView)
-        scrollView.addSubview(myCommunitiesTag)
-        scrollView.addSubview(communitiesTableView)
-        scrollView.addSubview(findCommunities)
-        scrollView.addSubview(createCommunity)
-        scrollView.addSubview(myEventsTag)
-        scrollView.addSubview(myEventsTableView)
+        self.view.addSubview(myCommunitiesTag)
+        self.view.addSubview(communitiesTableView)
+        self.view.addSubview(findCommunities)
+        self.view.addSubview(createCommunity)
     }
     
     @objc func toggleMenu(_ sender: Any) {
@@ -108,6 +102,21 @@ class MyHomePageViewController: BaseViewController {
     func closeMenu() {
         //menuIsOpen = false
         //logoutButton.isHidden = true
+    }
+    
+    @objc func openMyEvents() {
+        let myEventsListViewController = MyEventsListViewController()
+        self.navigationController?.pushViewController(myEventsListViewController, animated: true)
+    }
+    
+    @objc func openMyConnections() {
+        let myConnectionsListViewController = MyConnectionsListViewController()
+        self.navigationController?.pushViewController(myConnectionsListViewController, animated: true)
+    }
+    
+    @objc func openMyNotifications() {
+        let myNotificationsListViewController = MyNotificationsListViewController()
+        self.navigationController?.pushViewController(myNotificationsListViewController, animated: true)
     }
     
     @objc func reloadCommunities(_ sender: Any) {
@@ -148,36 +157,6 @@ class MyHomePageViewController: BaseViewController {
                 //|||||||||ActivityHelper.stopActivity(view: self.view)
             }
         }
-        }
-    }
-    
-    func loadMyEventsList() {
-        var newEvents: [CommunityEvent] = []
-        var numberOfEventsToLoad = 0
-        if (UserSession.user.events_going.count <= UserSession.defaultLoadCountEvents) {
-            numberOfEventsToLoad = UserSession.user.events_going.count - 1
-        } else {
-            numberOfEventsToLoad = UserSession.defaultLoadCountEvents
-        }
-        if (numberOfEventsToLoad > 0) {
-            for index in 0...numberOfEventsToLoad {
-                //ActivityHelper.startActivity(view: self.view)
-                let getEventRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: String(UserSession.user.events_going[index]), methodType: "GET", postContent: nil)
-                if (getEventRequest != nil) {
-                    APIDelegate.performTask(withRequest: getEventRequest!, completion: {json in
-                        if (json != nil && json?.count != 0) {
-                            do {
-                                newEvents.append(try CommunityEvent(json: json![0])!)
-                                self.myEventsTableView.reloadEvents(events: newEvents)
-                            } catch {
-                                print(error)
-                            }
-                        }
-                    })
-                } else {
-                    //|||||||||ActivityHelper.stopActivity(view: self.view)
-                }
-            }
         }
     }
     

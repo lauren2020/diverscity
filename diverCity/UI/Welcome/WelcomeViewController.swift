@@ -29,10 +29,12 @@ class WelcomeViewController: BaseViewController {
     }
     
     func setupViews() {
-        background = Background(frame: self.view.frame, withImage: UIImage(named: "omaha1") ?? UIImage())
+        background = Background(frame: self.view.frame, withImage: UIImage(named: "divircityHome") ?? UIImage())
+        background.imageView.contentMode = UIView.ContentMode.scaleAspectFill
+        //background.imageView.contentMode = UIView.ContentMode.scaleAspectFit
         
         titleView = UITextView(frame: CGRect(x: background.frame.midX - 150, y: background.frame.minY + 100, width: 300, height: 100))
-        titleView.text = "divirCITY"
+        titleView.text = ""//divirCITY"
         titleView.backgroundColor = UIColor.init(white: 1, alpha: 0)
         titleView.textAlignment = NSTextAlignment.center
         titleView.font = UIFont(name: "HelveticaNeue-Bold", size: 48)
@@ -52,17 +54,21 @@ class WelcomeViewController: BaseViewController {
         
         aboutDivircityButton = TextOnlyButton(frame: CGRect(x: self.view.frame.midX - 100, y: createAccountButton.frame.maxY + 30, width: 200, height: 40), withText: "What is divirCITY?")
         aboutDivircityButton.addTarget(self, action: #selector(showAbout), for: .touchUpInside)
+        aboutDivircityButton.setTitleColor(UIColor.black, for: .normal)
     }
     
     func setupBottomAlignedButtons() {
         privacyPolicyButon = TextOnlyButton(frame: CGRect(x: self.view.frame.minX + 24, y: self.view.frame.maxY - 100, width: (self.view.frame.width / 3) - 32, height: 40), withText: "Privacy Policy")
         privacyPolicyButon.addTarget(self, action: #selector(showPrivacyPolicy), for: .touchUpInside)
+        privacyPolicyButon.setTitleColor(UIColor.black, for: .normal)
         
         faqButton = TextOnlyButton(frame: CGRect(x: privacyPolicyButon.frame.maxX + 24, y: self.view.frame.maxY - 100, width: (self.view.frame.width / 3) - 32, height: 40), withText: "FAQs")
         faqButton.addTarget(self, action: #selector(showFAQs), for: .touchUpInside)
+        faqButton.setTitleColor(UIColor.black, for: .normal)
         
         contactUsButton = TextOnlyButton(frame: CGRect(x: faqButton.frame.maxX, y: self.view.frame.maxY - 100, width: (self.view.frame.width / 3) - 32, height: 40), withText: "Contact Us")
         contactUsButton.addTarget(self, action: #selector(showContactUsPage), for: .touchUpInside)
+        contactUsButton.setTitleColor(UIColor.black, for: .normal)
     }
     
     func addSubviews() {

@@ -14,6 +14,7 @@ public class Background: UIView {
     
     init(frame: CGRect, withImage image: UIImage) {
         super.init(frame: frame)
+        self.backgroundColor = UIColor.white
         imageView = UIImageView(frame: frame)
         imageView.image = image
         self.addSubview(imageView)

@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class UserSettingsViewController: BaseViewController {
+    var viewModel = UserSettingsViewModel()
+    
     var scrollView: UIScrollView!
     var personalInfoTitle: UILabel!
     var nameTextField: SetableTextField!
@@ -25,7 +27,6 @@ class UserSettingsViewController: BaseViewController {
     var divider2: Divider!
     
     var tagsTitle: UILabel!
-    //var tagsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +90,10 @@ class UserSettingsViewController: BaseViewController {
         scrollView.addSubview(zipTextField)
         scrollView.addSubview(divider2)
         scrollView.addSubview(tagsTitle)
+    }
+    
+    func setupViewModel() {
+        
     }
     
     @objc func enableEditMode(_ sender: Any) {

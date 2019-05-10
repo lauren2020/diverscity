@@ -9,6 +9,7 @@
 import UIKit
 
 class CommunityHomeViewController: BaseTabViewController {
+    var activityHelper = ActivityHelper()
     //var sidebarMenu: SideBarMenu!
     var communityCover: CommunityHeader!
     var divider: UIView!
@@ -186,7 +187,7 @@ class CommunityHomeViewController: BaseTabViewController {
     
     @objc func addUserToCommunity(_ sender: Any) {
         let newMembers = (UserSession.selectedCommunity?.members.joined(separator: ","))! == "" ? (UserSession.user?.id)! : (UserSession.selectedCommunity?.members.joined(separator: ","))! + "," + (UserSession.user?.id)!
-        ActivityHelper.startActivity(view: self.view)
+        activityHelper.startActivity(view: self.view)
         let content = APIDelegate.buildPostString(body: ["members=" + newMembers])
         let patchCommunityRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: (UserSession.selectedCommunity?.id)!, methodType: "PATCH", postContent: content)
         if (patchCommunityRequest != nil) {
@@ -195,7 +196,7 @@ class CommunityHomeViewController: BaseTabViewController {
                     do {
                         self.patchCommunityCompletion(community: try Community(json: json![0]))
                     } catch {
-                        ActivityHelper.stopActivity(view: self.view)
+                        self.activityHelper.stopActivity(view: self.view)
                         print(error)
                     }
                 }
@@ -212,7 +213,7 @@ class CommunityHomeViewController: BaseTabViewController {
             let patchUserRequest = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: (UserSession.user?.id)!, methodType: "PATCH", postContent: content)
             if (patchUserRequest != nil) {
                 APIDelegate.performTask(withRequest: patchUserRequest!, completion: {json in
-                    ActivityHelper.stopActivity(view: self.view)
+                    self.activityHelper.stopActivity(view: self.view)
                     if (json != nil && json?.count != 0) {
                         do {
                             UserSession.user = try User(json: json![0])
@@ -223,15 +224,15 @@ class CommunityHomeViewController: BaseTabViewController {
                             print(error)
                         }
                     } else {
-                        ActivityHelper.stopActivity(view: self.view)
+                        self.activityHelper.stopActivity(view: self.view)
                     }
                 })
             } else {
-                ActivityHelper.stopActivity(view: self.view)
+                activityHelper.stopActivity(view: self.view)
             }
             print("User Added to Community!")
         } else {
-            ActivityHelper.stopActivity(view: self.view)
+            activityHelper.stopActivity(view: self.view)
             print("Unable to add member to community!")
         }
     }

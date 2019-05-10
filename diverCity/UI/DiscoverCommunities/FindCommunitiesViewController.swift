@@ -9,6 +9,7 @@
 import UIKit
 
 class FindCommunitiesViewController: BaseViewController {
+    var activityHelper = ActivityHelper()
 
     var searchCommunitiesBar: UISearchBar!
     var searchResults: CommunityTableView!
@@ -42,7 +43,7 @@ class FindCommunitiesViewController: BaseViewController {
         let getAllCommunitiesRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: "", methodType: "GET", postContent: nil)
         if (getAllCommunitiesRequest != nil) {
             APIDelegate.performTask(withRequest: getAllCommunitiesRequest!, completion: {json in
-                ActivityHelper.stopActivity(view: self.view)
+                self.activityHelper.stopActivity(view: self.view)
                 if (json != nil && json?.count != 0) {
                     do {
                         var communities: [Community] = []

@@ -9,6 +9,7 @@
 import UIKit
 
 class CreateNewCommunityViewController: BaseTabViewController {
+    var activityHelper = ActivityHelper()
     
     var titleHeader: GenericCover!
     var backButton: TextOnlyButton!
@@ -27,26 +28,14 @@ class CreateNewCommunityViewController: BaseTabViewController {
     var zipTextField: FormEntryField!
     var createButton: RectangleButton!
     
-    //var features:[CommunityFeature] = [CommunityFeature(name: "Ambassador Program", description: "", id: "0"), CommunityFeature(name: "Events Board", description: "", id: "1"), CommunityFeature(name: "Events Map", description: "", id: "2"), CommunityFeature(name: "Carpool Coordination", description: "", id: "3"), CommunityFeature(name: "Get To Know You", description: "", id: "4")]
-    
-    //var selectedFeatures: [String] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         self.title = "Create Community"
         self.view.backgroundColor = UIColor.white
         setupViews()
-        
-        //featuresTable.delegate = self
-        //featuresTable.dataSource = self
     }
     
     func setupViews() {
-//        titleHeader = GenericCover(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: 100), withTitle: "Create Community", withMenuOptions: [])
-//        backButton = TextOnlyButton(frame: CGRect(x: self.view.frame.maxX - 60, y: self.view.frame.minX + 60, width: 40, height: 40), withText: "X")
-//        backButton.addTarget(self, action: #selector(backToMyHomePage), for: .touchUpInside)
-        
         nameTextField = FormEntryField(frame: CGRect(x: self.view.frame.minX + 20, y: self.view.frame.minY + 20, width: self.view.frame.width - 40, height: 40), withHint: "Name")
         descriptionTextField = FormEntryField(frame: CGRect(x: self.view.frame.minX + 20, y: nameTextField.frame.maxY + 20, width: self.view.frame.width - 40, height: 40), withHint: "Description")
         addressStreetTextField = FormEntryField(frame: CGRect(x: self.view.frame.minX + 20, y: descriptionTextField.frame.maxY + 20, width: self.view.frame.width - 40, height: 40), withHint: "Street (Optional)")
@@ -70,8 +59,6 @@ class CreateNewCommunityViewController: BaseTabViewController {
         tagsTitle.text = "Tags"
         tagsTitle.backgroundColor = UIColor.init(displayP3Red: 128, green: 128, blue: 128, alpha: 0.5)
         tagsTable = TagsTableSelector(frame: CGRect(x: self.view.frame.minX, y: tagsTitle.frame.maxY, width: self.view.frame.width, height: 200))
-        //featuresTable = UITableView(frame: CGRect(x: self.view.frame.minX, y: privacyTypeSelector.frame.maxY + 10, width: self.view.frame.width, height: 200), style: UITableViewStyle.plain)
-        //featuresTable.register(UITableViewCell.self, forCellReuseIdentifier: "featureCell")
         
         createButton = RectangleButton(frame: CGRect(x: self.view.frame.minX, y: tagsTable.frame.maxY + 10, width: self.view.frame.width, height: 50), withText: "Create")
         createButton.addTarget(self, action: #selector(createCommunity), for: .touchUpInside)
@@ -80,8 +67,6 @@ class CreateNewCommunityViewController: BaseTabViewController {
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: createButton.frame.maxY)
         
         self.view.addSubview(scrollView)
-        //scrollView.addSubview(titleHeader)
-        //scrollView.addSubview(backButton)
         scrollView.addSubview(nameTextField)
         scrollView.addSubview(descriptionTextField)
         scrollView.addSubview(addressStreetTextField)
@@ -116,11 +101,10 @@ class CreateNewCommunityViewController: BaseTabViewController {
 
         let postCommunityRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: "", methodType: "POST", postContent: APIDelegate.buildPostString(body: body))
         if (postCommunityRequest != nil) {
-            APIDelegate.performTask(withRequest: postCommunityRequest!, completion: {json in
-                ActivityHelper.stopActivity(view: self.view)
+            APIDelegate.performTask(withRequest: postCommunityRequest!, completion: { (json) in
+                self.activityHelper.stopActivity(view: self.view)
                 if (json != nil && json?.count != 0) {
                     do {
-                        //UserSession.user?.communities.append(try Community(json: json![0])!)
                         UserSession.selectedCommunity = try Community(json: json![0])
                         let newCommunities = (UserSession.user?.communities.joined(separator: ","))! == "" ? (UserSession.selectedCommunity?.id)! : (UserSession.user?.communities.joined(separator: ","))! + "," + (UserSession.selectedCommunity?.id)!
                         self.patchUser(newCommunities: newCommunities)
@@ -128,15 +112,16 @@ class CreateNewCommunityViewController: BaseTabViewController {
                         print(error)
                     }
                 }
-            })
+                
+                })
         }
     }
     
     func patchUser(newCommunities: String) {
         let patchUserRequest = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: (UserSession.user?.id)!, methodType: "PATCH", postContent: APIDelegate.buildPostString(body: ["communities=" + newCommunities]))
         if (patchUserRequest != nil) {
-            APIDelegate.performTask(withRequest: patchUserRequest!, completion: {json in
-                ActivityHelper.stopActivity(view: self.view)
+            APIDelegate.performTask(withRequest: patchUserRequest!, completion: { (json) in
+                self.activityHelper.stopActivity(view: self.view)
                 if (json != nil && json?.count != 0) {
                     do {
                         UserSession.user = try User(json: json![0])
@@ -147,7 +132,7 @@ class CreateNewCommunityViewController: BaseTabViewController {
                         print(error)
                     }
                 }
-            })
+                })
         }
     }
     

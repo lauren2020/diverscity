@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class ConnectionDetailViewController: BaseViewController {
-    var userInfo: User!
+    var viewModel = ConnectionDetailViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

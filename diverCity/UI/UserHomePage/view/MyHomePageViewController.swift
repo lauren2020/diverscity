@@ -9,25 +9,18 @@
 import UIKit
 
 class MyHomePageViewController: BaseViewController {
+    var viewModel = MyHomePageViewModel()
+    var activityHelper = ActivityHelper()
+    
     var divider: UIView!
-    
-    //Consider converting to table view
-   // var scrollView: UIScrollView!
-    
     var background: Background!
     var cover: UserCover!
     var infoOptions: UserHeaderInformationView!
-    
     var myCommunitiesTag: ObjectLabelTag!
     var reloadCommunitiesButton: RectangleButton!
     var communitiesTableView: CommunityTableView!
-    
     var findCommunities: RectangleButton!
     var createCommunity: RectangleButton!
-    
-    //var myEventsTag: ObjectLabelTag!
-    //var myEventsTableView: EventsTableView!
-    
     var menuIsOpen = false
     
     override func viewDidLoad() {
@@ -35,15 +28,14 @@ class MyHomePageViewController: BaseViewController {
         
         title = "Home"
         setupViews()
-        loadCommunities()
-        //loadMyEventsList()
+        setupViewModel()
+        viewModel.loadCommunities()
     }
     
     func setupViews() {
-        //var logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutOfAccount))
         self.navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutOfAccount))]
         self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(named: "settingsIcon"), style: .plain, target: self, action: #selector(openUserSettings))]
-            //[UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(openUserSettings))]
+        
         cover = UserCover(frame: CGRect(x: self.view.bounds.minX, y: self.view.bounds.minY, width: self.view.frame.width, height: 180), withTitle: (UserSession.user?.firstName)! + " " + (UserSession.user?.lastName)!, withMenuOptions: [])
         
         infoOptions = UserHeaderInformationView(frame: CGRect(x: self.view.frame.minX, y: cover.frame.maxY, width: self.view.frame.width, height: 50), name: "Info")
@@ -53,10 +45,6 @@ class MyHomePageViewController: BaseViewController {
         
         divider = UIView(frame: CGRect(x: self.view.frame.minX, y: infoOptions.frame.maxY, width: self.view.frame.width, height: 5))
         divider.backgroundColor = UIColor.darkGray
-        
-        //scrollView = UIScrollView(frame: CGRect(x: self.view.frame.minX, y: divider.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - divider.frame.maxY))
-        //scrollView.isScrollEnabled = true
-        //scrollView.contentSize = CGSize(width: self.view.frame.width, height: 1050)
         
         background = Background(frame: self.view.frame, withImage: UIImage(named: "omaha1") ?? UIImage())
         
@@ -87,21 +75,18 @@ class MyHomePageViewController: BaseViewController {
         self.view.addSubview(createCommunity)
     }
     
-    @objc func toggleMenu(_ sender: Any) {
-//        if(menuIsOpen) {
-//            closeMenu()
-//        } else {
-//            openMenu()
-//        }
+    func setupViewModel() {
+        viewModel.loadCommunitiesEvent.addSubscriber(subscriber: onUpdateCommunityList)
+        viewModel.activityStartEvent.addSubscriber {_ in
+            //self.activityHelper.startActivity(view: self.view)
+        }
+        viewModel.activityEndEvent.addSubscriber {_ in
+            //self.activityHelper.stopActivity(view: self.view)
+        }
     }
     
-    func openMenu() {
-        //menuIsOpen = true
-        //logoutButton.isHidden = false
-    }
-    func closeMenu() {
-        //menuIsOpen = false
-        //logoutButton.isHidden = true
+    func onUpdateCommunityList(newCommunities: [Community]) {
+        self.communitiesTableView.reloadCommunities(communities: newCommunities)
     }
     
     @objc func openMyEvents() {
@@ -120,7 +105,7 @@ class MyHomePageViewController: BaseViewController {
     }
     
     @objc func reloadCommunities(_ sender: Any) {
-        loadCommunities()
+        viewModel.loadCommunities()
     }
     
     @objc func openUserSettings(_ sender: Any) {
@@ -128,60 +113,23 @@ class MyHomePageViewController: BaseViewController {
         self.navigationController?.pushViewController(userSettingsViewController, animated: true)
     }
     
-    func loadCommunities() {
-        var newCommunities: [Community] = []
-        var numberOfCommunitiesToLoad = 0
-        if ((UserSession.user?.communities)!.count <= UserSession.defaultLoadCountCommunities) {
-            numberOfCommunitiesToLoad = (UserSession.user?.communities)!.count
-        } else {
-            numberOfCommunitiesToLoad = UserSession.defaultLoadCountCommunities
-        }
-        if (numberOfCommunitiesToLoad > 0) {
-        for index in 0...numberOfCommunitiesToLoad - 1 {
-            //Community.communityInfo(withId: String(communityId), completion: setCommunities)
-            //ActivityHelper.startActivity(view: self.view)
-            let getCommunityRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: String((UserSession.user?.communities)![index]), methodType: "GET", postContent: nil)
-            if (getCommunityRequest != nil) {
-                APIDelegate.performTask(withRequest: getCommunityRequest!, completion: {json in
-                    if (json != nil && json?.count != 0) {
-                        do {
-                            newCommunities.append(try Community(json: json![0])!)
-                            print("Setting community");
-                            self.communitiesTableView.reloadCommunities(communities: newCommunities)
-                        } catch {
-                            print(error)
-                        }
-                    }
-                })
-            } else {
-                //|||||||||ActivityHelper.stopActivity(view: self.view)
-            }
-        }
-        }
-    }
-    
     @objc func createNewCommunity(_ sender: Any) {
         let createNewCommunityPageViewController = CreateNewCommunityViewController()
-        
-        self.navigationController?.pushViewController(createNewCommunityPageViewController, animated: true)
+    self.navigationController?.pushViewController(createNewCommunityPageViewController, animated: true)
         self.present(createNewCommunityPageViewController, animated: true, completion: nil)
     }
     
     @objc func goToFindCommunities(_ sender: Any) {
         let newCommunitiesTabsViewController = NewCommunitiesTabsViewController()
-        //self.navigationController?.pushViewController(newCommunitiesTabsViewController, animated: true)
         self.present(newCommunitiesTabsViewController, animated: true, completion: nil)
     }
     
     @objc func logoutOfAccount(_ sender: Any) {
-        //let welcomeViewController = WelcomeViewController()
         self.dismiss(animated: true, completion: nil)
-        //self.present(welcomeViewController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }

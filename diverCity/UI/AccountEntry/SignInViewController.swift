@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class SignInViewController: UIViewController {
+    var activityHelper = ActivityHelper()
+    
     var titleView: UITextView!
     var usernameTextField: FormEntryField!
     var passwordTextField: FormEntryField!
@@ -83,11 +85,11 @@ class SignInViewController: UIViewController {
     }
     
     @objc func signInToUserAccount(_ sender: Any) {
-        ActivityHelper.startActivity(view: self.view)
+        activityHelper.startActivity(view: self.view)
         let getUserRequest = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: usernameTextField.text!, methodType: "GET", postContent: nil)
         if (getUserRequest != nil) {
             APIDelegate.performTask(withRequest: getUserRequest!, completion: {json in
-                ActivityHelper.stopActivity(view: self.view)
+                self.activityHelper.stopActivity(view: self.view)
                 if (json != nil && json?.count != 0) {
                     do {
                         UserSession.user = try User(json: json![0])

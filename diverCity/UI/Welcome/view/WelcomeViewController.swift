@@ -9,9 +9,9 @@
 import UIKit
 
 class WelcomeViewController: BaseViewController {
-    //var donateBar
     
     var background: Background!
+    var buttonBox: UIView!
     var titleView: UITextView!
     var signInButton: RectangleButton!
     var createAccountButton: RectangleButton!
@@ -24,14 +24,12 @@ class WelcomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //check for known location image
         setupViews()
     }
     
     func setupViews() {
-        background = Background(frame: self.view.frame, withImage: UIImage(named: "divircityHome") ?? UIImage())
-        background.imageView.contentMode = UIView.ContentMode.scaleAspectFill
-        //background.imageView.contentMode = UIView.ContentMode.scaleAspectFit
+        self.view.backgroundColor = UIColor.white
+        background = Background(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: self.view.frame.height), withImage: UIImage(named: "divircityHome-1") ?? UIImage())
         
         titleView = UITextView(frame: CGRect(x: background.frame.midX - 150, y: background.frame.minY + 100, width: 300, height: 100))
         titleView.text = ""//divirCITY"
@@ -46,7 +44,10 @@ class WelcomeViewController: BaseViewController {
     }
     
     func setupCenterAlignedButtons() {
-        signInButton = RectangleButton(frame: CGRect(x: background.frame.midX - 75, y: background.frame.midY - 10, width: 150, height: 40), withText: "Sign In")
+        buttonBox = UIView(frame: CGRect(x: (self.view.frame.width / 2) - 100, y: (self.view.frame.height / 2) - 100, width: 200, height: 200))
+        buttonBox.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        
+        signInButton = RectangleButton(frame: CGRect(x: background.frame.midX - 75, y: buttonBox.frame.minY + 25, width: 150, height: 40), withText: "Sign In")
         signInButton.addTarget(self, action: #selector(goToSignInPage), for: .touchUpInside)
         
         createAccountButton = RectangleButton(frame: CGRect(x: background.frame.midX - 75, y: signInButton.frame.maxY + 20, width: 150, height: 40), withText: "Create Account")
@@ -74,6 +75,7 @@ class WelcomeViewController: BaseViewController {
     func addSubviews() {
         self.view.addSubview(background)
         background.addSubview(titleView)
+        background.addSubview(buttonBox)
         background.addSubview(signInButton)
         background.addSubview(createAccountButton)
         background.addSubview(aboutDivircityButton)
@@ -116,8 +118,6 @@ class WelcomeViewController: BaseViewController {
         super.didReceiveMemoryWarning()
     }
     
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
-
 }

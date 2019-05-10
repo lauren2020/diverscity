@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class CreateNewAccountViewController: BaseViewController {
+    var activityHelper: ActivityHelper = ActivityHelper()
     
     var backToWelcomePageButton: TextOnlyButton!
     var firstNameTextField: UITextField!
@@ -82,11 +83,11 @@ class CreateNewAccountViewController: BaseViewController {
             body.append("privacy_type=0")
             //startActivity()
             //User.createNew(body: body, completion: userCreated)
-            ActivityHelper.startActivity(view: self.view)
+            activityHelper.startActivity(view: self.view)
             let getUserRequest = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: usernameTextField.text!, methodType: "POST", postContent: APIDelegate.buildPostString(body: body))
             if (getUserRequest != nil) {
                 APIDelegate.performTask(withRequest: getUserRequest!, completion: {json in
-                    ActivityHelper.stopActivity(view: self.view)
+                    self.activityHelper.stopActivity(view: self.view)
                     if (json != nil && json?.count != 0) {
                         do {
                             print("User created successfully!")

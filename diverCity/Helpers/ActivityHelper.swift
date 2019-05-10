@@ -10,11 +10,10 @@ import Foundation
 import UIKit
 
 class ActivityHelper {
-    //var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
-    static func startActivity(view: UIView) {
+    func startActivity(view: UIView) {
         print("Activity Started")
-        let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
         view.alpha = 0.5
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
@@ -24,9 +23,8 @@ class ActivityHelper {
         UIApplication.shared.beginIgnoringInteractionEvents()
     }
     
-    static func stopActivity(view: UIView) {
+    func stopActivity(view: UIView) {
         print("Activity Stopped")
-        let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
         view.alpha = 1
         activityIndicator.stopAnimating()
         activityIndicator.removeFromSuperview()

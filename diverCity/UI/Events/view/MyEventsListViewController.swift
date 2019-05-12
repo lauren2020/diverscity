@@ -19,14 +19,14 @@ class MyEventsListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "My Event"
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.darkGray
         setupViews()
         viewModel.loadMyEventsList()
     }
     
     func setupViews() {
         myEventsTag = ObjectLabelTag(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: 40), withLabel: "My Events")
-        myEventsTableView = EventsTableView(frame: CGRect(x: self.view.frame.minX, y: myEventsTag.frame.maxY, width: self.view.frame.width, height: 550), eventsList: [], eventSelectedCallback: { (event) in
+        myEventsTableView = EventsTableView(frame: CGRect(x: self.view.frame.minX, y: myEventsTag.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - myEventsTag.frame.maxY), eventsList: [], eventSelectedCallback: { (event) in
             let eventDetailsViewController = EventDetailsViewController()
             eventDetailsViewController.viewModel.event = event
             self.navigationController?.pushViewController(eventDetailsViewController, animated: true)

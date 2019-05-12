@@ -36,6 +36,9 @@ class UserSettingsViewController: BaseViewController {
     }
     
     func setupViews() {
+        // TODO: Refactor UI appearance
+        // TODO: Switch textfields to change view vs edit on edit button select instead of field clicked
+        // TODO: Why does view fall below screen? Fix.
         self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(enableEditMode))]
         scrollView = UIScrollView(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: self.view.frame.height))
         setupPersonalInfo()

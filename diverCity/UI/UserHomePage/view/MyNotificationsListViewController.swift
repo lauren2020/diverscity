@@ -18,7 +18,7 @@ class MyNotificationsListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "My Notifications"
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.darkGray
         setupViews()
         setupViewModel()
         viewModel.loadMyNotificationsList()
@@ -26,7 +26,7 @@ class MyNotificationsListViewController: BaseViewController {
     
     func setupViews() {
         myNotificationsHeader = ObjectLabelTag(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: 40), withLabel: "My Notifications")
-        myNotificationsTableView = NotificationsTableView(frame: CGRect(x: self.view.frame.minX, y: myNotificationsHeader.frame.maxY, width: self.view.frame.width, height: 550), notificationsList: [], notificationSelectedCallback: { (notification) in
+        myNotificationsTableView = NotificationsTableView(frame: CGRect(x: self.view.frame.minX, y: myNotificationsHeader.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - myNotificationsHeader.frame.maxY), notificationsList: [], notificationSelectedCallback: { (notification) in
             // TODO: Execute notification action
         })
         

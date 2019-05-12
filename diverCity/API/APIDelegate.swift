@@ -15,6 +15,7 @@ struct APIDelegate {
     static let usersPath = "/users"
     static let communitiesPath = "/communities"
     static let eventsPath = "/events"
+    static let notificationsPath = "/notifications"
     static let mediaPath = "/media"
     static let postsPath = "/posts"
     

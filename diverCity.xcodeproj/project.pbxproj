@@ -132,6 +132,8 @@
 		80D0CDBB228523E500729965 /* MyConnectionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D0CDBA228523E500729965 /* MyConnectionsListViewModel.swift */; };
 		80D0CDBF228526EF00729965 /* EventDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D0CDBE228526EF00729965 /* EventDetailsViewModel.swift */; };
 		80D0CDC122852BEA00729965 /* MyEventsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D0CDC022852BEA00729965 /* MyEventsListViewModel.swift */; };
+		80D0CDC72287C4AF00729965 /* CommunityHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D0CDC62287C4AF00729965 /* CommunityHomeViewModel.swift */; };
+		80D0CDC92287C51500729965 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D0CDC82287C51500729965 /* BaseViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -300,6 +302,8 @@
 		80D0CDBA228523E500729965 /* MyConnectionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyConnectionsListViewModel.swift; sourceTree = "<group>"; };
 		80D0CDBE228526EF00729965 /* EventDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewModel.swift; sourceTree = "<group>"; };
 		80D0CDC022852BEA00729965 /* MyEventsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsListViewModel.swift; sourceTree = "<group>"; };
+		80D0CDC62287C4AF00729965 /* CommunityHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityHomeViewModel.swift; sourceTree = "<group>"; };
+		80D0CDC82287C51500729965 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		A9816917CD50D67D99302640 /* Pods-diverCityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityTests/Pods-diverCityTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC8ED338B8C05F0C3F75259D /* Pods-diverCityUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EEB383ABE8B5AB460B3CEB0F /* Pods-diverCityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diverCityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-diverCityUITests/Pods-diverCityUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -472,7 +476,8 @@
 		80278EC3218D60F70023D8D7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				8008EBA221754B79004B7799 /* CommunityHomeViewController.swift */,
+				80D0CDC52287C48A00729965 /* viewmodel */,
+				80D0CDC42287C48200729965 /* view */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -681,6 +686,7 @@
 				80AD91142233652C0080EEF0 /* BaseViewController.swift */,
 				80AD9116223365570080EEF0 /* BaseTabViewController.swift */,
 				80AD9148223702FD0080EEF0 /* BaseNavigationItemViewController.swift */,
+				80D0CDC82287C51500729965 /* BaseViewModel.swift */,
 			);
 			path = Bases;
 			sourceTree = "<group>";
@@ -820,6 +826,22 @@
 			children = (
 				80D0CDBE228526EF00729965 /* EventDetailsViewModel.swift */,
 				80D0CDC022852BEA00729965 /* MyEventsListViewModel.swift */,
+			);
+			path = viewmodel;
+			sourceTree = "<group>";
+		};
+		80D0CDC42287C48200729965 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				8008EBA221754B79004B7799 /* CommunityHomeViewController.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		80D0CDC52287C48A00729965 /* viewmodel */ = {
+			isa = PBXGroup;
+			children = (
+				80D0CDC62287C4AF00729965 /* CommunityHomeViewModel.swift */,
 			);
 			path = viewmodel;
 			sourceTree = "<group>";
@@ -1088,6 +1110,7 @@
 				80AD9158223749670080EEF0 /* MenuItem.swift in Sources */,
 				80AD91662239E9A90080EEF0 /* Divider.swift in Sources */,
 				8008EB8F2170FF97004B7799 /* User.swift in Sources */,
+				80D0CDC72287C4AF00729965 /* CommunityHomeViewModel.swift in Sources */,
 				80D0CD9F22812C4C00729965 /* Notification.swift in Sources */,
 				80AD911E223391AC0080EEF0 /* UserCover.swift in Sources */,
 				80AD91152233652C0080EEF0 /* BaseViewController.swift in Sources */,
@@ -1116,6 +1139,7 @@
 				80AD90FF223316940080EEF0 /* EventsCollectionView.swift in Sources */,
 				80AD915F2238B47E0080EEF0 /* EventDetailsViewController.swift in Sources */,
 				80AD917C223C47B70080EEF0 /* EventDetailAttendanceItemView.swift in Sources */,
+				80D0CDC92287C51500729965 /* BaseViewModel.swift in Sources */,
 				80AD90E42231EE610080EEF0 /* MenuIconButton.swift in Sources */,
 				80AD90EC223214000080EEF0 /* CommunityTableCell.swift in Sources */,
 				80AD9172223C14FD0080EEF0 /* EventDetailsTableCell.swift in Sources */,

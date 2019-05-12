@@ -27,6 +27,7 @@ class SetableTextField: UITextView {
         self.addSubview(hintLabel)
     }
     
+    // TODO: Switch this out for custom setable switch trigger
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         (isEditing && !editingDisabled) ? setTextFieldNotEditing() : setTextFieldEditing()
     }

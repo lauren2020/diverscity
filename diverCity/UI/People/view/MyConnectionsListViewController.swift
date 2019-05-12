@@ -19,7 +19,7 @@ class MyConnectionsListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "My Connections"
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.darkGray
         setupViews()
         setupViewModel()
         viewModel.loadMyConnections()
@@ -27,7 +27,7 @@ class MyConnectionsListViewController: BaseViewController {
     
     func setupViews() {
         myConnectionsHeader = ObjectLabelTag(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: 40), withLabel: "My Connections")
-        myConnectionsTableView = UsersTableView(frame: CGRect(x: self.view.frame.minX, y: myConnectionsHeader.frame.maxY, width: self.view.frame.width, height: 550), usersList: [], userSelectedCallback: { (user) in
+        myConnectionsTableView = UsersTableView(frame: CGRect(x: self.view.frame.minX, y: myConnectionsHeader.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - myConnectionsHeader.frame.maxY), usersList: [], userSelectedCallback: { (user) in
             let connectionDetailViewController = ConnectionDetailViewController()
             connectionDetailViewController.viewModel.userInfo = user
         self.navigationController?.pushViewController(connectionDetailViewController, animated: true)
@@ -40,10 +40,10 @@ class MyConnectionsListViewController: BaseViewController {
     func setupViewModel() {
         viewModel.loadConnectionsEvent.addSubscriber(subscriber: onUpdateConnections)
         viewModel.startActivityEvent.addSubscriber {
-            //self.activityHelper.startActivity(view: self.view)
+            self.activityHelper.startActivity(view: self.view)
         }
         viewModel.stopActivityEvent.addSubscriber {
-            //self.activityHelper.stopActivity(view: self.view)
+            self.activityHelper.stopActivity(view: self.view)
         }
     }
     

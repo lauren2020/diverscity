@@ -8,10 +8,8 @@
 
 import Foundation
 
-class MyEventsListViewModel {
+class MyEventsListViewModel : BaseViewModel {
     var loadEventsEvent = ActionEvent<[CommunityEvent]>()
-    var startActivityEvent = ActionEvent<()>()
-    var stopActivityEvent = ActionEvent<()>()
     
     func loadMyEventsList() {
         var newEvents: [CommunityEvent] = []

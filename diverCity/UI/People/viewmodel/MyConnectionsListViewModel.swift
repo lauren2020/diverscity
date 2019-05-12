@@ -8,15 +8,13 @@
 
 import Foundation
 
-class MyConnectionsListViewModel {
+class MyConnectionsListViewModel : BaseViewModel {
     var loadConnectionsEvent = ActionEvent<([User])>()
-    var startActivityEvent = ActionEvent<()>()
-    var stopActivityEvent = ActionEvent<()>()
     
     func loadMyConnections() {
         var newConnections: [User] = []
         var numberOfConnectionsToLoad = 0
-        if (UserSession.user.events_going.count <= UserSession.defaultLoadCountEvents) {
+        if (UserSession.user.connections.count <= UserSession.defaultLoadCountEvents) {
             numberOfConnectionsToLoad = UserSession.user.events_going.count - 1
         } else {
             numberOfConnectionsToLoad = UserSession.defaultLoadCountEvents
@@ -24,13 +22,13 @@ class MyConnectionsListViewModel {
         if (numberOfConnectionsToLoad > 0) {
             for index in 0...numberOfConnectionsToLoad {
                 startActivityEvent.trigger(data: ())
-                let getEventRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: String(UserSession.user.events_going[index]), methodType: "GET", postContent: nil)
-                if (getEventRequest != nil) {
-                    APIDelegate.performTask(withRequest: getEventRequest!, completion: {json in
+                let getConnectionRequest = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: String(UserSession.user.connections[index]), methodType: "GET", postContent: nil)
+                if (getConnectionRequest != nil) {
+                    APIDelegate.performTask(withRequest: getConnectionRequest!, completion: {json in
                         if (json != nil && json?.count != 0) {
                             do {
                                 newConnections.append(try User(json: json![0])!)
-                                loadConnectionsEvent.trigger(data: ([newConnections]))
+                                self.loadConnectionsEvent.trigger(data: newConnections)
                             } catch {
                                 print(error)
                             }

@@ -29,6 +29,7 @@ class WelcomeViewController: BaseViewController {
     
     func setupViews() {
         self.view.backgroundColor = UIColor.white
+        
         background = Background(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: self.view.frame.height), withImage: UIImage(named: "divircityHome-1") ?? UIImage())
         
         titleView = UITextView(frame: CGRect(x: background.frame.midX - 150, y: background.frame.minY + 100, width: 300, height: 100))
@@ -45,7 +46,8 @@ class WelcomeViewController: BaseViewController {
     
     func setupCenterAlignedButtons() {
         buttonBox = UIView(frame: CGRect(x: (self.view.frame.width / 2) - 100, y: (self.view.frame.height / 2) - 100, width: 200, height: 200))
-        buttonBox.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        buttonBox.layer.cornerRadius = 20.0
+        buttonBox.backgroundColor = UIColor(white: 1, alpha: 0.9)
         
         signInButton = RectangleButton(frame: CGRect(x: background.frame.midX - 75, y: buttonBox.frame.minY + 25, width: 150, height: 40), withText: "Sign In")
         signInButton.addTarget(self, action: #selector(goToSignInPage), for: .touchUpInside)
@@ -59,16 +61,20 @@ class WelcomeViewController: BaseViewController {
     }
     
     func setupBottomAlignedButtons() {
-        privacyPolicyButon = TextOnlyButton(frame: CGRect(x: self.view.frame.minX + 24, y: self.view.frame.maxY - 100, width: (self.view.frame.width / 3) - 32, height: 40), withText: "Privacy Policy")
+        privacyPolicyButon = TextOnlyButton(frame: CGRect(x: self.view.frame.minX + 24, y: self.view.frame.maxY - 60, width: (self.view.frame.width / 3) - 32, height: 40), withText: "Privacy Policy")
         privacyPolicyButon.addTarget(self, action: #selector(showPrivacyPolicy), for: .touchUpInside)
+        privacyPolicyButon.titleLabel?.numberOfLines = 2
+        privacyPolicyButon.titleLabel?.textAlignment = NSTextAlignment.center
         privacyPolicyButon.setTitleColor(UIColor.black, for: .normal)
         
-        faqButton = TextOnlyButton(frame: CGRect(x: privacyPolicyButon.frame.maxX + 24, y: self.view.frame.maxY - 100, width: (self.view.frame.width / 3) - 32, height: 40), withText: "FAQs")
+        faqButton = TextOnlyButton(frame: CGRect(x: privacyPolicyButon.frame.maxX + 24, y: self.view.frame.maxY - 60, width: (self.view.frame.width / 3) - 32, height: 40), withText: "FAQs")
         faqButton.addTarget(self, action: #selector(showFAQs), for: .touchUpInside)
+        faqButton.titleLabel?.textAlignment = NSTextAlignment.center
         faqButton.setTitleColor(UIColor.black, for: .normal)
         
-        contactUsButton = TextOnlyButton(frame: CGRect(x: faqButton.frame.maxX, y: self.view.frame.maxY - 100, width: (self.view.frame.width / 3) - 32, height: 40), withText: "Contact Us")
+        contactUsButton = TextOnlyButton(frame: CGRect(x: faqButton.frame.maxX, y: self.view.frame.maxY - 60, width: (self.view.frame.width / 3) - 32, height: 40), withText: "Contact Us")
         contactUsButton.addTarget(self, action: #selector(showContactUsPage), for: .touchUpInside)
+        contactUsButton.titleLabel?.textAlignment = NSTextAlignment.center
         contactUsButton.setTitleColor(UIColor.black, for: .normal)
     }
     

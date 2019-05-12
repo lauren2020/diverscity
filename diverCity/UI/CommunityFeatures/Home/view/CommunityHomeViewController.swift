@@ -9,14 +9,13 @@
 import UIKit
 
 class CommunityHomeViewController: BaseTabViewController {
+    var viewModel = CommunityHomeViewModel()
     var activityHelper = ActivityHelper()
-    //var sidebarMenu: SideBarMenu!
+    
     var communityCover: CommunityHeader!
     var divider: UIView!
     var background: Background!
     var addUserToCommunityButton: UIButton!
-//    var trendingEventsTag: ObjectLabelTag!
-//    var trendingEventsTable: EventsTableView!
     var postsTableTag: ObjectLabelTag!
     var postsTable: PostsTableView!
     
@@ -25,6 +24,7 @@ class CommunityHomeViewController: BaseTabViewController {
     var filterPostButton: ActionButton!
     
     let devStubs = DevStubs()
+    
     //Owner, Admin, Member, Visitor
     enum Permission {
         case OWNER
@@ -37,6 +37,7 @@ class CommunityHomeViewController: BaseTabViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Community Home"
+        setupViewModel()
         setPermissions()
         setupViews()
         loadTrendingEvents()
@@ -47,7 +48,6 @@ class CommunityHomeViewController: BaseTabViewController {
     func setupViews() {
         background = Background(frame: self.view.frame, withImage: UIImage(named: "omaha1") ?? UIImage())
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(backToHomePage))
-        //self.navigationItem.leftBarButtonItem =
         
         switch PERMISSION {
         case Permission.OWNER:
@@ -59,6 +59,22 @@ class CommunityHomeViewController: BaseTabViewController {
         default:
             configurePageForVisitor()
         }
+    }
+    
+    func setupViewModel() {
+        viewModel.startActivityEvent.addSubscriber {
+            
+        }
+        viewModel.stopActivityEvent.addSubscriber {
+            
+        }
+        viewModel.addUserToCommunityEvent.addSubscriber(subscriber: { (community) in
+            self.patchCommunityCompletion(community: community)
+        })
+        viewModel.patchCommunityCompletedEvent.addSubscriber(subscriber: { () in
+            self.openPopUp(type: 0, displayText: "Congratulations! You have joined " + (UserSession.selectedCommunity?.name)!)
+            self.updateLayoutForPermissions()
+        })
     }
     
     func configurePageForOwner() {
@@ -186,68 +202,12 @@ class CommunityHomeViewController: BaseTabViewController {
     }
     
     @objc func addUserToCommunity(_ sender: Any) {
-        let newMembers = (UserSession.selectedCommunity?.members.joined(separator: ","))! == "" ? (UserSession.user?.id)! : (UserSession.selectedCommunity?.members.joined(separator: ","))! + "," + (UserSession.user?.id)!
-        activityHelper.startActivity(view: self.view)
-        let content = APIDelegate.buildPostString(body: ["members=" + newMembers])
-        let patchCommunityRequest = APIDelegate.requestBuilder(withPath: APIDelegate.communitiesPath, withId: (UserSession.selectedCommunity?.id)!, methodType: "PATCH", postContent: content)
-        if (patchCommunityRequest != nil) {
-            APIDelegate.performTask(withRequest: patchCommunityRequest!, completion: {json in
-                if (json != nil && json?.count != 0) {
-                    do {
-                        self.patchCommunityCompletion(community: try Community(json: json![0]))
-                    } catch {
-                        self.activityHelper.stopActivity(view: self.view)
-                        print(error)
-                    }
-                }
-            })
-        }
+        viewModel.addUserToCommunity()
     }
     
     func patchCommunityCompletion(community: Community?) {
-        if(community != nil) {
-            UserSession.selectedCommunity = community
-            let community = UserSession.selectedCommunity
-            let newCommunities = (UserSession.user?.communities.joined(separator: ","))! == "" ? (community?.id) : (UserSession.user?.communities.joined(separator: ","))! + "," + (community?.id)!
-            let content = APIDelegate.buildPostString(body: ["communities=" + newCommunities!])
-            let patchUserRequest = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: (UserSession.user?.id)!, methodType: "PATCH", postContent: content)
-            if (patchUserRequest != nil) {
-                APIDelegate.performTask(withRequest: patchUserRequest!, completion: {json in
-                    self.activityHelper.stopActivity(view: self.view)
-                    if (json != nil && json?.count != 0) {
-                        do {
-                            UserSession.user = try User(json: json![0])
-                            print("Community added to user!")
-                            self.openPopUp(type: 0, displayText: "Congratulations! You have joined " + (UserSession.selectedCommunity?.name)!)
-                            self.updateLayoutForPermissions()
-                        } catch {
-                            print(error)
-                        }
-                    } else {
-                        self.activityHelper.stopActivity(view: self.view)
-                    }
-                })
-            } else {
-                activityHelper.stopActivity(view: self.view)
-            }
-            print("User Added to Community!")
-        } else {
-            activityHelper.stopActivity(view: self.view)
-            print("Unable to add member to community!")
-        }
+        viewModel.patchCommunityCompletion(community: community)
     }
-    
-//    func patchUserCompletion(user: User?) {
-//        if(user != nil) {
-//            UserSession.user = user
-//            print("Community added to user!")
-//            openPopUp(type: 0, displayText: "Congratulations! You have joined " + (UserSession.selectedCommunity?.name)!)
-//            updateLayoutForPermissions()
-//            //performSegue(withIdentifier: "createCommunityToMyHomePage", sender: (Any).self)
-//        } else {
-//            print("Unable to add community to member!")
-//        }
-//    }
     
     func openPopUp(type: Int, displayText: String) {
         if (type == 0) {
@@ -259,43 +219,11 @@ class CommunityHomeViewController: BaseTabViewController {
         }
     }
     
-//    @objc func toggleMenu(_ sender: Any) {
-//        print("Toggle Menu")
-//        if(menuIsOpen) {
-//            closeMenu()
-//        } else {
-//            openMenu()
-//        }
-//    }
-    
     @objc func backToHomePage(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-//    func openMenu() {
-//        menuIsOpen = true
-//        backToHomeButton.isHidden = false
-//    }
-//
-//    func closeMenu() {
-//        menuIsOpen = false
-//        backToHomeButton.isHidden = true
-//    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

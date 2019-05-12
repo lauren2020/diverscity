@@ -25,6 +25,14 @@ class TaggedButton: UIButton {
         addSubview(counter)
     }
     
+    func setTagValue(value: String) {
+        self.counter.text = value
+    }
+    
+    func setTagCount(count: Int) {
+        self.counter.text = String(count)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

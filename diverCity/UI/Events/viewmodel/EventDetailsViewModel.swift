@@ -8,6 +8,6 @@
 
 import Foundation
 
-class EventDetailsViewModel {
+class EventDetailsViewModel : BaseViewModel {
     var event: CommunityEvent?
 }

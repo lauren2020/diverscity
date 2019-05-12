@@ -8,6 +8,6 @@
 
 import Foundation
 
-class ConnectionDetailViewModel {
+class ConnectionDetailViewModel : BaseViewModel {
     var userInfo: User!
 }

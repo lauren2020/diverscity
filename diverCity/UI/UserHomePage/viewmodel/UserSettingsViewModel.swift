@@ -8,6 +8,6 @@
 
 import Foundation
 
-class UserSettingsViewModel {
+class UserSettingsViewModel : BaseViewModel {
     
 }

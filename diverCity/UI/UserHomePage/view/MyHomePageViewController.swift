@@ -52,13 +52,14 @@ class MyHomePageViewController: BaseViewController {
         reloadCommunitiesButton = RectangleButton(frame: CGRect(x: self.view.frame.minX + 210, y: 0, width: 100, height: 40), withText: "Reload")
         reloadCommunitiesButton.addTarget(self, action: #selector(reloadCommunities), for: .touchUpInside)
         
-        findCommunities = RectangleButton(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.height - 170, width: (self.view.frame.width / 2), height: 40), withText: "Find Communities")
+        // TODO: y value for findCommunities and createCommunity should be - height (40) not 105, why is view maxy off screen?
+        findCommunities = RectangleButton(frame: CGRect(x: self.view.frame.minX, y: self.view.frame.maxY - 105, width: (self.view.frame.width / 2), height: 40), withText: "Find Communities")
         findCommunities.addTarget(self, action: #selector(goToFindCommunities), for: .touchUpInside)
         
-        createCommunity = RectangleButton(frame: CGRect(x: self.view.frame.maxX - (self.view.frame.width / 2), y: self.view.frame.height - 170, width: (self.view.frame.width / 2), height: 40), withText: "Create Community")
+        createCommunity = RectangleButton(frame: CGRect(x: self.view.frame.maxX - (self.view.frame.width / 2), y: self.view.frame.maxY - 105, width: (self.view.frame.width / 2), height: 40), withText: "Create Community")
         createCommunity.addTarget(self, action: #selector(createNewCommunity), for: .touchUpInside)
         
-        communitiesTableView = CommunityTableView(frame: CGRect(x: self.view.frame.minX, y: myCommunitiesTag.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - myCommunitiesTag.frame.maxY - 170), communities: [], communitySelectedCallback: { (community) in
+        communitiesTableView = CommunityTableView(frame: CGRect(x: self.view.frame.minX, y: myCommunitiesTag.frame.maxY, width: self.view.frame.width, height: findCommunities.frame.minY - myCommunitiesTag.frame.maxY), communities: [], communitySelectedCallback: { (community) in
                 UserSession.selectedCommunity = community
                 let communityTabsViewController = CommunityTabsViewController()
                 self.present(communityTabsViewController, animated: true, completion: nil)
@@ -77,11 +78,14 @@ class MyHomePageViewController: BaseViewController {
     
     func setupViewModel() {
         viewModel.loadCommunitiesEvent.addSubscriber(subscriber: onUpdateCommunityList)
-        viewModel.activityStartEvent.addSubscriber {_ in
-            //self.activityHelper.startActivity(view: self.view)
+        viewModel.loadMyNotifiationsEvent.addSubscriber(subscriber: { (notifications) in
+            self.infoOptions.notificationsIcon.setTagCount(count: notifications.count)
+        })
+        viewModel.startActivityEvent.addSubscriber {_ in
+            self.activityHelper.startActivity(view: self.view)
         }
-        viewModel.activityEndEvent.addSubscriber {_ in
-            //self.activityHelper.stopActivity(view: self.view)
+        viewModel.stopActivityEvent.addSubscriber {_ in
+            self.activityHelper.stopActivity(view: self.view)
         }
     }
     

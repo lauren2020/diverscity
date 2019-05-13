@@ -63,10 +63,10 @@ class CommunityHomeViewController: BaseTabViewController {
     
     func setupViewModel() {
         viewModel.startActivityEvent.addSubscriber {
-            
+            self.activityHelper.startActivity(view: self.view)
         }
         viewModel.stopActivityEvent.addSubscriber {
-            
+            self.activityHelper.stopActivity(view: self.view)
         }
         viewModel.addUserToCommunityEvent.addSubscriber(subscriber: { (community) in
             self.patchCommunityCompletion(community: community)

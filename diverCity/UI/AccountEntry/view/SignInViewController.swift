@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class SignInViewController: UIViewController {
+    var viewModel = SignInViewModel()
     var activityHelper = ActivityHelper()
     
     var titleView: UITextView!
@@ -29,14 +30,10 @@ class SignInViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-//
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//        return true
-//    }
     
     func setupViews() {
-        background = Background(frame: self.view.frame, withImage: UIImage(named: "omaha1") ?? UIImage())
+        background = Background(frame: self.view.frame, withImage: UIImage(named: "divircityHome-1") ?? UIImage())
+        background.blur(alpha: 0.8)
         
         titleView = UITextView(frame: CGRect(x: self.view.frame.midX - 150, y: self.view.frame.minY + 100, width: 300, height: 100))
         titleView.text = "Sign In"
@@ -46,6 +43,7 @@ class SignInViewController: UIViewController {
         
         backToWelcomePageButton = TextOnlyButton(frame: CGRect(x: self.view.frame.maxX - 70, y: self.view.frame.minX + 20, width: 50, height: 100), withText: "Back")
         backToWelcomePageButton.addTarget(self, action: #selector(goBackToWelcomePage), for: .touchUpInside)
+        backToWelcomePageButton.setTitleColor(UIColor.black, for: .normal)
         
         usernameTextField = FormEntryField(frame: CGRect(x: self.view.frame.midX - 150, y: self.view.frame.midY - 100, width: 300, height: 40), withHint: "Username")
         
@@ -56,23 +54,33 @@ class SignInViewController: UIViewController {
         
         forgotYourPasswordButton = TextOnlyButton(frame: CGRect(x: self.view.frame.midX - 100, y: signInButton.frame.maxY + 30, width: 200, height: 40), withText: "Forgot your password?")
         forgotYourPasswordButton.addTarget(self, action: #selector(showForgotYourPasswordPage), for: .touchUpInside)
+        forgotYourPasswordButton.setTitleColor(UIColor.black, for: .normal)
         
-//        forgotYourPasswordButton = TextOnlyButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-//        forgotYourPasswordButton.setupButton(withText: "Forgot your password?", atX: signInButton.bounds.minX, atY: signInButton.bounds.maxY + 20)
-//        usernameTextField.textField.isEnabled = true
-//        usernameTextField.textField.isUserInteractionEnabled = true
-        
+        addSubviews()
+    }
+    
+    func addSubviews() {
         self.view.addSubview(background)
         self.view.addSubview(backToWelcomePageButton)
         self.view.addSubview(titleView)
         self.view.addSubview(usernameTextField)
-        //self.view.bringSubview(toFront: usernameTextField)
         self.view.addSubview(passwordTextField)
-        //self.view.bringSubview(toFront: passwordTextField)
         self.view.addSubview(signInButton)
-        //
         self.view.bringSubview(toFront: signInButton)
         self.view.addSubview(forgotYourPasswordButton)
+    }
+    
+    func setupViewModel() {
+        viewModel.startActivityEvent.addSubscriber {
+            self.activityHelper.startActivity(view: self.view)
+        }
+        viewModel.stopActivityEvent.addSubscriber {
+            self.activityHelper.stopActivity(view: self.view)
+        }
+        viewModel.onSignInComplete.addSubscriber(subscriber: { (user) in
+            let userSessionNavigationController = UserSessionNavigationController()
+            self.present(userSessionNavigationController, animated: true, completion: nil)
+        })
     }
     
     @objc func goBackToWelcomePage(_ sender: Any) {
@@ -85,23 +93,7 @@ class SignInViewController: UIViewController {
     }
     
     @objc func signInToUserAccount(_ sender: Any) {
-        activityHelper.startActivity(view: self.view)
-        let getUserRequest = APIDelegate.requestBuilder(withPath: APIDelegate.usersPath, withId: usernameTextField.text!, methodType: "GET", postContent: nil)
-        if (getUserRequest != nil) {
-            APIDelegate.performTask(withRequest: getUserRequest!, completion: {json in
-                self.activityHelper.stopActivity(view: self.view)
-                if (json != nil && json?.count != 0) {
-                    do {
-                        UserSession.user = try User(json: json![0])
-                        //let homePageViewController = MyHomePageViewController()
-                        let userSessionNavigationController = UserSessionNavigationController()
-                        self.present(userSessionNavigationController, animated: true, completion: nil)
-                    } catch {
-                        print(error)
-                    }
-                }
-            })
-        }
+        viewModel.sendSignInRequest(id: usernameTextField.text!)
     }
     
     override func didReceiveMemoryWarning() {

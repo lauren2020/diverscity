@@ -36,14 +36,12 @@ class SetableTextField: UITextView {
         isEditing = true
         isEditable = true
         layer.borderColor = UIColor.black.cgColor
-       // backgroundColor = UIColor.gray
     }
     
     func setTextFieldNotEditing() {
         isEditing = false
         isEditable = false
         layer.borderColor = UIColor.lightGray.cgColor
-        //backgroundColor = UIColor.white
     }
     
     func setEditingDisabled() {
